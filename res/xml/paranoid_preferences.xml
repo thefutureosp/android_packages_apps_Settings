@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/paranoid_settings"
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
+
+	<PreferenceCategory android:key="category_ui"
+		   android:title="@string/ui_category">
+
+		<PreferenceScreen
+		    android:key="pref_hybrid_screen"
+		android:fragment="com.android.settings.paranoid.HybridPreferences"
+		    android:title="@string/hybrid_settings_title"
+		    android:summary="@string/hybrid_settings_summary"/>
+
+		<CheckBoxPreference
+		    android:key="pref_tablet_mode"
+		    android:title="@string/tablet_mode_title"
+		    android:summary="@string/tablet_mode_summary"
+		    android:defaultValue="false"/>
+
+	</PreferenceCategory>
+
+</PreferenceScreen>

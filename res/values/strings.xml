@@ -16,6 +16,9 @@
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
+	<string name="hybrid_force_stop_dlg_title">Force stop the app?</string>
+    <string name="hybrid_force_stop_dlg_text">Some apps may not pick up your settings, force stopping "helps" (forces) them re-building their caches.</string>
+
     <!-- String for ShortcutPickHelper -->
     <string name="picker_activities">Activities</string>
     <string name="select_custom_app_title">Select custom application</string>
@@ -906,6 +909,8 @@
     <string name="pref_flash_mode_title">Flash mode</string>
     <string name="pref_flash_mode_summary">Choose High / Death Ray</string>
 
+    <string name="toggles_not_enough_space">Only 6 toggles are allowed</string>
+
     <!-- Power Widget, Haptic feedback #CM -->
     <string name="expanded_haptic_feedback_title">Haptic feedback</string>
     <string name="expanded_haptic_feedback_summary">Enable/disable haptic feedback</string>
@@ -915,6 +920,8 @@
     <string name="status_bar_title">Status bar</string>
     <string name="status_bar_clock_title">Clock</string>
     <string name="status_bar_general_title">General</string>
+    <string name="status_bar_clock_style_title">"Clock Style"</string>
+    <string name="status_bar_clock_style_summary">"Statusbar Clock Style"</string>
     <string name="status_bar_show_clock_title">Show clock</string>
     <string name="status_bar_show_clock_summary">Show the clock in the status bar</string>
     <string name="status_bar_am_pm_title">AM/PM style</string>
@@ -935,8 +942,8 @@
 
     <!-- Lock Screen Shortcuts -->
     <string name="lockscreen_target_info">Drag the slider to targets to assign shortcuts</string>
-    <string name="lockscreen_target_title">Slider shortcuts</string>
-    <string name="lockscreen_target_summary">View or change custom lock screen shortcuts</string>
+    <string name="lockscreen_target_title">Lock screen shortcuts</string>
+    <string name="lockscreen_target_summary">Add or configure custom lock screen shortcuts</string>
     <string name="lockscreen_target_reset">Lock screen shortcuts reset to default</string>
     <string name="lockscreen_target_save">Lock screen shortcuts saved</string>
     <string name="lockscreen_target_reset_title">Reset</string>
@@ -1008,7 +1015,130 @@
     <!-- Wallpaper settings fragment title [CHAR LIMIT=30] -->
     <string name="wallpaper_settings_fragment_title">Choose wallpaper from</string>
 
-<!-- PERSONAL Settings -->
+    <!-- ** ParanoidAndroid Settings Start ** --> 
+
+    <string name="paranoid_settings">Paranoid Settings</string>
+    <string name="ui_category">User Interface Preferences</string>
+    <string name="rom_category">ROM Preferences</string>
+
+    <string name="rom_updates_title">Check for updates</string>
+    <string name="rom_updates_summary">Current Version:</string>
+
+    <string name="hybrid_settings_title">Hybrid Settings</string>
+    <string name="hybrid_settings_summary">Hybrid mode options</string>
+    <string name="lcd_global_title">System App density</string>
+    <string name="lcd_global_summary">Optional: Sets the base density for all system apps. Individual Values defined in -List Apps- override this value.</string> 
+    <string name="lcd_density_title">User App Density</string>
+    <string name="lcd_density_summary">Optional: Sets the base density for all non-system (user) apps. Individual Values defined in -List Apps- override this value.</string> 
+
+    <string name="lcd_density_no_value">Incorrect value, selecting default</string>
+    <string name="framework_density_title">Dialogs and popups density</string>
+    <string name="framework_density_summary">Applies to system dialogs and toasts</string>
+    <string name="systemui_density_title">Navigationbar Density</string>
+    <string name="systemui_density_summary">Optional: Controls the size of the navigation bar. If you make it bigger you might want to switch off the clock in System/Status bar/Show clock. Warning, it can take a long while until it pops up again, if it doesnt, reboot!</string>
+    <string name="enable_hybrid_title">Hybrid Mode</string>
+    <string name="enable_hybrid_summary">Enable hybrid mode</string>
+
+    <string name="hybrid_list_title">List Apps</string>
+    <string name="hybrid_list_summary">Define apps individually, scale then and/or display them in table- or mobile UI.</string>
+
+    <string name="hybrid_apps_write_dpi">Write new density:</string>
+    <string name="hybrid_apps_no_dpi">Incorrect value, selecting default</string>
+    <string name="hybrid_apps_dpi_default">Default DPI</string>
+
+    <string name="global_default">Default Dpi</string>
+    <string name="global_default_layout">Default UI</string>
+    <string name="display_dpi_label">Display</string>
+    <string name="display_config_label">Configuration</string>
+    <string name="display_config_text">This is the actual configuration as defined per pad.prop in your system folder!</string>
+    <string name="display_settings_label">Settings</string>
+	<string name="display_settings_text">First chose your preferences, when you are done click APPLY in the upper right corner. If you are using custom values a dialog will come up requesting for input.</string>
+    <string name="dpi_label">Dpi</string>
+    <string name="ldpi_value">160 Dpi (Low)</string>
+    <string name="mdpi_value">240 Dpi (Mid)</string>
+    <string name="hdpi_value">320 Dpi (High)</string>
+    <string name="current_base">Current Base Dpi</string>
+	<string name="phone_base">Phone Base Dpi</string>
+    <string name="tablet_base">Tablet Base Dpi</string>
+    <string name="lcd_density_custom">Custom Dpi</string>
+    <string name="lcd_density_reset">Reset Dpi</string>
+
+
+    <string name="layout_label">UI</string>
+    <string name="force_label">Force</string>
+    <string name="style_default">Mode: ---</string>
+    <string name="style_tablet">Tablet UI</string>
+    <string name="style_phone">Phone UI</string>
+    <string name="app_detail_splitter">/</string>
+    <string name="pal_mode">App style</string>
+    <string name="pad_mode">App density</string>
+    <string name="pad_dialog">Set custom app Density</string>
+    <string name="pad_force">Force scaling</string>
+    <string name="action_apply">Apply</string>
+    <string name="action_discard">Discard</string>
+	<string name="action_reset">Reset</string>
+    <string name="actions_applied">Sucessfully applied selected settings</string>
+
+    <string name="statusbar_transparency_title">Statusbar Transparency</string> 
+    <string name="statusbar_transparency_summary">Adjust statusbar transparency</string> 
+
+    <string name="lockscreen_settings_title">Lockscreen</string> 
+    <string name="lockscreen_settings_summary">Lockscreen options</string> 
+    <string name="honeycomb_lockscreen_title">Honeycomb Lockscreen</string> 
+    <string name="honeycomb_lockscreen_summary">Ripple effect</string> 
+    <string name="lockscreen_wallpaper_title">Lockscreen Wallpaper</string>
+    <string name="lockscreen_wallpaper_summary">Setup lockscreen wallpaper</string>
+    <string name="lockscreen_wallpaper_remove_title">Remove Lockscreen Wallpaper</string>
+    <string name="lockscreen_vibration_title">Lockscreen Vibration</string> 
+    <string name="lockscreen_vibration_summary">Haptic feedback</string>
+
+    <string name="soft_keys_title">Softkeys</string> 
+    <string name="soft_keys_summary">Onscreen buttons</string>
+
+    <string name="tablet_mode_title">Tablet mode</string> 
+    <string name="tablet_mode_summary">Drops the device into tablet mode, results in a new, combined navigationbar and notificationcenter. This setting needs a reboot!</string>
+
+    <string name="recent_apps_settings_title">Recent Apps</string> 
+    <string name="recent_apps_settings_summary">Recent apps screen options</string> 
+    <string name="sense_recent_title">Recent Apps Mod</string>
+    <string name="sense_recent_summary">Sense 4.0 layout mode</string>
+    <string name="recent_apps_icon_title">Icon</string>
+    <string name="recent_apps_icon_summary">App icon visibility</string>
+    <string name="recent_apps_font_size_title">Font size</string>
+    <string name="recent_apps_font_size_summary">App name font size</string>
+
+    <string name="physical_keys_title">Physical Keys</string> 
+    <string name="physical_keys_summary">Use touch keys</string> 
+
+    <string name="recording_format_title">MPEG-4 Video Recording</string>
+    <string name="recording_format_summary">Change format of recorded videos</string>
+
+    <string name="rom_sounds_title">Sound Management</string>
+    <string name="rom_sounds_summary">Manage ROM Sounds</string>
+    <string name="shutter_sound">Camera shutter</string>
+    <string name="focus_sound">Camera focus</string>
+    <string name="video_sound">Video start/stop</string>
+    <string name="lowbattery_sound">Low battery</string>
+    <string name="lock_sound">Lock phone</string>
+    <string name="unlock_sound">Unlock phone</string>
+    <string name="dock_sound">Connect dock</string>
+    <string name="undock_sound">Disconnect dock</string>
+    <string name="tick_sound">Tick option</string>    
+    <string name="keypressdelete_sound">Delete key</string>
+    <string name="keypressreturn_sound">Return key</string>
+    <string name="keypressspacebar_sound">Spacebar key</string>
+    <string name="keypressstandard_sound">Standard key</string>   
+
+
+    <string name="no_internet">This feature needs internet connection. Please connect to internet and try again</string>
+    <string name="requires_server_restart">System Server must be restarted, do you want to restart it now?</string>
+    <string name="requires_reboot">Reboot required, do you want to reboot now?</string>
+
+
+    <!-- ** ParanoidAndroid Settings Ends ** --> 
+
+
+    <!-- PERSONAL Settings -->
     <!-- Settings main menu category heading. Personal (Accounts, security, language, backup...). [CHAR LIMIT=40] -->
     <string name="header_category_personal">PERSONAL</string>
 
@@ -1136,7 +1266,7 @@
     <!-- Security settings screen, setting option summary to change screen timeout -->
     <string name="lock_after_timeout_summary"><xliff:g id="timeout_string">%1$s</xliff:g> after sleep</string>
     <!-- Text shown next to checkbox for showing owner info on LockScreen [CHAR LIMIT=50]-->
-    <string name="show_owner_info_on_lockscreen_label">Show owner info</string>
+    <string name="show_owner_info_on_lockscreen_label">Show owner info on lock screen</string>
     <!-- Text shown for title of owner info setting [CHAR LIMIT=20]-->
     <string name="owner_info_settings_title">Owner info</string>
     <!-- Text shown for summary of owner info setting [CHAR LIMIT=40]-->
@@ -2212,6 +2342,8 @@
     <string name="wifi_p2p_menu_create_group">Create group</string>
     <!-- Menu option to remove a group-->
     <string name="wifi_p2p_menu_remove_group">Remove group</string>
+    <!-- Menu option to Wi-Fi p2p advanced settings -->
+    <string name="wifi_p2p_menu_advanced">Advanced</string>
     <!-- Title for available p2p devices -->
     <string name="wifi_p2p_available_devices">Available devices</string>
     <string name="wifi_p2p_on_summary">Turn on wifi direct</string>

@@ -937,6 +937,48 @@
         <item>26</item>
     </string-array>
 
+    <string-array name="statusbar_transparency_entries">
+	<item>0%</item>
+	<item>25%</item>
+	<item>50%</item>
+	<item>75%</item>
+	<item>100%</item>
+    </string-array>
+
+    <string-array name="statusbar_transparency_values" translatable="false">
+	<item>100</item>
+	<item>75</item>
+	<item>50</item>
+	<item>25</item>
+	<item>0</item>
+     </string-array>
+
+    <string-array name="recents_font_entries">
+	<item>14 (default)</item>
+	<item>16</item>
+	<item>18</item>
+	<item>20</item>
+    </string-array>
+
+    <string-array name="recents_font_values" translatable="false">
+	<item>14</item>
+	<item>16</item>
+	<item>18</item>
+	<item>20</item>
+     </string-array>
+
+    <string-array name="entries_status_bar_clock">
+        <item>Normal (default)</item>
+        <item>Centered</item>
+        <item>Hidden</item>
+    </string-array>
+
+    <string-array name="values_status_bar_clock" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
     <string-array name="entries_status_bar_am_pm">
         <item>Normal</item>
         <item>Small</item>
@@ -959,6 +1001,56 @@
         <item>0</item>
         <item>1</item>
         <item>2</item>
+    </string-array>
+
+    <string-array name="entries_lcd_densities">
+	<item>@string/ldpi_value</item>
+	<item>@string/mdpi_value</item>
+    <item>@string/hdpi_value</item>
+	<item>@string/lcd_density_custom</item>
+	<item>@string/lcd_density_reset</item>
+    </string-array>
+
+    <string-array name="values_lcd_densities" translatable="false">
+        <item>160</item>
+        <item>240</item>
+        <item>320</item>
+        <item>-1</item>
+	    <item>0</item>
+    </string-array>
+
+    <string-array name="entries_pad_lcd_densities">
+	<item>@string/global_default</item>
+	<item>@string/ldpi_value</item>	
+	<item>@string/mdpi_value</item>
+	<item>@string/hdpi_value</item>
+	<item>@string/current_base</item>    
+	<item>@string/tablet_base</item>        
+	<item>@string/phone_base</item>    
+	<item>@string/lcd_density_custom</item>
+    </string-array>
+
+    <string-array name="values_pad_lcd_densities" translatable="false">
+	<item>-1</item>
+    <item>160</item>      
+    <item>240</item>
+	<item>320</item>
+	<item>rom_current_base</item> 
+	<item>rom_tablet_base</item>
+	<item>rom_phone_base</item>
+	<item>custom</item>
+    </string-array>
+
+    <string-array name="entries_layout_modes">
+	<item>@string/global_default_layout</item>
+	<item>@string/style_phone</item>
+	<item>@string/style_tablet</item>
+    </string-array>
+
+    <string-array name="values_layout_modes">
+	<item>-1</item>
+	<item>1</item>
+	<item>2</item>
     </string-array>
 
      <string-array name="entries_status_bar_signal" translatable="false">
