@@ -1954,7 +1954,7 @@
 
     <!-- Safe headset volume restore checkbox -->
     <string name="safe_headset_restore_title">Guardar volumen</string>
-    <string name="safe_headset_restore_summary">Prevenir aumento de volumen cuando se conectan los auriculares</string>
+    <string name="safe_headset_restore_summary">Evitar aumento de volumen cuando se conectan los auriculares</string>
 
     <!-- Setting for volume rocker music controls #CM -->
     <string name="volbtn_music_controls_title">"Controles Volumen"</string>
@@ -2258,5 +2258,5 @@
     <string name="stylus_icon_enabled_title">Mostrar icono al usar Stylus</string>
     <string name="stylus_icon_enabled_summary">Mostrar el cursor cuando se arrastra o dibuja con Stylus</string>
     <!-- Hostname setting -->
-    <string name="device_hostname">Nombre del host</string>
+    <string name="device_hostname">Nombre del dispositivo</string>
 </resources>
