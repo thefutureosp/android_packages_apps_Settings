@@ -2259,4 +2259,7 @@
     <string name="stylus_icon_enabled_summary">Mostrar el cursor cuando se arrastra o dibuja con Stylus</string>
     <!-- Hostname setting -->
     <string name="device_hostname">Nombre del dispositivo</string>
+
+    <string name="status_bar_notif_count_title">Mostrar conteo de notificaciones</string>
+    <string name="status_bar_notif_count_summary">Mostrar numero de notificaciones pendientes en la barra de estado</string>
 </resources>
