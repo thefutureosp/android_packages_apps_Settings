@@ -60,6 +60,7 @@
     <!-- INTERFACE -->
     <header android:title="@string/header_category_interface" />
 
+
     <!-- Launcher -->
     <header
         android:id="@+id/launcher_settings"
@@ -83,7 +84,7 @@
             android:targetPackage="com.tmobile.themechooser"
             android:targetClass="com.tmobile.themechooser.ThemeChooser" />
     </header>
-
+ 
     <!-- System -->
     <header
         android:id="@+id/system_settings"

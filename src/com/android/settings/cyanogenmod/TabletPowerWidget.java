@@ -1,8 +1,21 @@
 /*
- * ParanoidAndroid Tablet Power Widget Fragment. (c) 2012 ParanoidAndroid Team
+ * Copyright (C) 2011 The CyanogenMod Project
+ * This code has been modified. Portions copyright (C) 2012 ParanoidAndroid Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
-package com.android.settings.paranoid;
+package com.android.settings.cyanogenmod;
 
 import android.app.ListFragment;
 import android.content.Context;
@@ -38,9 +51,9 @@ import java.util.Map;
 
 public class TabletPowerWidget extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
-    
-   private static final String TAG = "ParanoidAndroid/TabletPowerWidget";
-    
+
+    private static final String TAG = "TabletPowerWidget";
+
     private CheckBoxPreference[] mToggles = new CheckBoxPreference[9];
 
     private static Context mContext;
@@ -52,53 +65,53 @@ public class TabletPowerWidget extends SettingsPreferenceFragment
         super.onCreate(savedInstanceState);
 
         if (getPreferenceManager() != null) {
-		addPreferencesFromResource(R.xml.tablet_power_widget);	
+                addPreferencesFromResource(R.xml.tablet_power_widget);
                 mContext = getActivity();
-		refreshToggles();
-	}
+                refreshToggles();
+        }
     }
 
 
     private void refreshToggles(){
-	mPowerWidgets = Settings.System.getString(mContext.getContentResolver(), Settings.System.WIDGET_BUTTONS_TABLET);
-	PreferenceScreen prefSet = getPreferenceScreen();
-	if(mPowerWidgets == null)
-		mPowerWidgets = TabletPowerWidgetUtil.BUTTONS_DEFAULT;
-	for(int i=0; i<mToggles.length; i++){
-		mToggles[i] = (CheckBoxPreference) prefSet.findPreference(TabletPowerWidgetUtil.KEY_TOGGLES[i]);
-		mToggles[i].setChecked(mPowerWidgets.contains(TabletPowerWidgetUtil.KEY_TOGGLES[i]));
-	}
+        mPowerWidgets = Settings.System.getString(mContext.getContentResolver(), Settings.System.WIDGET_BUTTONS_TABLET);
+        PreferenceScreen prefSet = getPreferenceScreen();
+        if(mPowerWidgets == null)
+                mPowerWidgets = TabletPowerWidgetUtil.BUTTONS_DEFAULT;
+        for(int i=0; i<mToggles.length; i++){
+                mToggles[i] = (CheckBoxPreference) prefSet.findPreference(TabletPowerWidgetUtil.KEY_TOGGLES[i]);
+                mToggles[i].setChecked(mPowerWidgets.contains(TabletPowerWidgetUtil.KEY_TOGGLES[i]));
+        }
     }
 
     private void setWidgetButtons(){
-	if(mPowerWidgets == null)
-		mPowerWidgets = TabletPowerWidgetUtil.BUTTONS_DEFAULT;
-	if(mPowerWidgets.equals(TabletPowerWidgetUtil.NO_TOGGLES))
-		Settings.System.putString(mContext.getContentResolver(), Settings.System.WIDGET_BUTTONS_TABLET, mPowerWidgets);
-	else{
-		mPowerWidgets = mPowerWidgets.substring(0, mPowerWidgets.lastIndexOf("\\|"));
-		if(mPowerWidgets.split("\\|").length <= 6)
-			Settings.System.putString(mContext.getContentResolver(), Settings.System.WIDGET_BUTTONS_TABLET, mPowerWidgets);
-		else{
-			Toast.makeText(getActivity(), R.string.toggles_not_enough_space, Toast.LENGTH_SHORT).show();
-			refreshToggles();
-		}
-	}
+        if(mPowerWidgets == null)
+                mPowerWidgets = TabletPowerWidgetUtil.BUTTONS_DEFAULT;
+        if(mPowerWidgets.equals(TabletPowerWidgetUtil.NO_TOGGLES))
+                Settings.System.putString(mContext.getContentResolver(), Settings.System.WIDGET_BUTTONS_TABLET, mPowerWidgets);
+        else{
+                mPowerWidgets = mPowerWidgets.substring(0, mPowerWidgets.lastIndexOf("\\|"));
+                if(mPowerWidgets.split("\\|").length <= 6)
+                        Settings.System.putString(mContext.getContentResolver(), Settings.System.WIDGET_BUTTONS_TABLET, mPowerWidgets);
+                else{
+                        Toast.makeText(getActivity(), R.string.toggles_not_enough_space, Toast.LENGTH_SHORT).show();
+                        refreshToggles();
+                }
+       }
     }
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-	mPowerWidgets = "";
-	for(int i=0; i<mToggles.length; i++){
-		if(mToggles[i].isChecked())
-			mPowerWidgets += TabletPowerWidgetUtil.KEY_TOGGLES[i] + TabletPowerWidgetUtil.BUTTON_DELIMITER;
-	}
-	if(mPowerWidgets.equals(""))
-		mPowerWidgets = TabletPowerWidgetUtil.NO_TOGGLES;
-	setWidgetButtons();
+        mPowerWidgets = "";
+        for(int i=0; i<mToggles.length; i++){
+               if(mToggles[i].isChecked())
+                      mPowerWidgets += TabletPowerWidgetUtil.KEY_TOGGLES[i] + TabletPowerWidgetUtil.BUTTON_DELIMITER;
+        }
+        if(mPowerWidgets.equals(""))
+               mPowerWidgets = TabletPowerWidgetUtil.NO_TOGGLES;
+        setWidgetButtons();
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
-    
+
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         return true;
@@ -202,7 +215,7 @@ public class TabletPowerWidget extends SettingsPreferenceFragment
                 mButtons = new ArrayList<TabletPowerWidgetUtil.ButtonInfo>();
                 for (String button : buttons) {
                     if (TabletPowerWidgetUtil.BUTTONS.containsKey(button)) {
-                        mButtons.add(TabletPowerWidgetUtil.BUTTONS.get(button));	
+                        mButtons.add(TabletPowerWidgetUtil.BUTTONS.get(button));
                     }
                 }
             }

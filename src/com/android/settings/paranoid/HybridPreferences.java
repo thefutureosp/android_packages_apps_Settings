@@ -35,10 +35,6 @@ public class HybridPreferences extends SettingsPreferenceFragment
     private static final String KEY_FRAME_DENSITY = "pref_framework_density";
     private static final String KEY_SYSUI_DENSITY = "pref_systemui_density";
     private static final String KEY_ENABLE_HYBRID = "pref_enable_hybrid";
-    private static final int SYSTEM_DEFAULT_DPI = 192;
-    private static final int USER_DEFAULT_DPI = 260;
-    private static final int FRAMEWORK_DEFAULT_DPI = 192;
-    private static final int SYSTEMUI_DEFAULT_DPI = 192;
     private static final int CUSTOM_LCD_DENSITY = -1;
 
     private PreferenceCategory mPrefCategoryHybrid;
@@ -64,24 +60,26 @@ public class HybridPreferences extends SettingsPreferenceFragment
 		mEnableHybrid = (CheckBoxPreference) prefSet.findPreference(KEY_ENABLE_HYBRID);
 		mEnableHybrid.setOnPreferenceChangeListener(this);
 
-        	mEnableHybrid.setChecked(Integer.parseInt(RomUtils.getProperty("hybrid_mode","0")) == 1);
+        	mEnableHybrid.setChecked(Integer.parseInt(RomUtils.getProperty("hybrid_mode")) == 1);
 
 		mGlobalLcdDensity = (ListPreference) prefSet.findPreference(KEY_GLOBAL_DENSITY);
 		mGlobalLcdDensity.setOnPreferenceChangeListener(this);
-		mGlobalLcdDensity.setValue(RomUtils.getProperty("system_default_dpi", String.valueOf(SYSTEM_DEFAULT_DPI)));	
+		mGlobalLcdDensity.setValue(RomUtils.getProperty("system_default_dpi"));
+                mGlobalLcdDensity.setEnabled(mEnableHybrid.isChecked());	
 
 		mLcdDensity = (ListPreference) prefSet.findPreference(KEY_LCD_DENSITY);
 		mLcdDensity.setOnPreferenceChangeListener(this);
-		mLcdDensity.setValue(RomUtils.getProperty("user_default_dpi", String.valueOf(USER_DEFAULT_DPI)));
+		mLcdDensity.setValue(RomUtils.getProperty("user_default_dpi"));
 	        mLcdDensity.setEnabled(mEnableHybrid.isChecked());
 
 		mFrameDensity = (ListPreference) prefSet.findPreference(KEY_FRAME_DENSITY);
 		mFrameDensity.setOnPreferenceChangeListener(this);
-		mFrameDensity.setValue(RomUtils.getProperty("framework-res.dpi", String.valueOf(FRAMEWORK_DEFAULT_DPI)));
+		mFrameDensity.setValue(RomUtils.getProperty("android.dpi"));
+                mFrameDensity.setEnabled(mEnableHybrid.isChecked());
 
 		mSysUiDensity = (ListPreference) prefSet.findPreference(KEY_SYSUI_DENSITY);
 		mSysUiDensity.setOnPreferenceChangeListener(this);
-		mSysUiDensity.setValue(RomUtils.getProperty("com.android.systemui.dpi", String.valueOf(SYSTEMUI_DEFAULT_DPI)));
+		mSysUiDensity.setValue(RomUtils.getProperty("com.android.systemui.dpi"));
 		mSysUiDensity.setEnabled(mEnableHybrid.isChecked());
                 
                 mAppList = (PreferenceScreen) prefSet.findPreference(KEY_APP_LIST_SCREEN);
@@ -90,7 +88,6 @@ public class HybridPreferences extends SettingsPreferenceFragment
 		RomUtils.setContext(mContext);
 
                 mPrefCategoryHybrid = (PreferenceCategory) findPreference(CATEGORY_HYBRID_GENERAL);
-		mPrefCategoryHybrid.removePreference(mFrameDensity);
 	}
     }
 
@@ -99,9 +96,11 @@ public class HybridPreferences extends SettingsPreferenceFragment
 	if (preference == mEnableHybrid){
             mValue = mEnableHybrid.isChecked();
             RomUtils.setHybridProperty("hybrid_mode", mValue ? "1" : "0");
-			mGlobalLcdDensity.setEnabled(mEnableHybrid.isChecked());
+            
+            mGlobalLcdDensity.setEnabled(mEnableHybrid.isChecked());
             mLcdDensity.setEnabled(mEnableHybrid.isChecked());
-		    mSysUiDensity.setEnabled(mEnableHybrid.isChecked());
+            mFrameDensity.setEnabled(mEnableHybrid.isChecked());
+            mSysUiDensity.setEnabled(mEnableHybrid.isChecked());
             mAppList.setEnabled(mEnableHybrid.isChecked());
 	}
         return super.onPreferenceTreeClick(preferenceScreen, preference);
@@ -113,25 +112,31 @@ public class HybridPreferences extends SettingsPreferenceFragment
 	 if(KEY_LCD_DENSITY.equals(key)){
 	    int value = Integer.parseInt((String) newValue);
             if(value == CUSTOM_LCD_DENSITY)
-	       getDensityDialog(USER_DEFAULT_DPI, "user_default_dpi", 0);
-            else
+	       getDensityDialog("user_default_dpi", 0);
+            else{
 	       RomUtils.setHybridProperty("user_default_dpi", String.valueOf(value));
+               getRequiredDialog(R.string.requires_reboot, 0);
+            }
 	} else if(KEY_GLOBAL_DENSITY.equals(key)){
 		int value = Integer.parseInt((String) newValue);
             if(value == CUSTOM_LCD_DENSITY)
-	       getDensityDialog(SYSTEM_DEFAULT_DPI, "system_default_dpi", 0);
-            else
+	       getDensityDialog("system_default_dpi", 0);
+            else{
 	       RomUtils.setHybridProperty("system_default_dpi", String.valueOf(value));
+               getRequiredDialog(R.string.requires_reboot, 0);
+            }
 	} else if(KEY_FRAME_DENSITY.equals(key)){
 	    int value = Integer.parseInt((String) newValue);
             if(value == CUSTOM_LCD_DENSITY)
-	        getDensityDialog(FRAMEWORK_DEFAULT_DPI, "framework-res.dpi", -1);
-            else
-	       RomUtils.setHybridProperty("framework-res.dpi", String.valueOf(value));
+	        getDensityDialog("android.dpi", 0);
+            else{
+	       RomUtils.setHybridProperty("android.dpi", String.valueOf(value));
+               getRequiredDialog(R.string.requires_reboot, 0);
+            }
 	} else if(KEY_SYSUI_DENSITY.equals(key)){
 	    int value = Integer.parseInt((String) newValue);
             if(value == CUSTOM_LCD_DENSITY)
-		getDensityDialog(SYSTEMUI_DEFAULT_DPI, "com.android.systemui.dpi", 1);
+		getDensityDialog("com.android.systemui.dpi", 1);
             else{
 	       RomUtils.setHybridProperty("com.android.systemui.dpi", String.valueOf(value));
 	       RomUtils.triggerAction(1);
@@ -140,7 +145,7 @@ public class HybridPreferences extends SettingsPreferenceFragment
 	return true;
     }
 
-    public void getDensityDialog(final int density, final String propierty, final int requiredDialog){
+    public void getDensityDialog(final String propierty, final int requiredDialog){
 	AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
         final EditText input = new EditText(mContext);
         DigitsKeyListener onlyDecimalAllowed = new DigitsKeyListener(true, true);
@@ -153,15 +158,14 @@ public class HybridPreferences extends SettingsPreferenceFragment
                        int mDensity;
                        try{
                            mDensity = Integer.parseInt(value);
+                           RomUtils.setHybridProperty(propierty, String.valueOf(mDensity));
+		           if(requiredDialog == 0)
+			        getRequiredDialog(R.string.requires_reboot, 0);
+		           if(requiredDialog == 1)
+			        RomUtils.triggerAction(1);
                        } catch (Exception e){
                            Toast.makeText(mContext, getString(R.string.lcd_density_no_value), Toast.LENGTH_LONG).show();
-                           mDensity = density;
                        }
-		RomUtils.setHybridProperty(propierty, String.valueOf(mDensity));
-		if(requiredDialog == 0)
-			getRequiredDialog(R.string.requires_reboot, 0);
-		if(requiredDialog == 1)
-			RomUtils.triggerAction(1);
 		
         }});
         alert.show();

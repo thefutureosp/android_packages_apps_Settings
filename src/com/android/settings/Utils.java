@@ -38,6 +38,7 @@ import android.preference.PreferenceFrameLayout;
 import android.preference.PreferenceGroup;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.util.ExtendedPropertiesUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -489,11 +490,8 @@ public class Utils {
     }
 
     public static boolean isScreenLarge() {
-        final int screenSize = Resources.getSystem().getConfiguration().screenLayout &
-                Configuration.SCREENLAYOUT_SIZE_MASK;
-        boolean isScreenLarge = screenSize == Configuration.SCREENLAYOUT_SIZE_LARGE ||
-            screenSize == Configuration.SCREENLAYOUT_SIZE_XLARGE;
-        return isScreenLarge;
+        int mDefaultDensity = Integer.parseInt(ExtendedPropertiesUtils.getProperty("rom_phone_base"));
+        return SystemProperties.getInt("ro.sf.lcd_density", mDefaultDensity) <= Integer.parseInt(ExtendedPropertiesUtils.getProperty("rom_tablet_base", String.valueOf(mDefaultDensity)));
     }
 
 }

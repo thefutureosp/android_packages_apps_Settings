@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.paranoid;
+package com.android.settings.cyanogenmod;
 
 import com.android.settings.R;
 
@@ -29,8 +29,7 @@ public class TabletPowerWidgetUtil {
 
     protected static final String NO_TOGGLES = "no_toggles";
 
-    protected static final String[] KEY_TOGGLES = new String[]{
-	"pref_airplane_toggle", "pref_rotate_toggle", "pref_bluetooth_toggle", "pref_gps_toggle", "pref_wifi_toggle", "pref_flashlight_toggle", "pref_mobile_data_toggle", "pref_network_mode_toggle", "pref_sound_toggle"};
+   protected static final String[] KEY_TOGGLES = new String[]{"pref_airplane_toggle", "pref_rotate_toggle", "pref_bluetooth_toggle", "pref_gps_toggle", "pref_wifi_toggle", "pref_flashlight_toggle", "pref_mobile_data_toggle", "pref_network_mode_toggle", "pref_sound_toggle"};
 
     public static final HashMap<String, ButtonInfo> BUTTONS = new HashMap<String, ButtonInfo>();
     static {
@@ -63,10 +62,10 @@ public class TabletPowerWidgetUtil {
     }
 
     protected static final String BUTTON_DELIMITER = "\\|";
-    protected static final String BUTTONS_DEFAULT = KEY_TOGGLES[0] 
-	+ BUTTON_DELIMITER + KEY_TOGGLES[4] 
-	+ BUTTON_DELIMITER + KEY_TOGGLES[2] 
-	+ BUTTON_DELIMITER + KEY_TOGGLES[1];
+    protected static final String BUTTONS_DEFAULT = KEY_TOGGLES[0]
+        + BUTTON_DELIMITER + KEY_TOGGLES[4]
+        + BUTTON_DELIMITER + KEY_TOGGLES[2]
+        + BUTTON_DELIMITER + KEY_TOGGLES[1];
 
     public static String getCurrentButtons(Context context) {
         String buttons = Settings.System.getString(context.getContentResolver(),
@@ -106,11 +105,11 @@ public class TabletPowerWidgetUtil {
     }
 
     public static ArrayList<String> getButtonListFromString(String buttons) {
-	String[] buttonArray = buttons.split("\\|");
-	ArrayList<String> mButtonContainer = new ArrayList();
-	for(int i=0; i<buttonArray.length; i++){
-		mButtonContainer.add(buttonArray[i].replace("\\", ""));
-	}
+        String[] buttonArray = buttons.split("\\|");
+        ArrayList<String> mButtonContainer = new ArrayList();
+        for(int i=0; i<buttonArray.length; i++){
+            mButtonContainer.add(buttonArray[i].replace("\\", ""));
+        }
         return mButtonContainer;
     }
 

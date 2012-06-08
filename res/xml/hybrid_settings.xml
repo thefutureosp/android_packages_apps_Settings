@@ -17,7 +17,7 @@
         android:summary="@string/lcd_global_summary"
         android:entries="@array/entries_lcd_densities"
         android:entryValues="@array/values_lcd_densities"
-	android:defaultValue="260"/>
+	android:defaultValue="240"/>
 
     <ListPreference
         android:key="pref_lcd_density"
@@ -25,7 +25,7 @@
         android:summary="@string/lcd_density_summary"
         android:entries="@array/entries_lcd_densities"
         android:entryValues="@array/values_lcd_densities"
-	android:defaultValue="192"/>
+	android:defaultValue="182"/>
 
     <ListPreference
         android:key="pref_framework_density"
@@ -33,7 +33,7 @@
         android:summary="@string/framework_density_summary"
         android:entries="@array/entries_lcd_densities"
         android:entryValues="@array/values_lcd_densities"
-	android:defaultValue="240"/>
+	android:defaultValue="120"/>
 
     <ListPreference
         android:key="pref_systemui_density"
@@ -41,7 +41,7 @@
         android:summary="@string/systemui_density_summary"
         android:entries="@array/entries_lcd_densities"
         android:entryValues="@array/values_lcd_densities"
-	android:defaultValue="220"/>
+	android:defaultValue="160"/>
 
     <PreferenceScreen
         android:key="pref_manage_applications"

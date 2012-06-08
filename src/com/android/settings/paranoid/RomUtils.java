@@ -29,30 +29,9 @@ public class RomUtils extends ExtendedPropertiesUtils{
      /*
       * CMD Utils
       */
-    public static void swapSounds(String path, String name){
-        if(new File(path+name).exists()){
-           RunCommands.execute(new String[]{MOUNT_SYSTEM_RW, "busybox mv "+path+name+" "+path+"d4rom_"+name, MOUNT_SYSTEM_RO}, 0);
-        }
-        else{
-           RunCommands.execute(new String[]{MOUNT_SYSTEM_RW, "busybox mv "+path+"d4rom_"+name+" "+path+name, MOUNT_SYSTEM_RO}, 0);
-        }
-    }
 
     public static void setPropierty(String propierty, int value){
 	RunCommands.execute(new String[]{MOUNT_SYSTEM_RW, "cd /system", "busybox sed -i 's|"+propierty+"=.*|"+propierty+"=" + value + "|' build.prop", "busybox chmod 644 build.prop", MOUNT_SYSTEM_RO}, 0);
-    }
-
-    public static void setRecordingFormat(String format){
-	RunCommands.execute(new String[]{MOUNT_SYSTEM_RW, "cd /system/etc", "busybox sed -i 's|fileFormat=\".*\" duration=|fileFormat=\"" + format + "\" duration=|' media_profiles.xml", MOUNT_SYSTEM_RO}, 0);
-    }
-
-
-    public static void setPhysicalKeys(boolean enable){
-	String defaultText = "key 158   BACK		VIRTUAL\nkey 139   MENU		VIRTUAL";
-        if(enable)
-            RunCommands.execute(new String[]{MOUNT_SYSTEM_RW, "cd /system/usr/keylayout", "echo \""+defaultText+"\" > sec_touchkey.kl", MOUNT_SYSTEM_RO}, 0);
-	else
-	    RunCommands.execute(new String[]{MOUNT_SYSTEM_RW, "cd /system/usr/keylayout", "echo \"\" > sec_touchkey.kl", MOUNT_SYSTEM_RO}, 0);    
     }
 
     public static void setLockscreenWallpaper(String temp){
@@ -88,20 +67,6 @@ public class RomUtils extends ExtendedPropertiesUtils{
             return null;
         }
     }
-
-    public static boolean isStringPredominant(String file, String str1, String str2){
-        int num1 = 0;
-        int num2 = 0;
-        String[] temp = readFile(file).split("\n");
-        for(int i=0; i<temp.length; i++){
-            if(temp[i].contains(str1))
-                num1++;
-            if(temp[i].contains(str2))
-                num2++;
-        }
-        return num1 > num2;
-    }
-
 
     /*
      * Action Utils

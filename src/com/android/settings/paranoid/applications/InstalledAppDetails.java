@@ -95,20 +95,20 @@ public class InstalledAppDetails extends Fragment
 
     //PARANOIDANDROID: PAD & PAL
     private TextView mDpiText;
-	private TextView mLayoutText;
-	private TextView mForceText;
+    private TextView mLayoutText;
+    private TextView mForceText;
     private Spinner mDensity;
     private Spinner mLayoutMode;
     private CheckBox mForceScaling;
 
-	private String[] mArrayHeadersPad;
+    private String[] mArrayHeadersPad;
     private String[] mArrayValuesPad;
-	private String[] mArrayHeadersPal;
-	private String[] mArrayValuesPal;   
+    private String[] mArrayHeadersPal;
+    private String[] mArrayValuesPal;   
 
-	private String mSelectedDensity;
-	private String mSelectedLayout;
-	private String mSelectedForce;
+    private String mSelectedDensity;
+    private String mSelectedLayout;
+    private String mSelectedForce;
     
     // Dialog identifiers used in showDialog
     private static final int DLG_BASE = 0;
@@ -180,72 +180,71 @@ public class InstalledAppDetails extends Fragment
     }
 
     private void refreshParanoidParameters() {
-	
-		// GET FRESH BATCH OF PROPS
-		String TempDpi = RomUtils.getFixedProperty(mAppEntry.info.packageName + ".dpi", REMOVE_ENTRY);
-		String TempLay = RomUtils.getProperty(mAppEntry.info.packageName + ".mode", REMOVE_ENTRY);
-		String TempFor = RomUtils.getProperty(mAppEntry.info.packageName + ".force", REMOVE_ENTRY);
-		int TempDpiState = getSelectionPAD( TempDpi );
-		int TempLayState = getSelectionPAL( TempLay );
+	// GET FRESH BATCH OF PROPS
+	String TempDpi = RomUtils.getFixedProperty(mAppEntry.info.packageName + ".dpi", REMOVE_ENTRY);
+	String TempLay = RomUtils.getProperty(mAppEntry.info.packageName + ".mode", REMOVE_ENTRY);
+	String TempFor = RomUtils.getProperty(mAppEntry.info.packageName + ".force", REMOVE_ENTRY);
+	int TempDpiState = getSelectionPAD(TempDpi);
+	int TempLayState = getSelectionPAL(TempLay);
 
-		// SET UI ELEMENTS ACCORDINGLY
-		mDpiText.setText( mArrayValuesPad[ TempDpiState ].equals("custom") ? TempDpi : mArrayHeadersPad[ TempDpiState ] );
-		mLayoutText.setText( mArrayHeadersPal[ TempLayState ] );
-		mForceText.setText( TempFor.equals("1") ? "Yes" : "No" );
+	// SET UI ELEMENTS ACCORDINGLY
+	mDpiText.setText(mArrayHeadersPad[TempDpiState].equals(CUSTOM_VALUE) ? TempDpi : mArrayHeadersPad[TempDpiState]);
+	mLayoutText.setText(mArrayHeadersPal[TempLayState]);
+	mForceText.setText(TempFor.equals("1") ? getActivity().getString(R.string.force_yes) : getActivity().getString(R.string.force_no));
 
-		// SET SETTINGS CONTROLS
-		mDensity.setSelection(TempDpiState);
-		mLayoutMode.setSelection(TempLayState);		
-    	mForceScaling.setChecked(TempFor.equals("1"));
+	// SET SETTINGS CONTROLS
+	mDensity.setSelection(TempDpiState);
+	mLayoutMode.setSelection(TempLayState);		
+   	mForceScaling.setChecked(TempFor.equals("1"));
     }
 
-    public void discardSelectedOptions(){
+    public void resetSelectedOptions(){
+	// RESET PROP VALUES
+	RomUtils.setHybridProperty(mAppEntry.info.packageName + ".dpi", REMOVE_ENTRY);
+	RomUtils.setHybridProperty(mAppEntry.info.packageName + ".mode", REMOVE_ENTRY);
+	RomUtils.setHybridProperty(mAppEntry.info.packageName + ".force", REMOVE_ENTRY);
 
-		// RESET PROP VALUES
-		RomUtils.setHybridProperty(mAppEntry.info.packageName + ".dpi", REMOVE_ENTRY );
-		RomUtils.setHybridProperty(mAppEntry.info.packageName + ".mode", REMOVE_ENTRY );
-		RomUtils.setHybridProperty(mAppEntry.info.packageName + ".force", REMOVE_ENTRY );
-
-		// REFRESH
-		refreshParanoidParameters();
+	// REFRESH
+	refreshParanoidParameters();
+        showDialogInner(DLG_FORCE_STOP, 0);
     }
 
     public void applySelectedOptions(){
+	// GET STATES		
+	mSelectedDensity = mArrayValuesPad[mDensity.getSelectedItemPosition()];
+	mSelectedLayout = mArrayValuesPal[mLayoutMode.getSelectedItemPosition()];
+	mSelectedForce = mForceScaling.isChecked() ? "1" : REMOVE_ENTRY;
 
-		// GET STATES		
-		mSelectedDensity = mArrayValuesPad[ mDensity.getSelectedItemPosition() ];
-		mSelectedLayout = mArrayValuesPal[ mLayoutMode.getSelectedItemPosition() ];
-		mSelectedForce = mForceScaling.isChecked() ? "1" : REMOVE_ENTRY;
+	// CUSTOM VALUE?
+	if (mSelectedDensity.equals(CUSTOM_VALUE)) {
+             AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+             final EditText input = new EditText(getActivity());
+             DigitsKeyListener onlyDecimalAllowed = new DigitsKeyListener(true, true);
+             input.setKeyListener(onlyDecimalAllowed);
+             alert.setView(input)
+             .setTitle(R.string.lcd_density_custom)
+             .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener(){
+             public void onClick(DialogInterface dialog, int whichButton) {
+                  String mNewDensity = input.getText().toString();				
+                  RomUtils.setHybridProperty(mAppEntry.info.packageName + ".dpi", mNewDensity);
+                  RomUtils.setHybridProperty(mAppEntry.info.packageName + ".mode", mSelectedLayout);
+                  RomUtils.setHybridProperty(mAppEntry.info.packageName + ".force", mSelectedForce);
+                  refreshParanoidParameters();
+                  showDialogInner(DLG_FORCE_STOP, 0);
+             }});
+             alert.show();
+	} 
 
-		// CUSTOM VALUE?
-		if ( mSelectedDensity.equals(CUSTOM_VALUE) ) {
-			AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-			final EditText input = new EditText(getActivity());
-			DigitsKeyListener onlyDecimalAllowed = new DigitsKeyListener(true, true);
-			input.setKeyListener(onlyDecimalAllowed);
-			alert.setView(input)
-			.setTitle(R.string.lcd_density_custom)
-			.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener(){
-			public void onClick(DialogInterface dialog, int whichButton) {
-				try{ 
-					String mNewDensity = input.getText().toString();				
-					RomUtils.setHybridProperty(mAppEntry.info.packageName + ".dpi", mNewDensity);
-					RomUtils.setHybridProperty(mAppEntry.info.packageName + ".mode", mSelectedLayout);
-					RomUtils.setHybridProperty(mAppEntry.info.packageName + ".force", mSelectedForce);
-					showDialogInner(DLG_FORCE_STOP, 0);
-					refreshParanoidParameters();
-				} catch (Exception e){ }
-			}});
-			alert.show();
-		} 
-		// NORMAL VALUE
-		else {
-			RomUtils.setHybridProperty(mAppEntry.info.packageName + ".dpi", mSelectedDensity);
-			RomUtils.setHybridProperty(mAppEntry.info.packageName + ".mode", mSelectedLayout);
-			RomUtils.setHybridProperty(mAppEntry.info.packageName + ".force", mSelectedForce);
-			showDialogInner(DLG_FORCE_STOP, 0);
-			refreshParanoidParameters();
-    	}
+	// NORMAL VALUE
+	else {
+             if(!mSelectedDensity.equals("0"))
+                  RomUtils.setHybridProperty(mAppEntry.info.packageName + ".dpi", mSelectedDensity);
+             if(!mSelectedLayout.equals("0"))
+                  RomUtils.setHybridProperty(mAppEntry.info.packageName + ".mode", mSelectedLayout);
+             RomUtils.setHybridProperty(mAppEntry.info.packageName + ".force", mSelectedForce);
+             refreshParanoidParameters();
+             showDialogInner(DLG_FORCE_STOP, 0);
+   	}
     } 
 
     @Override
@@ -255,7 +254,7 @@ public class InstalledAppDetails extends Fragment
             	applySelectedOptions();
                 return true;
             case MENU_DISCARD:
-            	discardSelectedOptions();
+            	resetSelectedOptions();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -268,10 +267,10 @@ public class InstalledAppDetails extends Fragment
                  .setIcon(android.R.drawable.ic_menu_save)
                  .setEnabled(true)
                  .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
-          menu.add(Menu.NONE, MENU_DISCARD, 0, R.string.action_reset)
-		  .setIcon(android.R.drawable.ic_menu_close_clear_cancel)
-                  .setEnabled(true)
-                  .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+         menu.add(Menu.NONE, MENU_DISCARD, 0, R.string.action_reset)
+		 .setIcon(android.R.drawable.ic_menu_close_clear_cancel)
+                 .setEnabled(true)
+                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
  	 super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -339,19 +338,13 @@ public class InstalledAppDetails extends Fragment
             Log.e(TAG, "mUsbManager.hasDefaults", e);
         }
         
-		// SET APP OUTFIT
+	// SET APP OUTFIT
         setAppLabelAndIcon(mPackageInfo);
 
-		// REFRESH UI ELEMENTS
+	// REFRESH UI ELEMENTS
         refreshParanoidParameters();
         return true;
     }
-    
-
-
-
-
-
 
     @Override
     public void onResume() {

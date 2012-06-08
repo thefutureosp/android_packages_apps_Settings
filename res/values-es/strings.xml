@@ -681,6 +681,99 @@
     <string name="screen_timeout_summary" msgid="327761329263064327">"Después de <xliff:g id="TIMEOUT_DESCRIPTION">%1$s</xliff:g> de inactividad"</string>
     <string name="wallpaper_settings_title" msgid="5449180116365824625">"Fondo de pantalla"</string>
     <string name="wallpaper_settings_fragment_title" msgid="519078346877860129">"Seleccionar fondo de pantalla de..."</string>
+
+    <!-- ** ParanoidAndroid Settings Start ** --> 
+
+    <string name="paranoid_settings">Configuraciones Paranoid</string>
+    <string name="ui_category">Preferencias de interfaz</string>
+    <string name="rom_category">Preferencias de la ROM</string>
+
+    <string name="rom_updates_title">Buscar actualizaciones</string>
+    <string name="rom_updates_summary">Versión actual:</string>
+
+    <string name="hybrid_settings_title">Configuraciones Híbridas</string>
+    <string name="hybrid_settings_summary">Opciones del modo Híbrido</string>
+    <string name="lcd_global_title">Densidad del sistema</string>
+    <string name="lcd_global_summary">Opcional: Configura la densidad de las aplicaciones del sistema. Los valores en -Lista de aplicaciones- sobreescriben este valor.</string> 
+    <string name="lcd_density_title">Densidad del usuario</string>
+    <string name="lcd_density_summary">Opcional: Configura la densidad de las aplicaciones del usuario. Los valores en -Lista de aplicaciones- sobreescriben este valor.</string> 
+    <string name="lcd_density_custom">Personalizado</string>
+    <string name="lcd_density_no_value">Valor incorrecto. No se realizará ningun cambio</string>
+    <string name="framework_density_title">Densidad de los dialogos</string>
+    <string name="framework_density_summary">Aplica a los dialogos y alertas del sistema</string>
+    <string name="systemui_density_title">Densidad de la barra de estado</string>
+    <string name="systemui_density_summary">Opcional: Controla el tamaño de la barra de estado. Advertencia: Puede tomar un tiempo en volver a aparecer. Si no lo hace, reinicia.</string>
+    <string name="enable_hybrid_title">Modo Híbrido</string>
+    <string name="enable_hybrid_summary">Activar modo Híbrido</string>
+    <string name="hybrid_list_title">Lista de aplicaciones</string>
+    <string name="hybrid_list_summary">Configurar valores individuales</string>
+    <string name="hybrid_apps_write_dpi">Escribir nueva densidad:</string>
+    <string name="hybrid_apps_dpi_default">DPI por defecto</string>
+    <string name="global_default">Por defecto</string>
+    <string name="global_default_layout">Por defecto</string>
+    <string name="display_dpi_label">Pantalla</string>
+    <string name="display_config_label">Configuración</string>
+    <string name="display_config_text">Esta es la configuración usada por el sistema para asignar los recursos de la aplicación</string>
+    <string name="display_settings_label">Configuraciones</string>
+    <string name="display_settings_text">Primero seleccione sus preferencias, Luego seleccione aplicar en la esquina superior derecha. Si seleccionó un valor personalizado, un dialogo aparecerá preguntando el valor a usar.</string>
+    <string name="force_label">Forzar</string>
+    <string name="force_yes">Si</string>
+    <string name="dpi_label">DPI</string>
+    <string name="ldpi_value">120 (Baja)</string>
+    <string name="mdpi_value">160 (Media)</string>
+    <string name="custom_preset">182 (Personalizada)</string>
+    <string name="hdpi_value">240 (Alta)</string>
+    <string name="current_base">Actual</string>
+    <string name="phone_base">Teléfono</string>
+    <string name="tablet_base">Táblet</string>
+    <string name="layout_label">UI</string>
+    <string name="style_default">Modo: ---</string>
+    <string name="style_tablet">Modo Táblet</string>
+    <string name="style_phone">Modo Teléfono</string>
+    <string name="app_detail_splitter">/</string>
+    <string name="pal_mode">Estilo de la aplicación</string>
+    <string name="pad_mode">Densidad de la aplicación</string>
+    <string name="pad_dialog">Seleccionar densidad personalizada</string>
+    <string name="pad_force">Forzar ajuste (Widgets)</string>
+    <string name="action_apply">Aplicar</string>
+    <string name="action_reset">Resetear</string>
+    <string name="hybrid_force_stop_dlg_title">¿Forzar cierre?</string>
+    <string name="hybrid_force_stop_dlg_text">Algunas aplicaciones no se ajustan a los nuevos valores, forzar el cierre recrea los recursos de la aplicación.</string>
+    <string name="actions_applied">Configuraciones aplicadas satisfactoriamente</string>
+
+    <string name="statusbar_transparency_title">Transparencia</string> 
+    <string name="statusbar_transparency_summary">Ajustar transparencia de la barra de estado</string> 
+
+    <string name="lockscreen_settings_title">Pantalla de bloqueo</string> 
+    <string name="lockscreen_settings_summary">Opciones de la pantalla de bloqueo</string> 
+    <string name="lockscreen_wallpaper_title">Papel tapiz</string> 
+    <string name="lockscreen_wallpaper_summary">De la pantalla de bloqueo</string> 
+    <string name="lockscreen_wallpaper_remove_title">Remover papel tapiz</string>
+    <string name="lockscreen_vibration_title">Respuesta táctil</string> 
+    <string name="lockscreen_vibration_summary">Retroalimentación háptica</string>
+
+    <string name="soft_keys_title">Teclas táctiles</string> 
+    <string name="soft_keys_summary">Botones en la pantalla</string>
+
+    <string name="tablet_mode_title">Modo táblet</string> 
+    <string name="tablet_mode_summary">Interfaz gráfica estilo táblet</string>
+
+    <string name="recent_apps_settings_title">Aplicaciones Recientes</string> 
+    <string name="recent_apps_settings_summary">Opciones de aplicaciones recientes</string> 
+    <string name="sense_recent_title">Cambiar modo</string>
+    <string name="sense_recent_summary">Modo de interfaz Sense 4.0</string>
+    <string name="recent_apps_icon_title">Icono</string>
+    <string name="recent_apps_icon_summary">Visibilidad del icono</string>
+    <string name="recent_apps_font_size_title">Tamaño de la letra</string>
+    <string name="recent_apps_font_size_summary">Nombre de la aplicación</string>
+
+    <string name="no_internet">Esta opción require una conexion a internet. Por favor conéctese a internet y vuelva a intentar</string>
+    <string name="requires_server_restart">El servicio del sistema debe reiniciarse, ¿Quiere reiniciarlo ahora?</string>
+    <string name="requires_reboot">Se necesita reiniciar, ¿Quiere reiniciar ahora?</string>
+
+
+    <!-- ** ParanoidAndroid Settings Ends ** --> 
+
     <string name="screensaver_settings_title" msgid="3848608373818910549">"Salvapantallas"</string>
     <string name="screensaver_settings_summary_on" msgid="433728808047613634">"Se iniciará cuando el dispositivo entre en suspensión si está conectado a la corriente"</string>
     <string name="screensaver_settings_summary_off" msgid="7019248565878953105">"Inhabilitado"</string>
@@ -1712,6 +1805,8 @@
     <string name="pref_flash_mode_title">"Flash LED"</string>
     <string name="pref_flash_mode_summary">"Escoja los modos de flash LED disponibles en la barra de controles de energía"</string>
 
+    <string name="toggles_not_enough_space">Solo seis controles pueden ser activados</string>
+
     <!-- Status bar #CM -->
     <string name="status_bar_title">"Barra de estado"</string>
     <string name="status_bar_clock_title">"Reloj"</string>
@@ -1803,6 +1898,15 @@
     <string name="calendar_metadata_first_line">Mostrar primera linea</string>
     <string name="calendar_metadata_all">Mostrar todo</string>
 
+    <!-- Lock screen background -->
+    <string name="lockscreen_custom_background_title">Fondo</string>
+    <string name="lockscreen_custom_background_dialog_title">Seleccionar color</string>
+    <string name="lockscreen_background_result_successful">Fondo cambiado satisfactoriamente</string>
+    <string name="lockscreen_background_result_not_successful">No se ha podido cambiar el fondo</string>
+    <string name="lockscreen_background_color_fill">Relleno de color</string>
+    <string name="lockscreen_background_custom_image">Imagen personalizada</string>
+    <string name="lockscreen_background_default_wallpaper">Imagen por defecto</string>
+
     <!-- Navigation Bar #CM -->
     <string name="navigation_bar_title">Barra de navegación</string>
 
@@ -1847,6 +1951,10 @@
     <string name="quiet_hours_active_to">"a"</string>
     <string name="start_time_title">"Inicio"</string>
     <string name="end_time_title">"Fin"</string>
+
+    <!-- Safe headset volume restore checkbox -->
+    <string name="safe_headset_restore_title">Guardar volumen</string>
+    <string name="safe_headset_restore_summary">Prevenir aumento de volumen cuando se conectan los auriculares</string>
 
     <!-- Setting for volume rocker music controls #CM -->
     <string name="volbtn_music_controls_title">"Controles Volumen"</string>
@@ -2146,4 +2254,9 @@
     <string name="mod_version_default">"Desconocida"</string>
     <!-- About device screen, build date of ROM. #CM -->
     <string name="build_date">"Fecha de compilación"</string>
+    <!-- Stylus Icon -->
+    <string name="stylus_icon_enabled_title">Mostrar icono al usar Stylus</string>
+    <string name="stylus_icon_enabled_summary">Mostrar el cursor cuando se arrastra o dibuja con Stylus</string>
+    <!-- Hostname setting -->
+    <string name="device_hostname">Nombre del host</string>
 </resources>
