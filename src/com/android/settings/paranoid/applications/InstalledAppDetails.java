@@ -237,10 +237,8 @@ public class InstalledAppDetails extends Fragment
 
 	// NORMAL VALUE
 	else {
-             if(!mSelectedDensity.equals("0"))
-                  RomUtils.setHybridProperty(mAppEntry.info.packageName + ".dpi", mSelectedDensity);
-             if(!mSelectedLayout.equals("0"))
-                  RomUtils.setHybridProperty(mAppEntry.info.packageName + ".mode", mSelectedLayout);
+             RomUtils.setHybridProperty(mAppEntry.info.packageName + ".dpi", mSelectedDensity);
+             RomUtils.setHybridProperty(mAppEntry.info.packageName + ".mode", mSelectedLayout);
              RomUtils.setHybridProperty(mAppEntry.info.packageName + ".force", mSelectedForce);
              refreshParanoidParameters();
              showDialogInner(DLG_FORCE_STOP, 0);

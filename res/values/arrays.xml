@@ -1012,7 +1012,7 @@
     </string-array>
 
     <string-array name="values_layout_modes">
-	<item>0</item>
+	<item>-1</item>
 	<item>1</item>
 	<item>2</item>
     </string-array>
