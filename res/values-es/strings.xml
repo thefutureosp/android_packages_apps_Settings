@@ -1715,7 +1715,12 @@
     <string name="percentage" msgid="5866131581207788624">"<xliff:g id="NUMBER">%d</xliff:g>%%"</string>
     <string name="additional_system_update_settings_list_item_title" msgid="214987609894661992">"Otras actualizaciones del sistema"</string>
 
-<!-- CyanogenMod additional translations -->
+    <!-- Electron Beam -->
+    <string name="display_category_animation_options_title">Animación</string>
+    <string name="display_electron_beam_animation_on_title">Animación al encender</string>
+    <string name="display_electron_beam_animation_off_title">Animación al apagar</string>
+
+    <!-- CyanogenMod additional translations -->
 
     <!-- Temporary - stubed preference - to be removed once all preferences have been merged #CM -->
     <string name="stubbed">"Preferencias"</string>
