@@ -755,6 +755,9 @@
     <string name="soft_keys_title">Teclas táctiles</string> 
     <string name="soft_keys_summary">Botones en la pantalla</string>
 
+    <string name="overflow_button_title">Botón de menú</string> 
+    <string name="overflow_button_summary">Activar botón de menú táctil en las aplicaciones</string>
+
     <string name="tablet_mode_title">Modo táblet</string> 
     <string name="tablet_mode_summary">Interfaz gráfica estilo táblet</string>
 
@@ -2260,6 +2263,6 @@
     <!-- Hostname setting -->
     <string name="device_hostname">Nombre del dispositivo</string>
 
-    <string name="status_bar_notif_count_title">Mostrar conteo de notificaciones</string>
+    <string name="status_bar_notif_count_title">Conteo de notificaciones</string>
     <string name="status_bar_notif_count_summary">Mostrar numero de notificaciones pendientes en la barra de estado</string>
 </resources>

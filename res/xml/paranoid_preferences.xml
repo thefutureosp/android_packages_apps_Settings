@@ -35,6 +35,12 @@
         android:defaultValue="false"/>
 
     <CheckBoxPreference
+        android:key="pref_overflow_button"
+        android:title="@string/overflow_button_title"
+        android:summary="@string/overflow_button_summary"
+        android:defaultValue="true"/>
+
+    <CheckBoxPreference
         android:key="pref_tablet_mode"
         android:title="@string/tablet_mode_title"
         android:summary="@string/tablet_mode_summary"

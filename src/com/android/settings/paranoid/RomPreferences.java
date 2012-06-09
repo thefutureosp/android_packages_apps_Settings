@@ -31,6 +31,7 @@ public class RomPreferences extends SettingsPreferenceFragment
     private static final String KEY_OTA_UPDATES = "pref_ota_updates";
     private static final String KEY_STATUSBAR_TRANSPARENCY = "pref_statusbar_transparency";
     private static final String KEY_SOFT_KEYS = "pref_soft_keys";
+    private static final String KEY_OVERFLOW_BUTTON = "pref_overflow_button";
     private static final String KEY_TABLET_MODE = "pref_tablet_mode";
     private static final String KEY_LOCKSCREEN_VIBRATION = "pref_lockscreen_vibration";
     private static final String KEY_MP4_RECORDING = "pref_recording_format";
@@ -40,6 +41,7 @@ public class RomPreferences extends SettingsPreferenceFragment
     private Preference mOtaUpdates;
     private ListPreference mStatusbarTransparency;
     private CheckBoxPreference mSoftKeys;
+    private CheckBoxPreference mOverflowButton;
     private CheckBoxPreference mTabletMode;
     private CheckBoxPreference mLockscreenVibration;
     private CheckBoxPreference mMpeg4Recording;
@@ -68,6 +70,11 @@ public class RomPreferences extends SettingsPreferenceFragment
 		mSoftKeys = (CheckBoxPreference) prefSet.findPreference(KEY_SOFT_KEYS);
 		mSoftKeys.setOnPreferenceChangeListener(this);
 		mSoftKeys.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.SOFT_KEYS, 0) == 1);
+
+
+                mOverflowButton = (CheckBoxPreference) prefSet.findPreference(KEY_OVERFLOW_BUTTON);
+		mOverflowButton.setOnPreferenceChangeListener(this);
+		mOverflowButton.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.UI_FORCE_OVERFLOW_BUTTON, 1) == 1);
  
 		mTabletMode = (CheckBoxPreference) prefSet.findPreference(KEY_TABLET_MODE);
 		mTabletMode.setOnPreferenceChangeListener(this);
@@ -92,6 +99,9 @@ public class RomPreferences extends SettingsPreferenceFragment
 	if (preference == mSoftKeys){
             mValue = mSoftKeys.isChecked();
             Settings.System.putInt(getActivity().getContentResolver(), Settings.System.SOFT_KEYS, mValue ? 1 : 0);
+	} else if (preference == mOverflowButton){
+            mValue = mOverflowButton.isChecked();
+            Settings.System.putInt(getActivity().getContentResolver(), Settings.System.UI_FORCE_OVERFLOW_BUTTON, mValue ? 1 : 0);
 	} else if (preference == mTabletMode){
 	    mValue = mTabletMode.isChecked();
             RomUtils.setPropierty("ro.sf.lcd_density", mValue ? Integer.parseInt(RomUtils.getProperty("rom_tablet_base", "")) : Integer.parseInt(RomUtils.getProperty("rom_phone_base", "")));
