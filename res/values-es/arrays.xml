@@ -400,6 +400,17 @@
         <item>Utilizar GPS interno</item>
     </string-array>
 
+    <!-- DHCP lease times for tethering settings -->
+    <string-array name="tethering_lease_time_entries">
+        <item>30 minutos</item>
+        <item>1 hora (defecto)</item>
+        <item>2 horas</item>
+        <item>4 horas</item>
+        <item>6 horas</item>
+        <item>12 horas</item>
+        <item>24 horas</item>
+    </string-array>
+
     <!-- **** CYANOGENMOD EDITS END **** -->
 
 </resources>
