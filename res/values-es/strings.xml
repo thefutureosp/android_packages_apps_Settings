@@ -1909,10 +1909,10 @@
     <!-- Lock screen background -->
     <string name="lockscreen_custom_background_title">Fondo</string>
     <string name="lockscreen_custom_background_dialog_title">Seleccionar color</string>
-    <string name="lockscreen_background_result_successful">Fondo cambiado satisfactoriamente</string>
-    <string name="lockscreen_background_result_not_successful">No se ha podido cambiar el fondo</string>
+    <string name="lockscreen_background_result_successful">Fondo modificado satisfactoriamente</string>
+    <string name="lockscreen_background_result_not_successful">No se ha podido modificar el fondo</string>
     <string name="lockscreen_background_color_fill">Relleno de color</string>
-    <string name="lockscreen_background_custom_image">Imagen personalizada</string>
+    <string name="lockscreen_background_custom_image">Imágen personalizada</string>
     <string name="lockscreen_background_default_wallpaper">Imagen por defecto</string>
 
     <!-- Navigation Bar #CM -->
