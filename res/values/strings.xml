@@ -1059,9 +1059,9 @@
     <string name="mdpi_value">Mid DPI (240)</string>
     <string name="hdpi_value">High DPI (320)</string>
     <string name="dpi_default_value">Default DPI</string>
-    <string name="current_base">Stock (Current)</string>
-    <string name="phone_base">Stock (Phone)</string>
-    <string name="tablet_base">Stock (Tablet)</string>
+    <string name="current_base">Stock DPI (Current)</string>
+    <string name="phone_base">Stock DPI (Phone)</string>
+    <string name="tablet_base">Stock DPI (Tablet)</string>
     <string name="layout_label">UI</string>
     <string name="style_default">Mode: ---</string>
     <string name="style_tablet">Tablet UI</string>
