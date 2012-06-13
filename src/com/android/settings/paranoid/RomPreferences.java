@@ -62,46 +62,46 @@ public class RomPreferences extends SettingsPreferenceFragment
 		    addPreferencesFromResource(R.xml.paranoid_preferences);
 		    PreferenceScreen prefSet = getPreferenceScreen();
 
-		    mOtaUpdates = prefSet.findPreference(KEY_OTA_UPDATES);
+            mOtaUpdates = prefSet.findPreference(KEY_OTA_UPDATES);
             if (mOtaUpdates!=null)
-                mOtaUpdates.setSummary(mOtaUpdates.getSummary() + " v"+ RomUtils.getProp("ro.paranoid.shortversion"));
+                mOtaUpdates.setSummary(mOtaUpdates.getSummary() + " v"+ RomUtils.getRomVersion());
 
-		    mStatusbarTransparency = (ListPreference) prefSet.findPreference(KEY_STATUSBAR_TRANSPARENCY);
-		    if (mStatusbarTransparency!=null) {            
-		        mStatusbarTransparency.setOnPreferenceChangeListener(this);
-		        mStatusbarTransparency.setValue(Integer.toString(Settings.System.getInt(getActivity().getContentResolver(),
+	    mStatusbarTransparency = (ListPreference) prefSet.findPreference(KEY_STATUSBAR_TRANSPARENCY);
+	    if (mStatusbarTransparency!=null) {            
+	        mStatusbarTransparency.setOnPreferenceChangeListener(this);
+	        mStatusbarTransparency.setValue(Integer.toString(Settings.System.getInt(getActivity().getContentResolver(),
                     Settings.System.STATUS_BAR_TRANSPARENCY, 100)));
             }
             
-		    mSoftKeys = (CheckBoxPreference) prefSet.findPreference(KEY_SOFT_KEYS);
+            mSoftKeys = (CheckBoxPreference) prefSet.findPreference(KEY_SOFT_KEYS);
             if (mSoftKeys!=null) {
-		        mSoftKeys.setOnPreferenceChangeListener(this);
-		        mSoftKeys.setChecked(Settings.System.getInt(getActivity().getContentResolver(), 
+		mSoftKeys.setOnPreferenceChangeListener(this);
+     	        mSoftKeys.setChecked(Settings.System.getInt(getActivity().getContentResolver(), 
                     Settings.System.SOFT_KEYS, 0) == 1);
             }
             
             mOverflowButton = (CheckBoxPreference) prefSet.findPreference(KEY_OVERFLOW_BUTTON);
             if(mOverflowButton!=null) {
-		        mOverflowButton.setOnPreferenceChangeListener(this);
-		        mOverflowButton.setChecked(Settings.System.getInt(getActivity().getContentResolver(), 
+		mOverflowButton.setOnPreferenceChangeListener(this);
+		mOverflowButton.setChecked(Settings.System.getInt(getActivity().getContentResolver(), 
                     Settings.System.UI_FORCE_OVERFLOW_BUTTON, 1) == 1);
             }
      
-		    mTabletMode = (CheckBoxPreference) prefSet.findPreference(KEY_TABLET_MODE);
-		    mTabletMode.setOnPreferenceChangeListener(this);
-		    mTabletMode.setChecked(Utils.isScreenLarge());
+	    mTabletMode = (CheckBoxPreference) prefSet.findPreference(KEY_TABLET_MODE);
+		mTabletMode.setOnPreferenceChangeListener(this);
+		mTabletMode.setChecked(Utils.isScreenLarge());
 
-		    mLockscreenVibration = (CheckBoxPreference) prefSet.findPreference(KEY_LOCKSCREEN_VIBRATION);
+	    mLockscreenVibration = (CheckBoxPreference) prefSet.findPreference(KEY_LOCKSCREEN_VIBRATION);
             if (mLockscreenVibration!=null) {
-		        mLockscreenVibration.setOnPreferenceChangeListener(this);
-		        mLockscreenVibration.setChecked(Settings.System.getInt(getActivity().getContentResolver(), 
+		mLockscreenVibration.setOnPreferenceChangeListener(this);
+		mLockscreenVibration.setChecked(Settings.System.getInt(getActivity().getContentResolver(), 
                     Settings.System.LOCKSCREEN_VIBRATION, 1) == 1);
             }
                  
             mPrefCategoryUi = (PreferenceCategory) findPreference(CATEGORY_UI);
                    
             // REMOVE PREFERENCES IN TABLET MODE
-            if(Utils.isScreenLarge() && mStatusbarTransparency!=null){
+            if(Utils.isScreenLarge() && mStatusbarTransparency != null){
                 mPrefCategoryUi.removePreference(mStatusbarTransparency);
             }
 

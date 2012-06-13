@@ -697,7 +697,7 @@
     <string name="lcd_global_summary">Opcional: Configura la densidad de las aplicaciones del sistema. Los valores en -Lista de aplicaciones- sobreescriben este valor.</string> 
     <string name="lcd_density_title">Densidad del usuario</string>
     <string name="lcd_density_summary">Opcional: Configura la densidad de las aplicaciones del usuario. Los valores en -Lista de aplicaciones- sobreescriben este valor.</string> 
-    <string name="lcd_density_custom">Personalizado</string>
+    <string name="dpi_custom_value">Personalizado</string>
     <string name="lcd_density_no_value">Valor incorrecto. No se realizará ningun cambio</string>
     <string name="framework_density_title">Densidad de los dialogos</string>
     <string name="framework_density_summary">Aplica a los dialogos y alertas del sistema</string>
@@ -709,7 +709,7 @@
     <string name="hybrid_list_summary">Configurar valores individuales</string>
     <string name="hybrid_apps_write_dpi">Escribir nueva densidad:</string>
     <string name="hybrid_apps_dpi_default">DPI por defecto</string>
-    <string name="global_default">Por defecto</string>
+    <string name="global_default_dpi">Por defecto</string>
     <string name="global_default_layout">Por defecto</string>
     <string name="display_dpi_label">Pantalla</string>
     <string name="display_config_label">Configuración</string>
@@ -719,10 +719,9 @@
     <string name="force_label">Forzar</string>
     <string name="force_yes">Si</string>
     <string name="dpi_label">DPI</string>
-    <string name="ldpi_value">120 (Baja)</string>
-    <string name="mdpi_value">160 (Media)</string>
-    <string name="custom_preset">182 (Personalizada)</string>
-    <string name="hdpi_value">240 (Alta)</string>
+    <string name="ldpi_value">160 (Baja)</string>
+    <string name="mdpi_value">240 (Media)</string>
+    <string name="hdpi_value">320 (Alta)</string>
     <string name="current_base">Actual</string>
     <string name="phone_base">Teléfono</string>
     <string name="tablet_base">Táblet</string>

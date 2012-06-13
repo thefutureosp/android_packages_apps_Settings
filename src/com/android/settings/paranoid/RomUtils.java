@@ -17,6 +17,7 @@ public class RomUtils extends ExtendedPropertiesUtils{
 
     private static final String MOUNT_SYSTEM_RW = "busybox mount -o rw,remount /system";
     private static final String MOUNT_SYSTEM_RO = "busybox mount -o ro,remount /system";
+    private static final String ROM_VERSION = "ro.pa.version";
     private static final int TRIGGER_REBOOT = 0;
     private static final int TRIGGER_SYSTEM_UI_RELOAD = 1;
     private static final int TRIGGER_SYSTEM_SERVER_RELOAD = 2;
@@ -53,6 +54,12 @@ public class RomUtils extends ExtendedPropertiesUtils{
      /*
       * I/O Utils
       */
+
+    public static double getRomVersion(){
+        String mString = getProp(ROM_VERSION);
+        String fullVersion = mString.substring(nthOccurrence(mString, '-', 1)+1, nthOccurrence(mString, '-', 2)-1);
+        return Double.parseDouble(fullVersion);
+    }
 
     public static String getProp(String prop) {
         try {
@@ -92,5 +99,16 @@ public class RomUtils extends ExtendedPropertiesUtils{
 	      restartSystemServer();
 	   break;
 	}
+    }
+
+    /*
+     * Math and logical utils
+     */
+
+    public static int nthOccurrence(String str, char c, int n) {
+        int pos = str.indexOf(c, 0);
+        while (n-- > 0 && pos != -1)
+            pos = str.indexOf(c, pos+1);
+        return pos;
     }
 }
