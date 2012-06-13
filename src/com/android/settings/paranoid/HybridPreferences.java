@@ -30,12 +30,13 @@ public class HybridPreferences extends SettingsPreferenceFragment
 
     private static final String CATEGORY_HYBRID_GENERAL = "category_hybrid_general";
     private static final String KEY_APP_LIST_SCREEN = "pref_manage_applications";
-    private static final String KEY_GLOBAL_DENSITY = "pref_global_density";
-    private static final String KEY_LCD_DENSITY = "pref_lcd_density";
+
+    private static final String KEY_SYSTEM_DENSITY = "pref_system_density";
+    private static final String KEY_USER_DENSITY = "pref_user_density";
     private static final String KEY_FRAME_DENSITY = "pref_framework_density";
     private static final String KEY_SYSUI_DENSITY = "pref_systemui_density";
     private static final String KEY_ENABLE_HYBRID = "pref_enable_hybrid";
-    private static final int CUSTOM_LCD_DENSITY = -1;
+    private static final String CUSTOM_LCD_DENSITY = "-1";
 
     private PreferenceCategory mPrefCategoryHybrid;
     private PreferenceScreen mAppList;
@@ -60,89 +61,81 @@ public class HybridPreferences extends SettingsPreferenceFragment
 		mEnableHybrid = (CheckBoxPreference) prefSet.findPreference(KEY_ENABLE_HYBRID);
 		mEnableHybrid.setOnPreferenceChangeListener(this);
 
-        	mEnableHybrid.setChecked(Integer.parseInt(RomUtils.getProperty("hybrid_mode")) == 1);
+        mEnableHybrid.setChecked(Integer.parseInt(RomUtils.getProperty("hybrid_mode")) == 1);
 
-		mGlobalLcdDensity = (ListPreference) prefSet.findPreference(KEY_GLOBAL_DENSITY);
+		mGlobalLcdDensity = (ListPreference) prefSet.findPreference(KEY_SYSTEM_DENSITY);
 		mGlobalLcdDensity.setOnPreferenceChangeListener(this);
 		mGlobalLcdDensity.setValue(RomUtils.getProperty("system_default_dpi"));
-                mGlobalLcdDensity.setEnabled(mEnableHybrid.isChecked());	
+        mGlobalLcdDensity.setEnabled(mEnableHybrid.isChecked());	
 
-		mLcdDensity = (ListPreference) prefSet.findPreference(KEY_LCD_DENSITY);
+		mLcdDensity = (ListPreference) prefSet.findPreference(KEY_USER_DENSITY);
 		mLcdDensity.setOnPreferenceChangeListener(this);
 		mLcdDensity.setValue(RomUtils.getProperty("user_default_dpi"));
-	        mLcdDensity.setEnabled(mEnableHybrid.isChecked());
+        mLcdDensity.setEnabled(mEnableHybrid.isChecked());
 
 		mFrameDensity = (ListPreference) prefSet.findPreference(KEY_FRAME_DENSITY);
 		mFrameDensity.setOnPreferenceChangeListener(this);
 		mFrameDensity.setValue(RomUtils.getProperty("android.dpi"));
-                mFrameDensity.setEnabled(mEnableHybrid.isChecked());
+        mFrameDensity.setEnabled(mEnableHybrid.isChecked());
 
 		mSysUiDensity = (ListPreference) prefSet.findPreference(KEY_SYSUI_DENSITY);
 		mSysUiDensity.setOnPreferenceChangeListener(this);
 		mSysUiDensity.setValue(RomUtils.getProperty("com.android.systemui.dpi"));
 		mSysUiDensity.setEnabled(mEnableHybrid.isChecked());
                 
-                mAppList = (PreferenceScreen) prefSet.findPreference(KEY_APP_LIST_SCREEN);
-                mAppList.setEnabled(mEnableHybrid.isChecked());
+        mAppList = (PreferenceScreen) prefSet.findPreference(KEY_APP_LIST_SCREEN);
+        mAppList.setEnabled(mEnableHybrid.isChecked());
 		
 		RomUtils.setContext(mContext);
 
-                mPrefCategoryHybrid = (PreferenceCategory) findPreference(CATEGORY_HYBRID_GENERAL);
+        mPrefCategoryHybrid = (PreferenceCategory) findPreference(CATEGORY_HYBRID_GENERAL);
 	}
     }
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-	if (preference == mEnableHybrid){
-            mValue = mEnableHybrid.isChecked();
-            RomUtils.setHybridProperty("hybrid_mode", mValue ? "1" : "0");
-            
-            mGlobalLcdDensity.setEnabled(mEnableHybrid.isChecked());
-            mLcdDensity.setEnabled(mEnableHybrid.isChecked());
-            mFrameDensity.setEnabled(mEnableHybrid.isChecked());
-            mSysUiDensity.setEnabled(mEnableHybrid.isChecked());
-            mAppList.setEnabled(mEnableHybrid.isChecked());
-	}
+	    if (preference == mEnableHybrid){
+                mValue = mEnableHybrid.isChecked();
+                RomUtils.setHybridProperty("hybrid_mode", mValue ? "1" : "0");
+                mGlobalLcdDensity.setEnabled(mEnableHybrid.isChecked());
+                mLcdDensity.setEnabled(mEnableHybrid.isChecked());
+                mFrameDensity.setEnabled(mEnableHybrid.isChecked());
+                mSysUiDensity.setEnabled(mEnableHybrid.isChecked());
+                mAppList.setEnabled(mEnableHybrid.isChecked());
+	    }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-	 String key = preference.getKey();
-	 if(KEY_LCD_DENSITY.equals(key)){
-	    int value = Integer.parseInt((String) newValue);
-            if(value == CUSTOM_LCD_DENSITY)
-	       getDensityDialog("user_default_dpi", 0);
-            else{
-	       RomUtils.setHybridProperty("user_default_dpi", String.valueOf(value));
-               getRequiredDialog(R.string.requires_reboot, 0);
+	    String key = preference.getKey();
+        String value = (String) newValue;
+        if(KEY_USER_DENSITY.equals(key)) {    
+            if(value.equals(CUSTOM_LCD_DENSITY))
+                getDensityDialog("user_default_dpi", -1);
+            else
+                RomUtils.setHybridProperty("user_default_dpi", value);
+	    } else if(KEY_SYSTEM_DENSITY.equals(key)) {
+            if(value.equals(CUSTOM_LCD_DENSITY))
+                getDensityDialog("system_default_dpi", -1);
+            else
+                RomUtils.setHybridProperty("system_default_dpi", value);
+	    } else if(KEY_FRAME_DENSITY.equals(key)) {
+            if(value.equals(CUSTOM_LCD_DENSITY))
+                getDensityDialog("android.dpi", 0);
+            else {
+                RomUtils.setHybridProperty("android.dpi", value);
+                getRequiredDialog(R.string.requires_reboot, 0);
             }
-	} else if(KEY_GLOBAL_DENSITY.equals(key)){
-		int value = Integer.parseInt((String) newValue);
-            if(value == CUSTOM_LCD_DENSITY)
-	       getDensityDialog("system_default_dpi", 0);
-            else{
-	       RomUtils.setHybridProperty("system_default_dpi", String.valueOf(value));
-               getRequiredDialog(R.string.requires_reboot, 0);
+	    } else if(KEY_SYSUI_DENSITY.equals(key)) {
+            if(value.equals(CUSTOM_LCD_DENSITY))
+                getDensityDialog("com.android.systemui.dpi", 1);
+            else {
+                RomUtils.setHybridProperty("com.android.systemui.dpi", value);
+                RomUtils.triggerAction(1);
             }
-	} else if(KEY_FRAME_DENSITY.equals(key)){
-	    int value = Integer.parseInt((String) newValue);
-            if(value == CUSTOM_LCD_DENSITY)
-	        getDensityDialog("android.dpi", 0);
-            else{
-	       RomUtils.setHybridProperty("android.dpi", String.valueOf(value));
-               getRequiredDialog(R.string.requires_reboot, 0);
-            }
-	} else if(KEY_SYSUI_DENSITY.equals(key)){
-	    int value = Integer.parseInt((String) newValue);
-            if(value == CUSTOM_LCD_DENSITY)
-		getDensityDialog("com.android.systemui.dpi", 1);
-            else{
-	       RomUtils.setHybridProperty("com.android.systemui.dpi", String.valueOf(value));
-	       RomUtils.triggerAction(1);
-	    }
-	} 
-	return true;
+	    } 
+	    return true;
     }
 
     public void getDensityDialog(final String propierty, final int requiredDialog){
@@ -151,7 +144,7 @@ public class HybridPreferences extends SettingsPreferenceFragment
         DigitsKeyListener onlyDecimalAllowed = new DigitsKeyListener(true, true);
                input.setKeyListener(onlyDecimalAllowed);
                alert.setView(input)
-                   .setTitle(R.string.lcd_density_custom)
+                   .setTitle(R.string.dpi_custom_value)
                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener(){
                    public void onClick(DialogInterface dialog, int whichButton) {
                        String value = input.getText().toString();

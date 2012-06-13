@@ -4,58 +4,20 @@
     android:title="@string/paranoid_settings"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-    <Preference
-	android:key="pref_ota_updates"
-	android:title="@string/rom_updates_title"
-	android:summary="@string/rom_updates_summary">
-	 <intent android:action="android.intent.action.VIEW" android:targetPackage="com.paranoid.preferences" android:targetClass="com.paranoid.preferences.MainActivity" />
-    </Preference>
+    <PreferenceCategory android:key="category_ui"
+           android:title="@string/ui_category">
 
-<PreferenceCategory android:key="category_ui"
-       android:title="@string/ui_category">
+        <PreferenceScreen
+            android:key="pref_hybrid_screen"
+	        android:fragment="com.android.settings.paranoid.HybridPreferences"
+            android:title="@string/hybrid_settings_title"
+            android:summary="@string/hybrid_settings_summary"/>
 
-    <PreferenceScreen
-        android:key="pref_hybrid_screen"
-	android:fragment="com.android.settings.paranoid.HybridPreferences"
-        android:title="@string/hybrid_settings_title"
-        android:summary="@string/hybrid_settings_summary"/>
+        <CheckBoxPreference
+            android:key="pref_tablet_mode"
+            android:title="@string/tablet_mode_title"
+            android:summary="@string/tablet_mode_summary"/>
 
-    <ListPreference
-        android:key="pref_statusbar_transparency"
-        android:title="@string/statusbar_transparency_title"
-        android:summary="@string/statusbar_transparency_summary"
-        android:entries="@array/statusbar_transparency_entries"
-        android:entryValues="@array/statusbar_transparency_values"
-	android:defaultValue="0"/>
+    </PreferenceCategory>
 
-    <CheckBoxPreference
-        android:key="pref_soft_keys"
-        android:title="@string/soft_keys_title"
-        android:summary="@string/soft_keys_summary"
-        android:defaultValue="false"/>
-
-    <CheckBoxPreference
-        android:key="pref_overflow_button"
-        android:title="@string/overflow_button_title"
-        android:summary="@string/overflow_button_summary"
-        android:defaultValue="true"/>
-
-    <CheckBoxPreference
-        android:key="pref_tablet_mode"
-        android:title="@string/tablet_mode_title"
-        android:summary="@string/tablet_mode_summary"
-        android:defaultValue="false"/>
-
-    <CheckBoxPreference
-        android:key="pref_lockscreen_vibration"
-        android:title="@string/lockscreen_vibration_title"
-        android:summary="@string/lockscreen_vibration_summary"
-        android:defaultValue="true"/>
-
-    <PreferenceScreen
-        android:key="pref_recents_screen"
-        android:fragment="com.android.settings.paranoid.RecentPreferences"
-        android:title="@string/recent_apps_settings_title"
-        android:summary="@string/recent_apps_settings_summary" />
-</PreferenceCategory>
 </PreferenceScreen>

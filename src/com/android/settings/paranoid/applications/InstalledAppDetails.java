@@ -222,7 +222,7 @@ public class InstalledAppDetails extends Fragment
              DigitsKeyListener onlyDecimalAllowed = new DigitsKeyListener(true, true);
              input.setKeyListener(onlyDecimalAllowed);
              alert.setView(input)
-             .setTitle(R.string.lcd_density_custom)
+             .setTitle(R.string.dpi_custom_value)
              .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener(){
              public void onClick(DialogInterface dialog, int whichButton) {
                   String mNewDensity = input.getText().toString();				
