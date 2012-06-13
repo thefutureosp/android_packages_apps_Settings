@@ -17,7 +17,7 @@
         android:summary="@string/lcd_global_summary"
         android:entries="@array/entries_lcd_densities"
         android:entryValues="@array/values_lcd_densities"
-	    android:defaultValue="rom_current_base"/>
+	android:defaultValue="rom_current_base"/>
 
     <ListPreference
         android:key="pref_user_density"
@@ -25,7 +25,7 @@
         android:summary="@string/lcd_density_summary"
         android:entries="@array/entries_lcd_densities"
         android:entryValues="@array/values_lcd_densities"
-	    android:defaultValue="rom_current_base"/>
+	android:defaultValue="rom_current_base"/>
 
     <ListPreference
         android:key="pref_framework_density"
@@ -33,7 +33,7 @@
         android:summary="@string/framework_density_summary"
         android:entries="@array/entries_lcd_densities"
         android:entryValues="@array/values_lcd_densities"
-	    android:defaultValue="rom_current_base"/>
+	android:defaultValue="rom_current_base"/>
 
     <ListPreference
         android:key="pref_systemui_density"
@@ -41,13 +41,13 @@
         android:summary="@string/systemui_density_summary"
         android:entries="@array/entries_lcd_densities"
         android:entryValues="@array/values_lcd_densities"
-	    android:defaultValue="rom_current_base"/>
+	android:defaultValue="rom_current_base"/>
 
     <PreferenceScreen
         android:key="pref_manage_applications"
-	    android:fragment="com.android.settings.paranoid.applications.ManageApplications"
-	    android:title="@string/hybrid_list_title"
-	    android:summary="@string/hybrid_list_summary"/>
+	android:fragment="com.android.settings.paranoid.applications.ManageApplications"
+	android:title="@string/hybrid_list_title"
+	android:summary="@string/hybrid_list_summary"/>
 
 </PreferenceCategory>
 

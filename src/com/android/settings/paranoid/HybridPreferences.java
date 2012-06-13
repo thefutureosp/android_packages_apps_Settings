@@ -60,35 +60,34 @@ public class HybridPreferences extends SettingsPreferenceFragment
 
 		mEnableHybrid = (CheckBoxPreference) prefSet.findPreference(KEY_ENABLE_HYBRID);
 		mEnableHybrid.setOnPreferenceChangeListener(this);
-
-        mEnableHybrid.setChecked(Integer.parseInt(RomUtils.getProperty("hybrid_mode")) == 1);
+                mEnableHybrid.setChecked(Integer.parseInt(RomUtils.getProperty("hybrid_mode")) == 1);
 
 		mGlobalLcdDensity = (ListPreference) prefSet.findPreference(KEY_SYSTEM_DENSITY);
 		mGlobalLcdDensity.setOnPreferenceChangeListener(this);
 		mGlobalLcdDensity.setValue(RomUtils.getProperty("system_default_dpi"));
-        mGlobalLcdDensity.setEnabled(mEnableHybrid.isChecked());	
+                mGlobalLcdDensity.setEnabled(mEnableHybrid.isChecked());	
 
 		mLcdDensity = (ListPreference) prefSet.findPreference(KEY_USER_DENSITY);
 		mLcdDensity.setOnPreferenceChangeListener(this);
 		mLcdDensity.setValue(RomUtils.getProperty("user_default_dpi"));
-        mLcdDensity.setEnabled(mEnableHybrid.isChecked());
+                mLcdDensity.setEnabled(mEnableHybrid.isChecked());
 
 		mFrameDensity = (ListPreference) prefSet.findPreference(KEY_FRAME_DENSITY);
 		mFrameDensity.setOnPreferenceChangeListener(this);
 		mFrameDensity.setValue(RomUtils.getProperty("android.dpi"));
-        mFrameDensity.setEnabled(mEnableHybrid.isChecked());
+                mFrameDensity.setEnabled(mEnableHybrid.isChecked());
 
 		mSysUiDensity = (ListPreference) prefSet.findPreference(KEY_SYSUI_DENSITY);
 		mSysUiDensity.setOnPreferenceChangeListener(this);
 		mSysUiDensity.setValue(RomUtils.getProperty("com.android.systemui.dpi"));
 		mSysUiDensity.setEnabled(mEnableHybrid.isChecked());
                 
-        mAppList = (PreferenceScreen) prefSet.findPreference(KEY_APP_LIST_SCREEN);
-        mAppList.setEnabled(mEnableHybrid.isChecked());
+                mAppList = (PreferenceScreen) prefSet.findPreference(KEY_APP_LIST_SCREEN);
+                mAppList.setEnabled(mEnableHybrid.isChecked());
 		
 		RomUtils.setContext(mContext);
 
-        mPrefCategoryHybrid = (PreferenceCategory) findPreference(CATEGORY_HYBRID_GENERAL);
+                mPrefCategoryHybrid = (PreferenceCategory) findPreference(CATEGORY_HYBRID_GENERAL);
 	}
     }
 
