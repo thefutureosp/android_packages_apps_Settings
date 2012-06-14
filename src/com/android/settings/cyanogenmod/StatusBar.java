@@ -37,7 +37,7 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
 
     private static final String STATUS_BAR_BATTERY = "status_bar_battery";
 
-    private static final String NUMBER_NOT_ICONS = "status_bar_max_notifications";
+    private static final String STATUSBAR_NOTIFICATION_ICONS = "status_bar_max_notifications";
 
     private static final String STATUS_BAR_CLOCK = "status_bar_show_clock";
 
@@ -55,7 +55,7 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
 
     private ListPreference mStatusBarBattery;
 
-    private ListPreference mMaxNotIcons;
+    private ListPreference mStatusBarNotificationIcons;
 
     private ListPreference mStatusBarCmSignal;
 
@@ -81,7 +81,7 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
         mStatusBarBrightnessControl = (CheckBoxPreference) prefSet.findPreference(STATUS_BAR_BRIGHTNESS_CONTROL);
         mStatusBarAmPm = (ListPreference) prefSet.findPreference(STATUS_BAR_AM_PM);
         mStatusBarBattery = (ListPreference) prefSet.findPreference(STATUS_BAR_BATTERY);
-        mMaxNotIcons = (ListPreference) prefSet.findPreference(NUMBER_NOT_ICONS);
+        mStatusBarNotificationIcons = (ListPreference) prefSet.findPreference(STATUSBAR_NOTIFICATION_ICONS);
         mCombinedBarAutoHide = (CheckBoxPreference) prefSet.findPreference(COMBINED_BAR_AUTO_HIDE);
         mStatusBarCmSignal = (ListPreference) prefSet.findPreference(STATUS_BAR_SIGNAL);
 
@@ -120,8 +120,8 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
 
         int maxNotIcons = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
                 Settings.System.MAX_NOTIFICATION_ICONS, 2);
-        mMaxNotIcons.setValue(String.valueOf(maxNotIcons));
-        mMaxNotIcons.setOnPreferenceChangeListener(this);
+        mStatusBarNotificationIcons.setValue(String.valueOf(maxNotIcons));
+        mStatusBarNotificationIcons.setOnPreferenceChangeListener(this);
 
         int signalStyle = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
                 Settings.System.STATUS_BAR_SIGNAL_TEXT, 0);
@@ -142,6 +142,7 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
             mPrefCategoryGeneral.removePreference(mStatusBarCmSignal);
         } else {
             mPrefCategoryGeneral.removePreference(mCombinedBarAutoHide);
+            mPrefCategoryGeneral.removePreference(mStatusBarNotificationIcons);
         }
     }
 
@@ -156,7 +157,7 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.STATUS_BAR_BATTERY, statusBarBattery);
             return true;
-        }else if (preference == mMaxNotIcons) {
+        }else if (preference == mStatusBarNotificationIcons) {
             int maxNotIcons = Integer.valueOf((String) newValue);
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.MAX_NOTIFICATION_ICONS, maxNotIcons);

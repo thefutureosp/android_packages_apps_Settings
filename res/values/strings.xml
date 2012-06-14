@@ -4583,5 +4583,5 @@ found in the list of installed apps.</string>
 
     <!-- Status bar notification-icon count -->
     <string name="status_bar_max_notifications_title">Number of notification icons</string>
-    <string name="status_bar_max_notifications_summary">This applies only to portrait view!</string>
+    <string name="status_bar_max_notifications_summary">Applies to portrait mode</string>
 </resources>

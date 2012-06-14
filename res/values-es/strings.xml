@@ -2269,4 +2269,7 @@
 
     <string name="status_bar_notif_count_title">Conteo de notificaciones</string>
     <string name="status_bar_notif_count_summary">Mostrar numero de notificaciones pendientes en la barra de estado</string>
+
+    <string name="status_bar_max_notifications_title">Numero de notificaciones</string>
+    <string name="status_bar_max_notifications_summary">Aplica para el módo retrato</string>
 </resources>
