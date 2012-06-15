@@ -1037,7 +1037,7 @@
     <string name="framework_density_title">Framework-res DPI</string>
     <string name="framework_density_summary">Applies to lockscreen, system dialogs and toasts</string>
     <string name="systemui_density_title">SystemUI DPI</string>
-    <string name="systemui_density_summary">Applies to statusbar and/or navigationbar. Warning, reload may take a while, if it doesn\'t, reboot!</string>
+    <string name="systemui_density_summary">Applies to statusbar and navigationbar. Warning, reload may take a while, if it doesn\'t, reboot!</string>
     <string name="enable_hybrid_title">Hybrid Mode</string>
     <string name="enable_hybrid_summary">Enable hybrid mode</string>
     <string name="hybrid_list_title">List of apps</string>
@@ -1094,7 +1094,7 @@
     <string name="overflow_button_summary">Enable menu button shown in apps</string>
 
     <string name="tablet_mode_title">Tablet mode</string> 
-    <string name="tablet_mode_summary">Check this switch to boot into tablet mode</string>
+    <string name="tablet_mode_summary">Enables tablet like graphics</string>
 
     <string name="recent_apps_settings_title">Recent Apps</string> 
     <string name="recent_apps_settings_summary">Recent apps screen options</string> 

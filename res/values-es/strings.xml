@@ -693,21 +693,21 @@
 
     <string name="hybrid_settings_title">Configuraciones Híbridas</string>
     <string name="hybrid_settings_summary">Opciones del modo Híbrido</string>
-    <string name="lcd_global_title">Densidad del sistema</string>
-    <string name="lcd_global_summary">Opcional: Configura la densidad de las aplicaciones del sistema. Los valores en -Lista de aplicaciones- sobreescriben este valor.</string> 
-    <string name="lcd_density_title">Densidad del usuario</string>
-    <string name="lcd_density_summary">Opcional: Configura la densidad de las aplicaciones del usuario. Los valores en -Lista de aplicaciones- sobreescriben este valor.</string> 
+    <string name="lcd_global_title">DPI del sistema</string>
+    <string name="lcd_global_summary">OpConfigura el DPI de las aplicaciones del sistema. Los valores en -Lista de aplicaciones- sobreescriben este valor.</string> 
+    <string name="lcd_density_title">DPI del usuario</string>
+    <string name="lcd_density_summary">Configura el DPI de las aplicaciones del usuario. Los valores en -Lista de aplicaciones- sobreescriben este valor.</string> 
     <string name="dpi_custom_value">Personalizado</string>
     <string name="lcd_density_no_value">Valor incorrecto. No se realizará ningun cambio</string>
-    <string name="framework_density_title">Densidad de los dialogos</string>
-    <string name="framework_density_summary">Aplica a los dialogos y alertas del sistema</string>
-    <string name="systemui_density_title">Densidad de la barra de estado</string>
-    <string name="systemui_density_summary">Opcional: Controla el tamaño de la barra de estado. Advertencia: Puede tomar un tiempo en volver a aparecer. Si no lo hace, reinicia.</string>
+    <string name="framework_density_title">DPI de framework-res</string>
+    <string name="framework_density_summary">Aplica a la pantalla de bloqueo, los dialogos y alertas del sistema</string>
+    <string name="systemui_density_title">DPI de la barra de estado</string>
+    <string name="systemui_density_summary">Controla el tamaño de la barra de estado. Advertencia: Puede tomar un tiempo en volver a aparecer. Si no lo hace, reinicia.</string>
     <string name="enable_hybrid_title">Modo Híbrido</string>
     <string name="enable_hybrid_summary">Activar modo Híbrido</string>
     <string name="hybrid_list_title">Lista de aplicaciones</string>
     <string name="hybrid_list_summary">Configurar valores individuales</string>
-    <string name="hybrid_apps_write_dpi">Escribir nueva densidad:</string>
+    <string name="hybrid_apps_write_dpi">Escribir nuevo DPI:</string>
     <string name="hybrid_apps_dpi_default">DPI por defecto</string>
     <string name="global_default_dpi">Por defecto</string>
     <string name="global_default_layout">Por defecto</string>
@@ -731,8 +731,8 @@
     <string name="style_phone">Modo Teléfono</string>
     <string name="app_detail_splitter">/</string>
     <string name="pal_mode">Estilo de la aplicación</string>
-    <string name="pad_mode">Densidad de la aplicación</string>
-    <string name="pad_dialog">Seleccionar densidad personalizada</string>
+    <string name="pad_mode">DPI de la aplicación</string>
+    <string name="pad_dialog">Seleccionar DPI personalizado</string>
     <string name="pad_force">Forzar ajuste (Widgets)</string>
     <string name="action_apply">Aplicar</string>
     <string name="action_reset">Resetear</string>
@@ -758,7 +758,7 @@
     <string name="overflow_button_summary">Activar botón de menú táctil en las aplicaciones</string>
 
     <string name="tablet_mode_title">Modo táblet</string> 
-    <string name="tablet_mode_summary">Interfaz gráfica estilo táblet</string>
+    <string name="tablet_mode_summary">Activa la interfaz gráfica estilo táblet</string>
 
     <string name="recent_apps_settings_title">Aplicaciones Recientes</string> 
     <string name="recent_apps_settings_summary">Opciones de aplicaciones recientes</string> 
