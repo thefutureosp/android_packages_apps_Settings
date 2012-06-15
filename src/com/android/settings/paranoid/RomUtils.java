@@ -46,7 +46,7 @@ public class RomUtils extends ExtendedPropertiesUtils{
 	if (value.equals("-1"))
                RunCommands.execute(new String[]{MOUNT_SYSTEM_RW, "cd /system", "chmod 777 pad.prop", "busybox sed -i '/^" + propierty + "/ d' pad.prop | grep -v \n", "busybox chmod 644 pad.prop", MOUNT_SYSTEM_RO}, 0);
        else if(readFile("/system/pad.prop").contains(propierty))
-               RunCommands.execute(new String[]{MOUNT_SYSTEM_RW, "cd /system", "busybox sed -i 's|"+propierty+"=.*|"+propierty+"=" + value + "|' pad.prop", "busybox chmod 644 pad.prop", MOUNT_SYSTEM_RO}, 0);
+               RunCommands.execute(new String[]{MOUNT_SYSTEM_RW, "cd /system", "busybox sed -i 's|^"+propierty+"=.*|"+propierty+"=" + value + "|' pad.prop", "busybox chmod 644 pad.prop", MOUNT_SYSTEM_RO}, 0);
        else
                RunCommands.execute(new String[]{MOUNT_SYSTEM_RW, "cd /system", "chmod 777 pad.prop", "busybox printf \"\\n%b\" " + propierty + "=" + value + " >> pad.prop", "busybox chmod 644 pad.prop", MOUNT_SYSTEM_RO}, 0);
     }

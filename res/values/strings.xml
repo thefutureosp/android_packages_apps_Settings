@@ -1028,16 +1028,16 @@
 
     <string name="hybrid_settings_title">Hybrid Settings</string>
     <string name="hybrid_settings_summary">Hybrid mode options</string>
-    <string name="lcd_global_title">System app density</string>
-    <string name="lcd_global_summary">Optional: Sets the base density for all system apps. Individual values defined in -List of apps- overrides this value.</string> 
-    <string name="lcd_density_title">User app\'s density</string>
-    <string name="lcd_density_summary">Optional: Sets the base density for all non-system (user) apps. Individual values defined in -List of apps- overrides this value.</string> 
+    <string name="lcd_global_title">System default DPI</string>
+    <string name="lcd_global_summary">Applies to all system apps. Individual values defined in -List of apps- override this value.</string> 
+    <string name="lcd_density_title">User default DPI</string>
+    <string name="lcd_density_summary">Applies to all non-system apps. Individual values defined in -List of apps- override this value.</string> 
     <string name="dpi_custom_value">Custom DPI</string>
     <string name="lcd_density_no_value">Incorrect value. No changes have been made</string>
-    <string name="framework_density_title">Dialogs and popups density</string>
-    <string name="framework_density_summary">Applies to system dialogs and toasts</string>
-    <string name="systemui_density_title">Default statusbar density</string>
-    <string name="systemui_density_summary">Optional: Controls the size of the statusbar. Warning, it can take a long while until it pops up again, if it doesn\'t, reboot!</string>
+    <string name="framework_density_title">Framework-res DPI</string>
+    <string name="framework_density_summary">Applies to lockscreen, system dialogs and toasts</string>
+    <string name="systemui_density_title">SystemUI DPI</string>
+    <string name="systemui_density_summary">Applies to statusbar and/or navigationbar. Warning, reload may take a while, if it doesn\'t, reboot!</string>
     <string name="enable_hybrid_title">Hybrid Mode</string>
     <string name="enable_hybrid_summary">Enable hybrid mode</string>
     <string name="hybrid_list_title">List of apps</string>
@@ -1094,7 +1094,7 @@
     <string name="overflow_button_summary">Enable menu button shown in apps</string>
 
     <string name="tablet_mode_title">Tablet mode</string> 
-    <string name="tablet_mode_summary">Tablet UI features</string>
+    <string name="tablet_mode_summary">Check this switch to boot into tablet mode</string>
 
     <string name="recent_apps_settings_title">Recent Apps</string> 
     <string name="recent_apps_settings_summary">Recent apps screen options</string> 
