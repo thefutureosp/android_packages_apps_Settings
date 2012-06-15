@@ -694,7 +694,7 @@
     <string name="hybrid_settings_title">Configuraciones Híbridas</string>
     <string name="hybrid_settings_summary">Opciones del modo Híbrido</string>
     <string name="lcd_global_title">DPI del sistema</string>
-    <string name="lcd_global_summary">OpConfigura el DPI de las aplicaciones del sistema. Los valores en -Lista de aplicaciones- sobreescriben este valor.</string> 
+    <string name="lcd_global_summary">Configura el DPI de las aplicaciones del sistema. Los valores en -Lista de aplicaciones- sobreescriben este valor.</string> 
     <string name="lcd_density_title">DPI del usuario</string>
     <string name="lcd_density_summary">Configura el DPI de las aplicaciones del usuario. Los valores en -Lista de aplicaciones- sobreescriben este valor.</string> 
     <string name="dpi_custom_value">Personalizado</string>
@@ -758,7 +758,7 @@
     <string name="overflow_button_summary">Activar botón de menú táctil en las aplicaciones</string>
 
     <string name="tablet_mode_title">Modo táblet</string> 
-    <string name="tablet_mode_summary">Activa la interfaz gráfica estilo táblet</string>
+    <string name="tablet_mode_summary">Activa la interfaz gráfica al estilo táblet</string>
 
     <string name="recent_apps_settings_title">Aplicaciones Recientes</string> 
     <string name="recent_apps_settings_summary">Opciones de aplicaciones recientes</string> 
