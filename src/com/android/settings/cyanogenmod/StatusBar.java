@@ -101,8 +101,6 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
                 Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL, 0) == 1));
         mStatusBarHwRendering.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
                 Settings.System.STATUS_BAR_HW_RENDERING, 0) == 1);
-        mStatusbarTransparency.setValue(Integer.toString(Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.STATUS_BAR_TRANSPARENCY, 100)));
         mStatusbarTransparency.setEnabled(mStatusBarHwRendering.isChecked());
 
         try {
@@ -122,6 +120,11 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
             }
         } catch (SettingNotFoundException e ) {
         }
+
+        int statusbarTransparency = Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.STATUS_BAR_TRANSPARENCY, 100);
+        mStatusbarTransparency.setValue(String.valueOf(statusbarTransparency));
+        mStatusbarTransparency.setOnPreferenceChangeListener(this);
 
         int statusBarAmPm = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
                 Settings.System.STATUS_BAR_AM_PM, 2);
@@ -165,7 +168,8 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         if (preference == mStatusbarTransparency) {
             int statusBarTransparency = Integer.valueOf((String) newValue);
-            Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUS_BAR_TRANSPARENCY, statusBarTransparency);
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(), 
+                    Settings.System.STATUS_BAR_TRANSPARENCY, statusBarTransparency);
             return true;
 	} else if (preference == mStatusBarAmPm) {
             int statusBarAmPm = Integer.valueOf((String) newValue);

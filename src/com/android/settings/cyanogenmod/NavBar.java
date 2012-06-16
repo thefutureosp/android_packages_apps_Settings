@@ -61,7 +61,7 @@ public class NavBar extends SettingsPreferenceFragment
             mNavBarEditor.setEnabled(mSoftKeys.isChecked());
             return true;
 	}
-        return false;
+        return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
