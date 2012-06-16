@@ -45,11 +45,8 @@ public class NavBar extends SettingsPreferenceFragment
             PreferenceScreen prefSet = getPreferenceScreen();
 
             mSoftKeys = (CheckBoxPreference) prefSet.findPreference(KEY_SOFT_KEYS);
-            if (mSoftKeys != null) {
-		mSoftKeys.setOnPreferenceChangeListener(this);
-     	        mSoftKeys.setChecked(Settings.System.getInt(getActivity().getContentResolver(), 
+            mSoftKeys.setChecked(Settings.System.getInt(getActivity().getContentResolver(), 
                     Settings.System.SOFT_KEYS, 0) == 1);
-            }
 
             mNavBarEditor = (PreferenceScreen) prefSet.findPreference(KEY_NAV_BAR_EDITOR);
             mNavBarEditor.setEnabled(mSoftKeys.isChecked());
@@ -62,8 +59,9 @@ public class NavBar extends SettingsPreferenceFragment
             boolean mValue = mSoftKeys.isChecked();
             Settings.System.putInt(getActivity().getContentResolver(), Settings.System.SOFT_KEYS, mValue ? 1 : 0);
             mNavBarEditor.setEnabled(mSoftKeys.isChecked());
+            return true;
 	}
-        return super.onPreferenceTreeClick(preferenceScreen, preference);
+        return false;
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {

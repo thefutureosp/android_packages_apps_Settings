@@ -99,18 +99,11 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
                 Settings.System.STATUS_BAR_CLOCK, 1) == 1));
         mStatusBarBrightnessControl.setChecked((Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
                 Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL, 0) == 1));
-
-	if (mStatusbarTransparency != null) {            
-	    mStatusbarTransparency.setOnPreferenceChangeListener(this);
-	    mStatusbarTransparency.setValue(Integer.toString(Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.STATUS_BAR_TRANSPARENCY, 100)));
-        }
-
-	if (mStatusBarHwRendering != null) {            
-	    mStatusBarHwRendering.setOnPreferenceChangeListener(this);
-	    mStatusBarHwRendering.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+        mStatusBarHwRendering.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
                 Settings.System.STATUS_BAR_HW_RENDERING, 0) == 1);
-        }
+        mStatusbarTransparency.setValue(Integer.toString(Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.STATUS_BAR_TRANSPARENCY, 100)));
+        mStatusbarTransparency.setEnabled(mStatusBarHwRendering.isChecked());
 
         try {
             if (Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(), 

@@ -76,11 +76,8 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
         wallpaperTemporary = new File(mActivity.getCacheDir()+"/lockwallpaper.tmp");
         updateCustomBackgroundSummary();
 	mLockscreenVibration = (CheckBoxPreference) findPreference(KEY_LOCKSCREEN_VIBRATION);
-        if (mLockscreenVibration != null) {
-            mLockscreenVibration.setOnPreferenceChangeListener(this);
-            mLockscreenVibration.setChecked(Settings.System.getInt(getActivity().getContentResolver(), 
-                Settings.System.LOCKSCREEN_VIBRATION, 1) == 1);
-        }
+        mLockscreenVibration.setChecked(Settings.System.getInt(getActivity().getContentResolver(), 
+            Settings.System.LOCKSCREEN_VIBRATION, 1) == 1);
     }
 
     private void updateCustomBackgroundSummary() {
@@ -234,6 +231,6 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
             }
             return true;
         }
-        return true;
+        return false;
     }
 }
