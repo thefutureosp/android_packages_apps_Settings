@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012 CyanogenMod
+ * Copyright (C) 2012 CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,11 +23,12 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
+import android.provider.Settings;
 import android.util.Log;
-import android.view.IWindowManager;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
@@ -41,8 +42,10 @@ public class SystemSettings extends SettingsPreferenceFragment implements
     private static final String KEY_NOTIFICATION_DRAWER = "notification_drawer";
     private static final String KEY_NOTIFICATION_DRAWER_TABLET = "notification_drawer_tablet";
     private static final String KEY_NAVIGATION_BAR = "navigation_bar";
+    private static final String KEY_OVERFLOW_BUTTON = "pref_overflow_button";
 
     private ListPreference mFontSizePref;
+    private CheckBoxPreference mOverflowButton;
 
     private final Configuration mCurConfig = new Configuration();
     
@@ -59,12 +62,12 @@ public class SystemSettings extends SettingsPreferenceFragment implements
         } else {
             getPreferenceScreen().removePreference(findPreference(KEY_NOTIFICATION_DRAWER_TABLET));
         }
-        IWindowManager windowManager = IWindowManager.Stub.asInterface(ServiceManager.getService(Context.WINDOW_SERVICE));
-        try {
-            if (!windowManager.hasNavigationBar()) {
-                getPreferenceScreen().removePreference(findPreference(KEY_NAVIGATION_BAR));
-            }
-        } catch (RemoteException e) {
+
+        mOverflowButton = (CheckBoxPreference) findPreference(KEY_OVERFLOW_BUTTON);
+        if(mOverflowButton!=null) {
+            mOverflowButton.setOnPreferenceChangeListener(this);
+            mOverflowButton.setChecked(Settings.System.getInt(getActivity().getContentResolver(), 
+                Settings.System.UI_FORCE_OVERFLOW_BUTTON, 1) == 1);
         }
     }
 
@@ -126,6 +129,10 @@ public class SystemSettings extends SettingsPreferenceFragment implements
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+        if (preference == mOverflowButton){
+            boolean mValue = mOverflowButton.isChecked();
+            Settings.System.putInt(getActivity().getContentResolver(), Settings.System.UI_FORCE_OVERFLOW_BUTTON, mValue ? 1 : 0);
+	}
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 

@@ -39,6 +39,18 @@
         android:title="@string/wallpaper_settings_title"
         android:fragment="com.android.settings.WallpaperTypeSettings" />
 
+
+    <PreferenceScreen
+        android:key="navigation_bar"
+        android:fragment="com.android.settings.cyanogenmod.NavBar"
+        android:title="@string/navigation_bar_title" />
+
+    <PreferenceScreen
+        android:key="pref_recents_screen"
+        android:fragment="com.android.settings.paranoid.RecentPreferences"
+        android:title="@string/recent_apps_settings_title"
+        android:summary="@string/recent_apps_settings_summary"/>
+
     <ListPreference
         android:key="font_size"
         android:title="@string/title_font_size"
@@ -47,9 +59,10 @@
         android:entryValues="@array/entryvalues_font_size"
         android:dialogTitle="@string/dialog_title_font_size" />
 
-    <PreferenceScreen
-        android:key="navigation_bar"
-        android:fragment="com.android.settings.cyanogenmod.NavBar"
-        android:title="@string/navigation_bar_title" />
+    <CheckBoxPreference
+        android:key="pref_overflow_button"
+        android:title="@string/overflow_button_title"
+        android:summary="@string/overflow_button_summary"
+        android:defaultValue="true"/>
 
 </PreferenceScreen>

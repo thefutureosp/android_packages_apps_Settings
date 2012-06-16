@@ -1,11 +1,11 @@
 /*
- * Copyright (C) 2011 The CyanogenMod Project
+ * Copyright (C) 2012 ParanoidAndroid Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,132 +16,58 @@
 
 package com.android.settings.cyanogenmod;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Fragment;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
+import android.preference.Preference;
+import android.preference.PreferenceScreen;
 import android.provider.Settings;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.android.settings.R;
-import com.android.settings.Utils;
+import com.android.settings.SettingsPreferenceFragment;
 
-public class NavBar extends Fragment {
+public class NavBar extends SettingsPreferenceFragment
+        implements Preference.OnPreferenceChangeListener {
+    private static final String TAG = "NavBarSettings";
 
-    private boolean mEditMode;
-    private ViewGroup mContainer;
-    private Activity mActivity;
-    private final static Intent mIntent = new Intent("android.intent.action.NAVBAR_EDIT");
-    private static final int MENU_RESET = Menu.FIRST;
-    private static final int MENU_EDIT = Menu.FIRST + 1;
+    private static final String KEY_SOFT_KEYS = "pref_soft_keys";
+    private static final String KEY_NAV_BAR_EDITOR = "navigation_bar";
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.nav_bar, container, false);
-        setHasOptionsMenu(true);
-        mContainer = container;
-        mActivity = getActivity();
-        mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        return view;
-    }
-
-    /**
-     * Toggles navbar edit mode
-     * @param on True to enter edit mode / false to exit
-     * @param save True to save changes / false to discard them
-     */
-    private void toggleEditMode(boolean on, boolean save) {
-        mIntent.putExtra("edit", on);
-        mIntent.putExtra("save", save);
-        mActivity.sendBroadcast(mIntent);
-    }
+    private CheckBoxPreference mSoftKeys;
+    private PreferenceScreen mNavBarEditor;
 
     @Override
-    public void onResume() {
-        super.onResume();
-        // If running on a phone, remove padding around container
-        if (!Utils.isScreenLarge()) {
-            mContainer.setPadding(0, 0, 0, 0);
-        }
-    }
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        menu.add(0, MENU_RESET, 0, R.string.profile_reset_title)
-        .setIcon(R.drawable.ic_settings_backup)
-        .setAlphabeticShortcut('r')
-        .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM |
-                MenuItem.SHOW_AS_ACTION_WITH_TEXT);
-        menu.add(0, MENU_EDIT, 0, R.string.wifi_save)
-        .setIcon(R.drawable.stat_navbar_edit_off)
-        .setAlphabeticShortcut('s')
-        .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM |
-                MenuItem.SHOW_AS_ACTION_WITH_TEXT);
-    }
+        if (getPreferenceManager() != null) {
+            addPreferencesFromResource(R.xml.navbar_settings);
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-        case MENU_RESET:
-            new AlertDialog.Builder(mActivity)
-            .setTitle(R.string.lockscreen_target_reset_title)
-            .setIconAttribute(android.R.attr.alertDialogIcon)
-            .setMessage(R.string.navigation_bar_reset_message)
-            .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    if (mEditMode) {
-                        toggleEditMode(false, false);
-                    }
-                    Settings.System.putString(getActivity().getContentResolver(),
-                            Settings.System.NAV_BUTTONS, null);
-                    toggleEditMode(true, false);
-                    toggleEditMode(false, false);
-                    mEditMode = false;
-                    Toast.makeText(mActivity, R.string.navigation_bar_reset_toast, Toast.LENGTH_LONG).show();
-                }
-            }).setNegativeButton(R.string.cancel, null)
-            .create().show();
-            return true;
-        case MENU_EDIT:
-            mEditMode = !mEditMode;
-            toggleEditMode(mEditMode, true);
-            if (!mEditMode) {
-                item.setIcon(R.drawable.stat_navbar_edit_off);
-                Toast.makeText(mActivity, R.string.navigation_bar_save_message, Toast.LENGTH_LONG).show();
-            } else {
-                item.setIcon(R.drawable.stat_navbar_edit_on);
+            PreferenceScreen prefSet = getPreferenceScreen();
+
+            mSoftKeys = (CheckBoxPreference) prefSet.findPreference(KEY_SOFT_KEYS);
+            if (mSoftKeys != null) {
+		mSoftKeys.setOnPreferenceChangeListener(this);
+     	        mSoftKeys.setChecked(Settings.System.getInt(getActivity().getContentResolver(), 
+                    Settings.System.SOFT_KEYS, 0) == 1);
             }
-            return true;
-        default:
-            return false;
+
+            mNavBarEditor = (PreferenceScreen) prefSet.findPreference(KEY_NAV_BAR_EDITOR);
+            mNavBarEditor.setEnabled(mSoftKeys.isChecked());
         }
     }
 
     @Override
-    public void onPause() {
-        toggleEditMode(false, false);
-        super.onPause();
+    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+        if (preference == mSoftKeys){
+            boolean mValue = mSoftKeys.isChecked();
+            Settings.System.putInt(getActivity().getContentResolver(), Settings.System.SOFT_KEYS, mValue ? 1 : 0);
+            mNavBarEditor.setEnabled(mSoftKeys.isChecked());
+	}
+        return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
-    @Override
-    public void onStop() {
-        toggleEditMode(false, false);
-        super.onStop();
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+        return true;
     }
 
-    @Override
-    public void onDestroy() {
-        toggleEditMode(false, false);
-        super.onDestroy();
-    }
 }

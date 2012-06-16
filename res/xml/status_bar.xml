@@ -43,6 +43,20 @@
         android:title="@string/status_bar_general_title">
 
         <ListPreference
+            android:key="pref_statusbar_transparency"
+            android:title="@string/statusbar_transparency_title"
+            android:summary="@string/statusbar_transparency_summary"
+            android:entries="@array/statusbar_transparency_entries"
+            android:entryValues="@array/statusbar_transparency_values"
+	    android:defaultValue="0"/>
+
+        <CheckBoxPreference
+            android:key="pref_statusbar_hw_rendering"
+            android:title="@string/status_bar_hw_acceleration"
+            android:summary="@string/status_bar_hw_acceleration_summary"
+            android:defaultValue="false" />
+
+        <ListPreference
             android:key="status_bar_max_notifications"
             android:dialogTitle="@string/status_bar_max_notifications_title"
             android:title="@string/status_bar_max_notifications_title"

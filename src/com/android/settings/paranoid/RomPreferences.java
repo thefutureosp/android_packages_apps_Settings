@@ -1,57 +1,70 @@
 /*
- * ParanoidAndroid Main Preferences Fragment. (c) 2012 D4rKn3sSyS
+ * Copyright (C) 2012 ParanoidAndroid Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 package com.android.settings.paranoid;
 
-import android.os.Bundle;
-import android.preference.ListPreference;
-import android.preference.CheckBoxPreference;
-import android.preference.Preference;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.os.SystemProperties;
+import android.preference.ListPreference;
+import android.preference.CheckBoxPreference;
+import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.preference.PreferenceCategory;
 import android.provider.Settings;
-import android.app.AlertDialog;
-import android.os.SystemProperties;
+import android.text.method.DigitsKeyListener;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.settings.Utils;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 
-import java.io.File;
+import com.android.settings.Utils;
 
 public class RomPreferences extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
     
    private static final String TAG = "ParanoidAndroid/RomPreferences";
 
-    private static final String CATEGORY_UI = "category_ui";
-    private static final String KEY_OTA_UPDATES = "pref_ota_updates";
-    private static final String KEY_STATUSBAR_TRANSPARENCY = "pref_statusbar_transparency";
-    private static final String KEY_SOFT_KEYS = "pref_soft_keys";
-    private static final String KEY_OVERFLOW_BUTTON = "pref_overflow_button";
+    private static final String CATEGORY_HYBRID_GENERAL = "category_hybrid_general";
+    private static final String KEY_APP_LIST_SCREEN = "pref_manage_applications";
+
     private static final String KEY_TABLET_MODE = "pref_tablet_mode";
-    private static final String KEY_LOCKSCREEN_VIBRATION = "pref_lockscreen_vibration";
-    private static final String KEY_MP4_RECORDING = "pref_recording_format";
-    private static final String KEY_PHYSICAL = "pref_physical_keys";
-    private static final String KEY_RECENTS = "pref_recents_screen";
+    private static final String KEY_SYSTEM_DENSITY = "pref_system_density";
+    private static final String KEY_USER_DENSITY = "pref_user_density";
+    private static final String KEY_FRAME_DENSITY = "pref_framework_density";
+    private static final String KEY_SYSUI_DENSITY = "pref_systemui_density";
+    private static final String KEY_ENABLE_HYBRID = "pref_enable_hybrid";
+    private static final String CUSTOM_LCD_DENSITY = "-1";
 
-    private PreferenceCategory mPrefCategoryUi;
-    private Preference mOtaUpdates;
-    private ListPreference mStatusbarTransparency;
-    private CheckBoxPreference mSoftKeys;
-    private CheckBoxPreference mOverflowButton;
+    private PreferenceCategory mPrefCategoryHybrid;
+    private PreferenceScreen mAppList;
     private CheckBoxPreference mTabletMode;
-    private CheckBoxPreference mLockscreenVibration;
-    private CheckBoxPreference mMpeg4Recording;
-    private CheckBoxPreference mPhysicalKeys;
-	
-    private static boolean mValue;
+    private ListPreference mGlobalLcdDensity;
+    private ListPreference mLcdDensity;
+    private ListPreference mFrameDensity;
+    private ListPreference mSysUiDensity;
+    private CheckBoxPreference mEnableHybrid;
 
-    private static Context mContext;	
+    private static boolean mValue;
+    private Context mContext;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,88 +72,125 @@ public class RomPreferences extends SettingsPreferenceFragment
         mContext = getActivity();
 
         if (getPreferenceManager() != null) {
-		    addPreferencesFromResource(R.xml.paranoid_preferences);
-		    PreferenceScreen prefSet = getPreferenceScreen();
+		addPreferencesFromResource(R.xml.paranoid_preferences);
+		PreferenceScreen prefSet = getPreferenceScreen();
 
-            mOtaUpdates = prefSet.findPreference(KEY_OTA_UPDATES);
-            if (mOtaUpdates!=null)
-                mOtaUpdates.setSummary(mOtaUpdates.getSummary() + " v"+ RomUtils.getRomVersion());
+                mTabletMode = (CheckBoxPreference) prefSet.findPreference(KEY_TABLET_MODE);
+                mTabletMode.setOnPreferenceChangeListener(this);
+                mTabletMode.setChecked(Utils.isScreenLarge());
 
-	    mStatusbarTransparency = (ListPreference) prefSet.findPreference(KEY_STATUSBAR_TRANSPARENCY);
-	    if (mStatusbarTransparency!=null) {            
-	        mStatusbarTransparency.setOnPreferenceChangeListener(this);
-	        mStatusbarTransparency.setValue(Integer.toString(Settings.System.getInt(getActivity().getContentResolver(),
-                    Settings.System.STATUS_BAR_TRANSPARENCY, 100)));
-            }
-            
-            mSoftKeys = (CheckBoxPreference) prefSet.findPreference(KEY_SOFT_KEYS);
-            if (mSoftKeys!=null) {
-		mSoftKeys.setOnPreferenceChangeListener(this);
-     	        mSoftKeys.setChecked(Settings.System.getInt(getActivity().getContentResolver(), 
-                    Settings.System.SOFT_KEYS, 0) == 1);
-            }
-            
-            mOverflowButton = (CheckBoxPreference) prefSet.findPreference(KEY_OVERFLOW_BUTTON);
-            if(mOverflowButton!=null) {
-		mOverflowButton.setOnPreferenceChangeListener(this);
-		mOverflowButton.setChecked(Settings.System.getInt(getActivity().getContentResolver(), 
-                    Settings.System.UI_FORCE_OVERFLOW_BUTTON, 1) == 1);
-            }
-     
-	    mTabletMode = (CheckBoxPreference) prefSet.findPreference(KEY_TABLET_MODE);
-		mTabletMode.setOnPreferenceChangeListener(this);
-		mTabletMode.setChecked(Utils.isScreenLarge());
+		mEnableHybrid = (CheckBoxPreference) prefSet.findPreference(KEY_ENABLE_HYBRID);
+		mEnableHybrid.setOnPreferenceChangeListener(this);
+                mEnableHybrid.setChecked(Integer.parseInt(RomUtils.getProperty("hybrid_mode")) == 1);
 
-	    mLockscreenVibration = (CheckBoxPreference) prefSet.findPreference(KEY_LOCKSCREEN_VIBRATION);
-            if (mLockscreenVibration!=null) {
-		mLockscreenVibration.setOnPreferenceChangeListener(this);
-		mLockscreenVibration.setChecked(Settings.System.getInt(getActivity().getContentResolver(), 
-                    Settings.System.LOCKSCREEN_VIBRATION, 1) == 1);
-            }
-                 
-            mPrefCategoryUi = (PreferenceCategory) findPreference(CATEGORY_UI);
-                   
-            // REMOVE PREFERENCES IN TABLET MODE
-            if(Utils.isScreenLarge() && mStatusbarTransparency != null){
-                mPrefCategoryUi.removePreference(mStatusbarTransparency);
-            }
+		mGlobalLcdDensity = (ListPreference) prefSet.findPreference(KEY_SYSTEM_DENSITY);
+		mGlobalLcdDensity.setOnPreferenceChangeListener(this);
+		mGlobalLcdDensity.setValue(RomUtils.getProperty("system_default_dpi"));
+                mGlobalLcdDensity.setEnabled(mEnableHybrid.isChecked());	
 
-            RomUtils.setContext(mContext);
-	    }
+		mLcdDensity = (ListPreference) prefSet.findPreference(KEY_USER_DENSITY);
+		mLcdDensity.setOnPreferenceChangeListener(this);
+		mLcdDensity.setValue(RomUtils.getProperty("user_default_dpi"));
+                mLcdDensity.setEnabled(mEnableHybrid.isChecked());
+
+		mFrameDensity = (ListPreference) prefSet.findPreference(KEY_FRAME_DENSITY);
+		mFrameDensity.setOnPreferenceChangeListener(this);
+		mFrameDensity.setValue(RomUtils.getProperty("android.dpi"));
+                mFrameDensity.setEnabled(mEnableHybrid.isChecked());
+
+		mSysUiDensity = (ListPreference) prefSet.findPreference(KEY_SYSUI_DENSITY);
+		mSysUiDensity.setOnPreferenceChangeListener(this);
+		mSysUiDensity.setValue(RomUtils.getProperty("com.android.systemui.dpi"));
+		mSysUiDensity.setEnabled(mEnableHybrid.isChecked());
+                
+                mAppList = (PreferenceScreen) prefSet.findPreference(KEY_APP_LIST_SCREEN);
+                mAppList.setEnabled(mEnableHybrid.isChecked());
+		
+		RomUtils.setContext(mContext);
+
+                mPrefCategoryHybrid = (PreferenceCategory) findPreference(CATEGORY_HYBRID_GENERAL);
+	}
     }
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-	if (preference == mSoftKeys){
-            mValue = mSoftKeys.isChecked();
-            Settings.System.putInt(getActivity().getContentResolver(), Settings.System.SOFT_KEYS, mValue ? 1 : 0);
-	} else if (preference == mOverflowButton){
-            mValue = mOverflowButton.isChecked();
-            Settings.System.putInt(getActivity().getContentResolver(), Settings.System.UI_FORCE_OVERFLOW_BUTTON, mValue ? 1 : 0);
-	} else if (preference == mTabletMode){
+        if (preference == mTabletMode){
 	    mValue = mTabletMode.isChecked();
             RomUtils.setPropierty("ro.sf.lcd_density", mValue ? Integer.parseInt(RomUtils.getProperty("rom_tablet_base", "")) : Integer.parseInt(RomUtils.getProperty("rom_phone_base", "")));
 	    if(mValue)
 	    	Settings.System.putInt(getActivity().getContentResolver(), Settings.System.SENSE_RECENT, 0);
-	    getRequiredDialog(R.string.requires_reboot, 0);
-        } else  if (preference == mLockscreenVibration){
-            mValue = mLockscreenVibration.isChecked();
-            Settings.System.putInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_VIBRATION, mValue ? 1 : 0);
-        }
+        } else if (preference == mEnableHybrid){
+            mValue = mEnableHybrid.isChecked();
+            RomUtils.setHybridProperty("hybrid_mode", mValue ? "1" : "0");
+            mGlobalLcdDensity.setEnabled(mEnableHybrid.isChecked());
+            mLcdDensity.setEnabled(mEnableHybrid.isChecked());
+            mFrameDensity.setEnabled(mEnableHybrid.isChecked());
+            mSysUiDensity.setEnabled(mEnableHybrid.isChecked());
+            mAppList.setEnabled(mEnableHybrid.isChecked());
+	}
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
 	String key = preference.getKey();
-	if (KEY_STATUSBAR_TRANSPARENCY.equals(key)) {
-            int value = Integer.parseInt((String) newValue);
-            Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUS_BAR_TRANSPARENCY, value);
-	}
-        return true;
+        if(KEY_USER_DENSITY.equals(key)){
+	    String value = (String) newValue;
+            if(value.equals(CUSTOM_LCD_DENSITY))
+	       getDensityDialog("user_default_dpi", -1);
+            else
+	       RomUtils.setHybridProperty("user_default_dpi", String.valueOf(value));
+        } else if(KEY_SYSTEM_DENSITY.equals(key)) {
+            String value = (String) newValue;
+            if(value.equals(CUSTOM_LCD_DENSITY))
+                getDensityDialog("system_default_dpi", -1);
+            else
+                RomUtils.setHybridProperty("system_default_dpi", value);
+	} else if(KEY_FRAME_DENSITY.equals(key)) {
+            String value = (String) newValue;
+            if(value.equals(CUSTOM_LCD_DENSITY))
+                getDensityDialog("android.dpi", 0);
+            else
+                RomUtils.setHybridProperty("android.dpi", value);
+	} else if(KEY_SYSUI_DENSITY.equals(key)) {
+            String value = (String) newValue;
+            if(value.equals(CUSTOM_LCD_DENSITY))
+                getDensityDialog("com.android.systemui.dpi", 1);
+            else {
+                RomUtils.setHybridProperty("com.android.systemui.dpi", value);
+                RomUtils.triggerAction(1);
+            }
+	} 
+	return true;
     }
 
+    public void getDensityDialog(final String propierty, final int requiredDialog){
+	AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
+        final EditText input = new EditText(mContext);
+        DigitsKeyListener onlyDecimalAllowed = new DigitsKeyListener(true, true);
+               input.setKeyListener(onlyDecimalAllowed);
+               alert.setView(input)
+                   .setTitle(R.string.dpi_custom_value)
+                   .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener(){
+                   public void onClick(DialogInterface dialog, int whichButton) {
+                       String value = input.getText().toString();
+                       int mDensity;
+                       try{
+                           mDensity = Integer.parseInt(value);
+                           RomUtils.setHybridProperty(propierty, String.valueOf(mDensity));
+		           if(requiredDialog == 0)
+			        getRequiredDialog(R.string.requires_reboot, 0);
+		           if(requiredDialog == 1)
+			        RomUtils.triggerAction(1);
+                       } catch (Exception e){
+                           Toast.makeText(mContext, getString(R.string.lcd_density_no_value), Toast.LENGTH_LONG).show();
+                       }
+		
+        }});
+        alert.show();
+    }
     
+
     public void getRequiredDialog(final int message, final int action) {
 	final Context mContext = getActivity();
 	AlertDialog.Builder builder = new AlertDialog.Builder(mContext)
@@ -158,5 +208,6 @@ public class RomPreferences extends SettingsPreferenceFragment
 	AlertDialog mAlert = builder.create();
 	mAlert.show();
     }      
-        
+
 }
+

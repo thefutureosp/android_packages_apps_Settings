@@ -1020,26 +1020,21 @@
     <!-- ** ParanoidAndroid Settings Start ** --> 
 
     <string name="paranoid_settings">Paranoid Settings</string>
-    <string name="ui_category">User Interface Preferences</string>
-    <string name="rom_category">ROM Preferences</string>
-
-    <string name="rom_updates_title">Check for updates</string>
-    <string name="rom_updates_summary">Current Version:</string>
 
     <string name="hybrid_settings_title">Hybrid Settings</string>
     <string name="hybrid_settings_summary">Hybrid mode options</string>
     <string name="lcd_global_title">System default DPI</string>
-    <string name="lcd_global_summary">Applies to all system apps. Individual values defined in -List of apps- override this value.</string> 
+    <string name="lcd_global_summary">Applies to all system apps. Individual values defined in -List of apps- override this value.  (requires reboot)</string> 
     <string name="lcd_density_title">User default DPI</string>
-    <string name="lcd_density_summary">Applies to all non-system apps. Individual values defined in -List of apps- override this value.</string> 
+    <string name="lcd_density_summary">Applies to all non-system apps. Individual values defined in -List of apps- override this value.  (requires reboot)</string> 
     <string name="dpi_custom_value">Custom DPI</string>
     <string name="lcd_density_no_value">Incorrect value. No changes have been made</string>
     <string name="framework_density_title">Framework-res DPI</string>
-    <string name="framework_density_summary">Applies to lockscreen, system dialogs and toasts</string>
+    <string name="framework_density_summary">Applies to lockscreen, system dialogs and toasts  (requires reboot)</string>
     <string name="systemui_density_title">SystemUI DPI</string>
-    <string name="systemui_density_summary">Applies to statusbar and navigationbar. Warning, reload may take a while, if it doesn\'t, reboot!</string>
-    <string name="enable_hybrid_title">Hybrid Mode</string>
-    <string name="enable_hybrid_summary">Enable hybrid mode</string>
+    <string name="systemui_density_summary">Applies to statusbar and navigationbar. Warning, reload may take a while, if it doesn\'t, please reboot!</string>
+    <string name="enable_hybrid_title">Hybrid mode</string>
+    <string name="enable_hybrid_summary">Enable hybrid mode (requires reboot)</string>
     <string name="hybrid_list_title">List of apps</string>
     <string name="hybrid_list_summary">Set individual values</string>
     <string name="hybrid_apps_write_dpi">Write new density:</string>
@@ -1076,39 +1071,11 @@
     <string name="hybrid_force_stop_dlg_text">Some apps may not pick up your settings, force stopping "helps" (forces) them re-building their caches.</string>
     <string name="actions_applied">Sucessfully applied selected settings</string>
 
-    <string name="statusbar_transparency_title">Statusbar Transparency</string> 
-    <string name="statusbar_transparency_summary">Adjust statusbar transparency</string> 
-
-    <string name="lockscreen_settings_title">Lockscreen</string> 
-    <string name="lockscreen_settings_summary">Lockscreen options</string> 
-    <string name="lockscreen_wallpaper_title">Lockscreen Wallpaper</string>
-    <string name="lockscreen_wallpaper_summary">Setup lockscreen wallpaper</string>
-    <string name="lockscreen_wallpaper_remove_title">Remove Lockscreen Wallpaper</string>
-    <string name="lockscreen_vibration_title">Lockscreen Vibration</string> 
-    <string name="lockscreen_vibration_summary">Haptic feedback</string>
-
-    <string name="soft_keys_title">Softkeys</string> 
-    <string name="soft_keys_summary">Onscreen buttons</string>
-
-    <string name="overflow_button_title">Overflow button</string> 
-    <string name="overflow_button_summary">Enable menu button shown in apps</string>
-
-    <string name="tablet_mode_title">Tablet mode</string> 
-    <string name="tablet_mode_summary">Enables tablet like graphics</string>
-
-    <string name="recent_apps_settings_title">Recent Apps</string> 
-    <string name="recent_apps_settings_summary">Recent apps screen options</string> 
-    <string name="sense_recent_title">Recent Apps Mod</string>
-    <string name="sense_recent_summary">Sense 4.0 layout mode</string>
-    <string name="recent_apps_icon_title">Icon</string>
-    <string name="recent_apps_icon_summary">App icon visibility</string>
-    <string name="recent_apps_font_size_title">Font size</string>
-    <string name="recent_apps_font_size_summary">App name font size</string>
+    <string name="rom_updates_title">Check for updates</string>
+    <string name="rom_updates_summary">Current Version:</string>
 
     <string name="no_internet">This feature needs internet connection. Please connect to internet and try again</string>
-    <string name="requires_server_restart">System Server must be restarted, do you want to restart it now?</string>
     <string name="requires_reboot">Reboot required, do you want to reboot now?</string>
-
 
     <!-- ** ParanoidAndroid Settings Ends ** --> 
 
@@ -4570,6 +4537,30 @@ found in the list of installed apps.</string>
     <string name="profile_selected">Profile selected: %1$s</string>
     <string name="profile_nfc_text">Writing a profile to an NFC tag allows you to tap the tag to select that profile. Tapping a second time will select the previously selected profile.</string>
 
+    <string name="statusbar_transparency_title">Statusbar Transparency</string> 
+    <string name="statusbar_transparency_summary">Adjust statusbar transparency</string> 
+
+    <string name="lockscreen_vibration_title">Lockscreen Vibration</string> 
+    <string name="lockscreen_vibration_summary">Haptic feedback</string>
+
+    <string name="soft_keys_title">Softkeys</string> 
+    <string name="soft_keys_summary">Onscreen buttons</string>
+
+    <string name="overflow_button_title">Overflow button</string> 
+    <string name="overflow_button_summary">Enable menu button shown in apps</string>
+
+    <string name="tablet_mode_title">Tablet mode</string> 
+    <string name="tablet_mode_summary">Enables tablet like graphics (requires reboot)</string>
+
+    <string name="recent_apps_settings_title">Recent Apps</string> 
+    <string name="recent_apps_settings_summary">Recent apps screen options</string> 
+    <string name="sense_recent_title">Recent Apps Mod</string>
+    <string name="sense_recent_summary">Sense 4.0 layout mode</string>
+    <string name="recent_apps_icon_title">Icon</string>
+    <string name="recent_apps_icon_summary">App icon visibility</string>
+    <string name="recent_apps_font_size_title">Font size</string>
+    <string name="recent_apps_font_size_summary">App name font size</string>
+
     <!-- Stylus Icon -->
     <string name="stylus_icon_enabled_title">Show icon when using stylus</string>
     <string name="stylus_icon_enabled_summary">Show the pointer icon when hovering or drawing with the stylus</string>
@@ -4584,4 +4575,8 @@ found in the list of installed apps.</string>
     <!-- Status bar notification-icon count -->
     <string name="status_bar_max_notifications_title">Number of notification icons</string>
     <string name="status_bar_max_notifications_summary">Applies to portrait mode</string>
+
+    <!-- Status bar hardware acceleration -->
+    <string name="status_bar_hw_acceleration">Hardware acceleration</string>
+    <string name="status_bar_hw_acceleration_summary">Enables hardware acceleration on statusbar. This may reduce battery life (requires reboot)</string>
 </resources>

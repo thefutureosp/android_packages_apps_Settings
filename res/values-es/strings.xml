@@ -685,26 +685,21 @@
     <!-- ** ParanoidAndroid Settings Start ** --> 
 
     <string name="paranoid_settings">Configuraciones Paranoid</string>
-    <string name="ui_category">Preferencias de interfaz</string>
-    <string name="rom_category">Preferencias de la ROM</string>
-
-    <string name="rom_updates_title">Buscar actualizaciones</string>
-    <string name="rom_updates_summary">Versión actual:</string>
 
     <string name="hybrid_settings_title">Configuraciones Híbridas</string>
-    <string name="hybrid_settings_summary">Opciones del modo Híbrido</string>
+    <string name="hybrid_settings_summary">Opciones del modo híbrido</string>
     <string name="lcd_global_title">DPI del sistema</string>
-    <string name="lcd_global_summary">Configura el DPI de las aplicaciones del sistema. Los valores en -Lista de aplicaciones- sobreescriben este valor.</string> 
+    <string name="lcd_global_summary">Configura el DPI de las aplicaciones del sistema. Los valores en -Lista de aplicaciones- sobreescriben este valor. (requiere reiniciar)</string> 
     <string name="lcd_density_title">DPI del usuario</string>
-    <string name="lcd_density_summary">Configura el DPI de las aplicaciones del usuario. Los valores en -Lista de aplicaciones- sobreescriben este valor.</string> 
+    <string name="lcd_density_summary">Configura el DPI de las aplicaciones del usuario. Los valores en -Lista de aplicaciones- sobreescriben este valor. (requiere reiniciar)</string> 
     <string name="dpi_custom_value">Personalizado</string>
     <string name="lcd_density_no_value">Valor incorrecto. No se realizará ningun cambio</string>
     <string name="framework_density_title">DPI de framework-res</string>
-    <string name="framework_density_summary">Aplica a la pantalla de bloqueo, los dialogos y alertas del sistema</string>
+    <string name="framework_density_summary">Aplica a la pantalla de bloqueo, los dialogos y alertas del sistema (requiere reiniciar)</string>
     <string name="systemui_density_title">DPI de la barra de estado</string>
     <string name="systemui_density_summary">Controla el tamaño de la barra de estado. Advertencia: Puede tomar un tiempo en volver a aparecer. Si no lo hace, reinicia.</string>
-    <string name="enable_hybrid_title">Modo Híbrido</string>
-    <string name="enable_hybrid_summary">Activar modo Híbrido</string>
+    <string name="enable_hybrid_title">Modo híbrido</string>
+    <string name="enable_hybrid_summary">Activar modo híbrido (requiere reiniciar)</string>
     <string name="hybrid_list_title">Lista de aplicaciones</string>
     <string name="hybrid_list_summary">Configurar valores individuales</string>
     <string name="hybrid_apps_write_dpi">Escribir nuevo DPI:</string>
@@ -740,39 +735,11 @@
     <string name="hybrid_force_stop_dlg_text">Algunas aplicaciones no se ajustan a los nuevos valores, forzar el cierre recrea los recursos de la aplicación.</string>
     <string name="actions_applied">Configuraciones aplicadas satisfactoriamente</string>
 
-    <string name="statusbar_transparency_title">Transparencia</string> 
-    <string name="statusbar_transparency_summary">Ajustar transparencia de la barra de estado</string> 
-
-    <string name="lockscreen_settings_title">Pantalla de bloqueo</string> 
-    <string name="lockscreen_settings_summary">Opciones de la pantalla de bloqueo</string> 
-    <string name="lockscreen_wallpaper_title">Papel tapiz</string> 
-    <string name="lockscreen_wallpaper_summary">De la pantalla de bloqueo</string> 
-    <string name="lockscreen_wallpaper_remove_title">Remover papel tapiz</string>
-    <string name="lockscreen_vibration_title">Respuesta táctil</string> 
-    <string name="lockscreen_vibration_summary">Retroalimentación háptica</string>
-
-    <string name="soft_keys_title">Teclas táctiles</string> 
-    <string name="soft_keys_summary">Botones en la pantalla</string>
-
-    <string name="overflow_button_title">Botón de menú</string> 
-    <string name="overflow_button_summary">Activar botón de menú táctil en las aplicaciones</string>
-
-    <string name="tablet_mode_title">Modo táblet</string> 
-    <string name="tablet_mode_summary">Activa la interfaz gráfica al estilo táblet</string>
-
-    <string name="recent_apps_settings_title">Aplicaciones Recientes</string> 
-    <string name="recent_apps_settings_summary">Opciones de aplicaciones recientes</string> 
-    <string name="sense_recent_title">Cambiar modo</string>
-    <string name="sense_recent_summary">Modo de interfaz Sense 4.0</string>
-    <string name="recent_apps_icon_title">Icono</string>
-    <string name="recent_apps_icon_summary">Visibilidad del icono</string>
-    <string name="recent_apps_font_size_title">Tamaño de la letra</string>
-    <string name="recent_apps_font_size_summary">Nombre de la aplicación</string>
+    <string name="rom_updates_title">Buscar actualizaciones</string>
+    <string name="rom_updates_summary">Versión actual:</string>
 
     <string name="no_internet">Esta opción require una conexion a internet. Por favor conéctese a internet y vuelva a intentar</string>
-    <string name="requires_server_restart">El servicio del sistema debe reiniciarse, ¿Quiere reiniciarlo ahora?</string>
     <string name="requires_reboot">Se necesita reiniciar, ¿Quiere reiniciar ahora?</string>
-
 
     <!-- ** ParanoidAndroid Settings Ends ** --> 
 
@@ -2261,6 +2228,31 @@
     <string name="mod_version_default">"Desconocida"</string>
     <!-- About device screen, build date of ROM. #CM -->
     <string name="build_date">"Fecha de compilación"</string>
+
+    <string name="statusbar_transparency_title">Transparencia</string> 
+    <string name="statusbar_transparency_summary">Ajustar transparencia de la barra de estado</string> 
+
+    <string name="lockscreen_vibration_title">Respuesta táctil</string> 
+    <string name="lockscreen_vibration_summary">Retroalimentación háptica</string>
+
+    <string name="soft_keys_title">Teclas táctiles</string> 
+    <string name="soft_keys_summary">Botones en la pantalla</string>
+
+    <string name="overflow_button_title">Botón de menú</string> 
+    <string name="overflow_button_summary">Activar botón de menú táctil en las aplicaciones</string>
+
+    <string name="tablet_mode_title">Modo táblet</string> 
+    <string name="tablet_mode_summary">Activa la interfaz gráfica al estilo táblet (requiere reiniciar)</string>
+
+    <string name="recent_apps_settings_title">Aplicaciones Recientes</string> 
+    <string name="recent_apps_settings_summary">Opciones de aplicaciones recientes</string> 
+    <string name="sense_recent_title">Cambiar modo</string>
+    <string name="sense_recent_summary">Modo de interfaz Sense 4.0</string>
+    <string name="recent_apps_icon_title">Icono</string>
+    <string name="recent_apps_icon_summary">Visibilidad del icono</string>
+    <string name="recent_apps_font_size_title">Tamaño de la letra</string>
+    <string name="recent_apps_font_size_summary">Nombre de la aplicación</string>
+
     <!-- Stylus Icon -->
     <string name="stylus_icon_enabled_title">Mostrar icono al usar Stylus</string>
     <string name="stylus_icon_enabled_summary">Mostrar el cursor cuando se arrastra o dibuja con Stylus</string>
@@ -2272,4 +2264,8 @@
 
     <string name="status_bar_max_notifications_title">Numero de notificaciones</string>
     <string name="status_bar_max_notifications_summary">Aplica para el módo retrato</string>
+
+    <!-- Status bar hardware acceleration -->
+    <string name="status_bar_hw_acceleration">Aceleración por hardware</string>
+    <string name="status_bar_hw_acceleration_summary">Activa la aceleración por hardware en la barra de estado. Esto podría reducir la duración de la bateria</string>
 </resources>

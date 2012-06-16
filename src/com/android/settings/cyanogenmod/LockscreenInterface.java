@@ -30,6 +30,7 @@ import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
@@ -49,12 +50,14 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
     public static final String KEY_WEATHER_PREF = "lockscreen_weather";
     public static final String KEY_CALENDAR_PREF = "lockscreen_calendar";
     public static final String KEY_BACKGROUND_PREF = "lockscreen_background";
+    private static final String KEY_LOCKSCREEN_VIBRATION = "pref_lockscreen_vibration";
     private ListPreference mCustomBackground;
     private Preference mWeatherPref;
     private Preference mCalendarPref;
     private Activity mActivity;
     ContentResolver mResolver;
 
+    private CheckBoxPreference mLockscreenVibration;
     private File wallpaperImage;
     private File wallpaperTemporary;
 
@@ -72,6 +75,12 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
         wallpaperImage = new File(mActivity.getFilesDir()+"/lockwallpaper");
         wallpaperTemporary = new File(mActivity.getCacheDir()+"/lockwallpaper.tmp");
         updateCustomBackgroundSummary();
+	mLockscreenVibration = (CheckBoxPreference) findPreference(KEY_LOCKSCREEN_VIBRATION);
+        if (mLockscreenVibration != null) {
+            mLockscreenVibration.setOnPreferenceChangeListener(this);
+            mLockscreenVibration.setChecked(Settings.System.getInt(getActivity().getContentResolver(), 
+                Settings.System.LOCKSCREEN_VIBRATION, 1) == 1);
+        }
     }
 
     private void updateCustomBackgroundSummary() {
@@ -151,6 +160,10 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+        if (preference == mLockscreenVibration){
+            boolean mValue = mLockscreenVibration.isChecked();
+            Settings.System.putInt(getActivity().getContentResolver(), Settings.System.LOCKSCREEN_VIBRATION, mValue ? 1 : 0);
+        }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
@@ -221,6 +234,6 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
             }
             return true;
         }
-        return false;
+        return true;
     }
 }

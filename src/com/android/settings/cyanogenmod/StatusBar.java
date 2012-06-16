@@ -51,6 +51,10 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
 
     private static final String STATUS_BAR_CATEGORY_GENERAL = "status_bar_general";
 
+    private static final String STATUS_BAR_TRANSPARENCY = "pref_statusbar_transparency";
+
+    private static final String STATUS_BAR_HW_RENDERING = "pref_statusbar_hw_rendering";
+
     private ListPreference mStatusBarAmPm;
 
     private ListPreference mStatusBarBattery;
@@ -64,6 +68,10 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
     private CheckBoxPreference mStatusBarBrightnessControl;
 
     private CheckBoxPreference mCombinedBarAutoHide;
+
+    private ListPreference mStatusbarTransparency;
+
+    private CheckBoxPreference mStatusBarHwRendering;
 
     private CheckBoxPreference mStatusBarNotifCount;
 
@@ -84,11 +92,25 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
         mStatusBarNotificationIcons = (ListPreference) prefSet.findPreference(STATUSBAR_NOTIFICATION_ICONS);
         mCombinedBarAutoHide = (CheckBoxPreference) prefSet.findPreference(COMBINED_BAR_AUTO_HIDE);
         mStatusBarCmSignal = (ListPreference) prefSet.findPreference(STATUS_BAR_SIGNAL);
+        mStatusbarTransparency = (ListPreference) prefSet.findPreference(STATUS_BAR_TRANSPARENCY);
+        mStatusBarHwRendering = (CheckBoxPreference) prefSet.findPreference(STATUS_BAR_HW_RENDERING);
 
         mStatusBarClock.setChecked((Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
                 Settings.System.STATUS_BAR_CLOCK, 1) == 1));
         mStatusBarBrightnessControl.setChecked((Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
                 Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL, 0) == 1));
+
+	if (mStatusbarTransparency != null) {            
+	    mStatusbarTransparency.setOnPreferenceChangeListener(this);
+	    mStatusbarTransparency.setValue(Integer.toString(Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.STATUS_BAR_TRANSPARENCY, 100)));
+        }
+
+	if (mStatusBarHwRendering != null) {            
+	    mStatusBarHwRendering.setOnPreferenceChangeListener(this);
+	    mStatusBarHwRendering.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.STATUS_BAR_HW_RENDERING, 0) == 1);
+        }
 
         try {
             if (Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(), 
@@ -137,9 +159,10 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
 
         mPrefCategoryGeneral = (PreferenceCategory) findPreference(STATUS_BAR_CATEGORY_GENERAL);
 
-        if (Utils.isScreenLarge()) {
+        if (Utils.isScreenLarge() && mStatusbarTransparency != null) {
             mPrefCategoryGeneral.removePreference(mStatusBarBrightnessControl);
             mPrefCategoryGeneral.removePreference(mStatusBarCmSignal);
+            mPrefCategoryGeneral.removePreference(mStatusbarTransparency);
         } else {
             mPrefCategoryGeneral.removePreference(mCombinedBarAutoHide);
             mPrefCategoryGeneral.removePreference(mStatusBarNotificationIcons);
@@ -147,7 +170,11 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        if (preference == mStatusBarAmPm) {
+        if (preference == mStatusbarTransparency) {
+            int statusBarTransparency = Integer.parseInt((String) newValue);
+            Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUS_BAR_TRANSPARENCY, statusBarTransparency);
+            return true;
+	} else if (preference == mStatusBarAmPm) {
             int statusBarAmPm = Integer.valueOf((String) newValue);
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.STATUS_BAR_AM_PM, statusBarAmPm);
@@ -157,7 +184,7 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.STATUS_BAR_BATTERY, statusBarBattery);
             return true;
-        }else if (preference == mStatusBarNotificationIcons) {
+        } else if (preference == mStatusBarNotificationIcons) {
             int maxNotIcons = Integer.valueOf((String) newValue);
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.MAX_NOTIFICATION_ICONS, maxNotIcons);
@@ -173,8 +200,12 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
 
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         boolean value;
-
-        if (preference == mStatusBarClock) {
+        if (preference == mStatusBarHwRendering) {
+            value = mStatusBarHwRendering.isChecked();
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.STATUS_BAR_HW_RENDERING, value ? 1 : 0);
+            return true;
+        } else if (preference == mStatusBarClock) {
             value = mStatusBarClock.isChecked();
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.STATUS_BAR_CLOCK, value ? 1 : 0);
