@@ -83,8 +83,7 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
         addPreferencesFromResource(R.xml.device_info_settings);
         
         mOtaUpdates = findPreference(KEY_OTA_UPDATES);
-        if (mOtaUpdates != null)
-            mOtaUpdates.setSummary(mOtaUpdates.getSummary() + " v"+ RomUtils.getRomVersion());
+        mOtaUpdates.setSummary(mOtaUpdates.getSummary() + " v"+ RomUtils.getRomVersion());
 
         setStringSummary(KEY_FIRMWARE_VERSION, Build.VERSION.RELEASE);
         findPreference(KEY_FIRMWARE_VERSION).setEnabled(true);

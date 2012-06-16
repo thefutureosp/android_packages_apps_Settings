@@ -164,7 +164,7 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         if (preference == mStatusbarTransparency) {
-            int statusBarTransparency = Integer.parseInt((String) newValue);
+            int statusBarTransparency = Integer.valueOf((String) newValue);
             Settings.System.putInt(getActivity().getContentResolver(), Settings.System.STATUS_BAR_TRANSPARENCY, statusBarTransparency);
             return true;
 	} else if (preference == mStatusBarAmPm) {
@@ -188,7 +188,7 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
                     Settings.System.STATUS_BAR_SIGNAL_TEXT, signalStyle);
             return true;
         }
-        return false;
+        return true;
     }
 
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
@@ -197,6 +197,7 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
             value = mStatusBarHwRendering.isChecked();
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.STATUS_BAR_HW_RENDERING, value ? 1 : 0);
+            mStatusbarTransparency.setEnabled(mStatusBarHwRendering.isChecked());
             return true;
         } else if (preference == mStatusBarClock) {
             value = mStatusBarClock.isChecked();
