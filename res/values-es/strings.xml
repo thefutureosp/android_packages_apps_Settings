@@ -738,7 +738,6 @@
     <string name="rom_updates_title">Buscar actualizaciones</string>
     <string name="rom_updates_summary">Versión actual:</string>
 
-    <string name="no_internet">Esta opción require una conexion a internet. Por favor conéctese a internet y vuelva a intentar</string>
     <string name="requires_reboot">Se necesita reiniciar, ¿Quiere reiniciar ahora?</string>
 
     <!-- ** ParanoidAndroid Settings Ends ** --> 

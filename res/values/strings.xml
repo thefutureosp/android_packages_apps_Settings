@@ -1074,7 +1074,6 @@
     <string name="rom_updates_title">Check for updates</string>
     <string name="rom_updates_summary">Current Version:</string>
 
-    <string name="no_internet">This feature needs internet connection. Please connect to internet and try again</string>
     <string name="requires_reboot">Reboot required, do you want to reboot now?</string>
 
     <!-- ** ParanoidAndroid Settings Ends ** --> 

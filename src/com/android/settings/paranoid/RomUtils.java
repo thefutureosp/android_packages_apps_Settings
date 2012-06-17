@@ -32,7 +32,6 @@ public class RomUtils extends ExtendedPropertiesUtils{
     private static final String ROM_VERSION = "ro.pa.version";
     private static final int TRIGGER_REBOOT = 0;
     private static final int TRIGGER_SYSTEM_UI_RELOAD = 1;
-    private static final int TRIGGER_SYSTEM_SERVER_RELOAD = 2;
     public static Context mContext;
 
     public static void setContext(Context context){
@@ -94,10 +93,6 @@ public class RomUtils extends ExtendedPropertiesUtils{
 	RunCommands.execute(new String[]{"su", "busybox killall com.android.systemui"} ,0);
     }
 
-    public static void restartSystemServer(){
-	RunCommands.execute(new String[]{"su", "busybox killall system_server"} ,0);
-    }
-
     public static void triggerAction(int action) {
 	switch(action){
 	   case TRIGGER_REBOOT:
@@ -106,9 +101,6 @@ public class RomUtils extends ExtendedPropertiesUtils{
 	   break;
 	   case TRIGGER_SYSTEM_UI_RELOAD:
 	      restartSystemUI();
-	   break;
-	   case TRIGGER_SYSTEM_SERVER_RELOAD:
-	      restartSystemServer();
 	   break;
 	}
     }
