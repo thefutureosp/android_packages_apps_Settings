@@ -24,7 +24,6 @@ import android.provider.Settings;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
-import com.android.settings.Utils;
 
 public class NavBar extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
@@ -51,9 +50,6 @@ public class NavBar extends SettingsPreferenceFragment
 
             mNavBarEditor = (PreferenceScreen) prefSet.findPreference(KEY_NAV_BAR_EDITOR);
             mNavBarEditor.setEnabled(mSoftKeys.isChecked());
-			
-			if (Utils.isScreenLarge())
-			     prefSet.removePreference(mNavBarEditor);
         }
     }
 
