@@ -688,6 +688,8 @@
 
     <string name="hybrid_settings_title">Configuraciones Híbridas</string>
     <string name="hybrid_settings_summary">Opciones del modo híbrido</string>
+    <string name="user_mode_title">Interfaz predeterminada</string>
+    <string name="user_mode_summary">Forza todas las aplicaciones indefinidas del usuario a iniciar en determinado modo. (requiere reiniciar)</string>
     <string name="lcd_global_title">DPI del sistema</string>
     <string name="lcd_global_summary">Configura el DPI de las aplicaciones del sistema. Los valores en -Lista de aplicaciones- sobreescriben este valor. (requiere reiniciar)</string> 
     <string name="lcd_density_title">DPI del usuario</string>
