@@ -1015,21 +1015,13 @@
 
     <string-array name="entries_pad_lcd_densities">
 	<item>@string/global_default_dpi</item>
-	<item>@string/ldpi_value</item>	
-	<item>@string/mdpi_value</item>
-	<item>@string/hdpi_value</item>
-	<item>@string/current_base</item>    
-	<item>@string/tablet_base</item>        
-	<item>@string/phone_base</item>    
+	<item>@string/tablet_base</item>
+	<item>@string/phone_base</item>   
 	<item>@string/dpi_custom_value</item>
     </string-array>
 
     <string-array name="values_pad_lcd_densities" translatable="false">
 	<item>-1</item>
-        <item>160</item>      
-        <item>240</item>
-	<item>320</item>
-	<item>rom_current_base</item> 
 	<item>rom_tablet_base</item>
 	<item>rom_phone_base</item>
 	<item>custom</item>

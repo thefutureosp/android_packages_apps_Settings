@@ -716,9 +716,6 @@
     <string name="force_label">Forzar</string>
     <string name="force_yes">Si</string>
     <string name="dpi_label">DPI</string>
-    <string name="ldpi_value">160 (Baja)</string>
-    <string name="mdpi_value">240 (Media)</string>
-    <string name="hdpi_value">320 (Alta)</string>
     <string name="current_base">Actual</string>
     <string name="phone_base">Teléfono</string>
     <string name="tablet_base">Táblet</string>

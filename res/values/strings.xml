@@ -1054,10 +1054,6 @@
     <string name="force_yes">Yes</string>
     <string name="force_no">No</string>
     <string name="dpi_label">DPI</string>
-    <string name="ldpi_value">Low DPI (160)</string>
-    <string name="mdpi_value">Mid DPI (240)</string>
-    <string name="hdpi_value">High DPI (320)</string>
-    <string name="current_base">Stock DPI (Current)</string>
     <string name="phone_base">Stock DPI (Phone)</string>
     <string name="tablet_base">Stock DPI (Tablet)</string>
     <string name="layout_label">UI</string>
