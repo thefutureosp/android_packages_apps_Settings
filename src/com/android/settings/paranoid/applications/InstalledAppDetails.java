@@ -138,14 +138,14 @@ public class InstalledAppDetails extends Fragment
 	mLayoutText = (TextView) view.findViewById(R.id.layout_text);
 	mForceText = (TextView) view.findViewById(R.id.force_text);
 
-	mArrayHeadersPad = getActivity().getResources().getStringArray(R.array.entries_pad_lcd_densities);
-	mArrayValuesPad  = getActivity().getResources().getStringArray(R.array.values_pad_lcd_densities);
+	mArrayHeadersPad = getActivity().getResources().getStringArray(R.array.entries_lcd_densities);
+	mArrayValuesPad  = getActivity().getResources().getStringArray(R.array.values_lcd_densities);
 	mArrayHeadersPal  = getActivity().getResources().getStringArray(R.array.entries_layout_modes);
 	mArrayValuesPal  = getActivity().getResources().getStringArray(R.array.values_layout_modes);
 
 	// DENSITY TAP
    	mDensity = (Spinner) view.findViewById(R.id.pad_spinner);
-   	ArrayAdapter mPadAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.entries_pad_lcd_densities, android.R.layout.simple_spinner_item);
+   	ArrayAdapter mPadAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.entries_lcd_densities, android.R.layout.simple_spinner_item);
    	mPadAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
    	mDensity.setAdapter(mPadAdapter);
 
