@@ -1023,14 +1023,18 @@
 
     <string name="hybrid_settings_title">Hybrid Settings</string>
     <string name="hybrid_settings_summary">Hybrid mode options</string>
+
+    <string name="user_mode_title">User default UI</string>
+    <string name="user_mode_summary">Forces all undefined non-system (user-) apps into a display mode, either tablet or mobile. (requires reboot)</string> 
+
     <string name="lcd_global_title">System default DPI</string>
-    <string name="lcd_global_summary">Applies to all system apps. Individual values defined in -List of apps- override this value.  (requires reboot)</string> 
+    <string name="lcd_global_summary">Sets a default scaling for all undefined system apps. (requires reboot)</string> 
     <string name="lcd_density_title">User default DPI</string>
-    <string name="lcd_density_summary">Applies to all non-system apps. Individual values defined in -List of apps- override this value.  (requires reboot)</string> 
+    <string name="lcd_density_summary">Sets a default scaling for all undefined non-system (user-) apps. (requires reboot)</string> 
     <string name="dpi_custom_value">Custom DPI</string>
     <string name="lcd_density_no_value">Incorrect value. No changes have been made</string>
     <string name="framework_density_title">Framework-res DPI</string>
-    <string name="framework_density_summary">Applies to lockscreen, system dialogs and toasts  (requires reboot)</string>
+    <string name="framework_density_summary">Applies to lockscreen, system dialogs and toasts (requires reboot)</string>
     <string name="systemui_density_title">SystemUI DPI</string>
     <string name="systemui_density_summary">Applies to statusbar and navigationbar. Warning, reload may take a while, if it doesn\'t, please reboot!</string>
     <string name="enable_hybrid_title">Hybrid mode</string>
@@ -4549,7 +4553,7 @@ found in the list of installed apps.</string>
     <string name="overflow_button_summary">Enable menu button shown in apps</string>
 
     <string name="tablet_mode_title">Tablet mode</string> 
-    <string name="tablet_mode_summary">Enables tablet like graphics (requires reboot)</string>
+    <string name="tablet_mode_summary">Boots into tablet mode (requires reboot)</string>
 
     <string name="recent_apps_settings_title">Recent Apps</string> 
     <string name="recent_apps_settings_summary">Recent apps screen options</string> 
