@@ -53,13 +53,13 @@ public class RomPreferences extends SettingsPreferenceFragment
     private static final String KEY_FRAME_DENSITY = "pref_framework_density";
     private static final String KEY_SYSUI_DENSITY = "pref_systemui_density";
     private static final String KEY_ENABLE_HYBRID = "pref_enable_hybrid";
-    private static final String CUSTOM_LCD_DENSITY = "-1";
+    private static final String CUSTOM_LCD_DENSITY = "custom";
 
     private PreferenceCategory mPrefCategoryHybrid;
     private PreferenceScreen mAppList;
     private CheckBoxPreference mTabletMode;
-    private ListPreference mGlobalLcdDensity;
-    private ListPreference mLcdDensity;
+    private ListPreference mSystemDensity;
+    private ListPreference mUserDensity;
     private ListPreference mUserMode;
     private ListPreference mFrameDensity;
     private ListPreference mSysUiDensity;
@@ -85,29 +85,23 @@ public class RomPreferences extends SettingsPreferenceFragment
 		mEnableHybrid.setOnPreferenceChangeListener(this);
                 mEnableHybrid.setChecked(Integer.parseInt(RomUtils.getProperty("hybrid_mode")) == 1);
 
-		mGlobalLcdDensity = (ListPreference) prefSet.findPreference(KEY_SYSTEM_DENSITY);
-		mGlobalLcdDensity.setOnPreferenceChangeListener(this);
-		mGlobalLcdDensity.setValue(RomUtils.getProperty("system_default_dpi"));
-                mGlobalLcdDensity.setEnabled(mEnableHybrid.isChecked());	
+		mSystemDensity = (ListPreference) prefSet.findPreference(KEY_SYSTEM_DENSITY);
+		mSystemDensity.setOnPreferenceChangeListener(this);
 
-		mLcdDensity = (ListPreference) prefSet.findPreference(KEY_USER_DENSITY);
-		mLcdDensity.setOnPreferenceChangeListener(this);
-		mLcdDensity.setValue(RomUtils.getProperty("user_default_dpi"));
-                mLcdDensity.setEnabled(mEnableHybrid.isChecked());
+		mUserDensity = (ListPreference) prefSet.findPreference(KEY_USER_DENSITY);
+		mUserDensity.setOnPreferenceChangeListener(this);
+                mUserDensity.setEnabled(mEnableHybrid.isChecked());
 
 		mUserMode = (ListPreference) prefSet.findPreference(KEY_USER_MODE);
 		mUserMode.setOnPreferenceChangeListener(this);
-		mUserMode.setValue(RomUtils.getProperty("user_default_mode"));
                 mUserMode.setEnabled(mEnableHybrid.isChecked());
 
 		mFrameDensity = (ListPreference) prefSet.findPreference(KEY_FRAME_DENSITY);
 		mFrameDensity.setOnPreferenceChangeListener(this);
-		mFrameDensity.setValue(RomUtils.getProperty("android.dpi"));
                 mFrameDensity.setEnabled(mEnableHybrid.isChecked());
 
 		mSysUiDensity = (ListPreference) prefSet.findPreference(KEY_SYSUI_DENSITY);
 		mSysUiDensity.setOnPreferenceChangeListener(this);
-		mSysUiDensity.setValue(RomUtils.getProperty("com.android.systemui.dpi"));
 		mSysUiDensity.setEnabled(mEnableHybrid.isChecked());
                 
                 mAppList = (PreferenceScreen) prefSet.findPreference(KEY_APP_LIST_SCREEN);
@@ -129,8 +123,8 @@ public class RomPreferences extends SettingsPreferenceFragment
         } else if (preference == mEnableHybrid){
             mValue = mEnableHybrid.isChecked();
             RomUtils.setHybridProperty("hybrid_mode", mValue ? "1" : "0");
-            mGlobalLcdDensity.setEnabled(mEnableHybrid.isChecked());
-            mLcdDensity.setEnabled(mEnableHybrid.isChecked());
+            mSystemDensity.setEnabled(mEnableHybrid.isChecked());
+            mUserDensity.setEnabled(mEnableHybrid.isChecked());
             mUserMode.setEnabled(mEnableHybrid.isChecked());
             mFrameDensity.setEnabled(mEnableHybrid.isChecked());
             mSysUiDensity.setEnabled(mEnableHybrid.isChecked());
