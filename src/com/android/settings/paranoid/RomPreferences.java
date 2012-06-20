@@ -155,7 +155,7 @@ public class RomPreferences extends SettingsPreferenceFragment
 	} else if(KEY_FRAME_DENSITY.equals(key)) {
             String value = (String) newValue;
             if(value.equals(CUSTOM_LCD_DENSITY))
-                getDensityDialog("android.dpi", 0);
+                getDensityDialog("android.dpi", -1);
             else
                 RomUtils.setHybridProperty("android.dpi", value);
 	} else if(KEY_SYSUI_DENSITY.equals(key)) {
