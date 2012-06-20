@@ -36,7 +36,6 @@ import com.android.settings.Utils;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 
-import com.android.settings.Utils;
 
 public class RomPreferences extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
@@ -87,30 +86,25 @@ public class RomPreferences extends SettingsPreferenceFragment
 
 		mSystemDensity = (ListPreference) prefSet.findPreference(KEY_SYSTEM_DENSITY);
 		mSystemDensity.setOnPreferenceChangeListener(this);
-		mSystemDensity.setEnabled(mEnableHybrid.isChecked());
 
 		mUserDensity = (ListPreference) prefSet.findPreference(KEY_USER_DENSITY);
 		mUserDensity.setOnPreferenceChangeListener(this);
-                mUserDensity.setEnabled(mEnableHybrid.isChecked());
 
 		mUserMode = (ListPreference) prefSet.findPreference(KEY_USER_MODE);
 		mUserMode.setOnPreferenceChangeListener(this);
-                mUserMode.setEnabled(mEnableHybrid.isChecked());
 
 		mFrameDensity = (ListPreference) prefSet.findPreference(KEY_FRAME_DENSITY);
 		mFrameDensity.setOnPreferenceChangeListener(this);
-                mFrameDensity.setEnabled(mEnableHybrid.isChecked());
 
 		mSysUiDensity = (ListPreference) prefSet.findPreference(KEY_SYSUI_DENSITY);
 		mSysUiDensity.setOnPreferenceChangeListener(this);
-		mSysUiDensity.setEnabled(mEnableHybrid.isChecked());
                 
                 mAppList = (PreferenceScreen) prefSet.findPreference(KEY_APP_LIST_SCREEN);
-                mAppList.setEnabled(mEnableHybrid.isChecked());
-		
-		RomUtils.setContext(mContext);
 
                 mPrefCategoryHybrid = (PreferenceCategory) findPreference(CATEGORY_HYBRID_GENERAL);
+                
+                RomUtils.setContext(mContext);
+                setHybridParameters();
 	}
     }
 
@@ -124,12 +118,7 @@ public class RomPreferences extends SettingsPreferenceFragment
         } else if (preference == mEnableHybrid){
             mValue = mEnableHybrid.isChecked();
             RomUtils.setHybridProperty("hybrid_mode", mValue ? "1" : "0");
-            mSystemDensity.setEnabled(mEnableHybrid.isChecked());
-            mUserDensity.setEnabled(mEnableHybrid.isChecked());
-            mUserMode.setEnabled(mEnableHybrid.isChecked());
-            mFrameDensity.setEnabled(mEnableHybrid.isChecked());
-            mSysUiDensity.setEnabled(mEnableHybrid.isChecked());
-            mAppList.setEnabled(mEnableHybrid.isChecked());
+            setHybridParameters();
 	}
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
@@ -140,7 +129,7 @@ public class RomPreferences extends SettingsPreferenceFragment
         if(KEY_USER_DENSITY.equals(key)){
 	    String value = (String) newValue;
             if(value.equals(CUSTOM_LCD_DENSITY))
-	       getDensityDialog("user_default_dpi", -1);
+	       getDensityDialog("user_default_dpi");
             else
 	       RomUtils.setHybridProperty("user_default_dpi", String.valueOf(value));
         } else if(KEY_USER_MODE.equals(key)) {
@@ -149,13 +138,13 @@ public class RomPreferences extends SettingsPreferenceFragment
 	} else if(KEY_SYSTEM_DENSITY.equals(key)) {
             String value = (String) newValue;
             if(value.equals(CUSTOM_LCD_DENSITY))
-                getDensityDialog("system_default_dpi", -1);
+                getDensityDialog("system_default_dpi");
             else
                 RomUtils.setHybridProperty("system_default_dpi", value);
 	} else if(KEY_FRAME_DENSITY.equals(key)) {
             String value = (String) newValue;
             if(value.equals(CUSTOM_LCD_DENSITY))
-                getDensityDialog("android.dpi", -1);
+                getDensityDialog("android.dpi");
             else
                 RomUtils.setHybridProperty("android.dpi", value);
 	} else if(KEY_SYSUI_DENSITY.equals(key)) {
@@ -169,8 +158,22 @@ public class RomPreferences extends SettingsPreferenceFragment
 	} 
 	return true;
     }
+    
+    public void setHybridParameters(){
+    	boolean isChecked = mEnableHybrid.isChecked();
+        mSystemDensity.setEnabled(isChecked);
+        mUserDensity.setEnabled(isChecked);
+        mUserMode.setEnabled(isChecked);
+        mFrameDensity.setEnabled(isChecked);
+        mSysUiDensity.setEnabled(isChecked);
+        mAppList.setEnabled(isChecked);
+    }
+    
+    public void getDensityDialog(String property){
+        getDensityDialog(property, -1);
+    }
 
-    public void getDensityDialog(final String propierty, final int requiredDialog){
+    public void getDensityDialog(final String property, final int trigger){
 	AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
         final EditText input = new EditText(mContext);
         DigitsKeyListener onlyDecimalAllowed = new DigitsKeyListener(true, true);
@@ -183,37 +186,15 @@ public class RomPreferences extends SettingsPreferenceFragment
                        int mDensity;
                        try{
                            mDensity = Integer.parseInt(value);
-                           RomUtils.setHybridProperty(propierty, String.valueOf(mDensity));
-		           if(requiredDialog == 0)
-			        getRequiredDialog(R.string.requires_reboot, 0);
-		           if(requiredDialog == 1)
-			        RomUtils.triggerAction(1);
-                       } catch (Exception e){
+                           RomUtils.setHybridProperty(property, String.valueOf(mDensity));
+		           if(trigger != -1)
+			        RomUtils.triggerAction(trigger);
+                       } catch (NumberFormatException e){
                            Toast.makeText(mContext, getString(R.string.lcd_density_no_value), Toast.LENGTH_LONG).show();
                        }
 		
         }});
         alert.show();
     }
-    
-
-    public void getRequiredDialog(final int message, final int action) {
-	final Context mContext = getActivity();
-	AlertDialog.Builder builder = new AlertDialog.Builder(mContext)
-            .setMessage(message)
-            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-		    RomUtils.triggerAction(action);
-                }
-            })
-            .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-	            dialog.dismiss();
-                }
-            });
-	AlertDialog mAlert = builder.create();
-	mAlert.show();
-    }      
 
 }
-
