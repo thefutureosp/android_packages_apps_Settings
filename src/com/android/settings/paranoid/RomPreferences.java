@@ -87,6 +87,7 @@ public class RomPreferences extends SettingsPreferenceFragment
 
 		mSystemDensity = (ListPreference) prefSet.findPreference(KEY_SYSTEM_DENSITY);
 		mSystemDensity.setOnPreferenceChangeListener(this);
+		mSystemDensity.setEnabled(mEnableHybrid.isChecked());
 
 		mUserDensity = (ListPreference) prefSet.findPreference(KEY_USER_DENSITY);
 		mUserDensity.setOnPreferenceChangeListener(this);
