@@ -26,6 +26,15 @@
                 android:targetClass="com.paranoid.preferences.MainActivity"/>
         </Preference>
 
+        <!-- System update settings - Profile and PRL -->
+        <PreferenceScreen android:key="additional_system_update_settings"
+                          android:title="@string/additional_system_update_settings_list_item_title">
+            <intent android:action="android.intent.action.MAIN"
+                    android:targetPackage="@string/additional_system_update"
+                    android:targetClass="@string/additional_system_update_menu" />
+        </PreferenceScreen>
+
+
         <!-- Device status - launches activity -->
         <PreferenceScreen android:key="status_info"
                 android:title="@string/device_status" 
