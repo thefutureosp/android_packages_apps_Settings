@@ -82,7 +82,7 @@ public class RomPreferences extends SettingsPreferenceFragment
 
 		mEnableHybrid = (CheckBoxPreference) prefSet.findPreference(KEY_ENABLE_HYBRID);
 		mEnableHybrid.setOnPreferenceChangeListener(this);
-                mEnableHybrid.setChecked(Integer.parseInt(RomUtils.getProperty("hybrid_mode")) == 1);
+                mEnableHybrid.setChecked(Integer.parseInt(RomUtils.getProperty("$hybrid_mode", "0", true)) == 1);
 
 		mSystemDensity = (ListPreference) prefSet.findPreference(KEY_SYSTEM_DENSITY);
 		mSystemDensity.setOnPreferenceChangeListener(this);
@@ -112,12 +112,12 @@ public class RomPreferences extends SettingsPreferenceFragment
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference == mTabletMode){
 	    mValue = mTabletMode.isChecked();
-            RomUtils.setPropierty("ro.sf.lcd_density", mValue ? Integer.parseInt(RomUtils.getProperty("rom_tablet_base", "")) : Integer.parseInt(RomUtils.getProperty("rom_phone_base", "")));
+            RomUtils.setPropierty("ro.sf.lcd_density", mValue ? Integer.parseInt(RomUtils.getProperty("$rom_tablet_base", "", true)) : Integer.parseInt(RomUtils.getProperty("$rom_phone_base", "", true)));
 	    if(mValue)
 	    	Settings.System.putInt(getActivity().getContentResolver(), Settings.System.SENSE_RECENT, 0);
         } else if (preference == mEnableHybrid){
             mValue = mEnableHybrid.isChecked();
-            RomUtils.setHybridProperty("hybrid_mode", mValue ? "1" : "0");
+            RomUtils.setHybridProperty("$hybrid_mode", mValue ? "1" : "0");
             setHybridParameters();
 	}
         return super.onPreferenceTreeClick(preferenceScreen, preference);
@@ -129,18 +129,18 @@ public class RomPreferences extends SettingsPreferenceFragment
         if(KEY_USER_DENSITY.equals(key)){
 	    String value = (String) newValue;
             if(value.equals(CUSTOM_LCD_DENSITY))
-	       getDensityDialog("user_default_dpi");
+	       getDensityDialog("$user_default_dpi");
             else
-	       RomUtils.setHybridProperty("user_default_dpi", String.valueOf(value));
+	       RomUtils.setHybridProperty("$user_default_dpi", String.valueOf(value));
         } else if(KEY_USER_MODE.equals(key)) {
             String value = (String) newValue;
-            RomUtils.setHybridProperty("user_default_mode", value);
+            RomUtils.setHybridProperty("$user_default_mode", value);
 	} else if(KEY_SYSTEM_DENSITY.equals(key)) {
             String value = (String) newValue;
             if(value.equals(CUSTOM_LCD_DENSITY))
-                getDensityDialog("system_default_dpi");
+                getDensityDialog("$system_default_dpi");
             else
-                RomUtils.setHybridProperty("system_default_dpi", value);
+                RomUtils.setHybridProperty("$system_default_dpi", value);
 	} else if(KEY_FRAME_DENSITY.equals(key)) {
             String value = (String) newValue;
             if(value.equals(CUSTOM_LCD_DENSITY))

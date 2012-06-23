@@ -1067,8 +1067,8 @@
     <string name="pad_force">Force scaling (Widgets)</string>
     <string name="action_apply">Apply</string>
     <string name="action_reset">Reset</string>
-    <string name="hybrid_force_stop_dlg_title">Force stop the app?</string>
-    <string name="hybrid_force_stop_dlg_text">Some apps may not pick up your settings, force stopping "helps" (forces) them re-building their caches.</string>
+    <string name="hybrid_force_stop_dlg_title">Force-stop and clear cache?</string>
+    <string name="hybrid_force_stop_dlg_text">Some apps may not pick up your settings, this may force them to re-build their caches.</string>
     <string name="actions_applied">Sucessfully applied selected settings</string>
 
     <string name="rom_updates_title">Check for updates</string>

@@ -33,6 +33,7 @@ import android.content.IntentFilter;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.pm.IPackageDataObserver;
 import android.hardware.usb.IUsbManager;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -82,7 +83,7 @@ public class InstalledAppDetails extends Fragment
     
     public static final String ARG_PACKAGE_NAME = "package";
 
-    private PackageManager mPm;
+    private static PackageManager mPm;
     private IUsbManager mUsbManager;
     private DevicePolicyManager mDpm;
     private ApplicationsState mState;
@@ -181,9 +182,9 @@ public class InstalledAppDetails extends Fragment
 
     private void refreshParanoidParameters() {
 	// GET FRESH BATCH OF PROPS
-	String TempDpi = RomUtils.getFixedProperty(mAppEntry.info.packageName + ".dpi", REMOVE_ENTRY);
-	String TempLay = RomUtils.getProperty(mAppEntry.info.packageName + ".mode", REMOVE_ENTRY);
-	String TempFor = RomUtils.getProperty(mAppEntry.info.packageName + ".force", REMOVE_ENTRY);
+	String TempDpi = RomUtils.getProperty(mAppEntry.info.packageName + ".dpi", REMOVE_ENTRY, false);
+	String TempLay = RomUtils.getProperty(mAppEntry.info.packageName + ".mode", REMOVE_ENTRY, true);
+	String TempFor = RomUtils.getProperty(mAppEntry.info.packageName + ".force", REMOVE_ENTRY, true);
 	int TempDpiState = getSelectionPAD(TempDpi);
 	int TempLayState = getSelectionPAL(TempLay);
 
@@ -401,6 +402,10 @@ public class InstalledAppDetails extends Fragment
     
     public static class MyAlertDialogFragment extends DialogFragment {
 
+        class ClearCacheObserver extends IPackageDataObserver.Stub {
+            public void onRemoveCompleted(final String packageName, final boolean succeeded) { }
+        }
+
         public static MyAlertDialogFragment newInstance(int id, int moveErrorCode) {
             MyAlertDialogFragment frag = new MyAlertDialogFragment();
             Bundle args = new Bundle();
@@ -426,9 +431,11 @@ public class InstalledAppDetails extends Fragment
                     .setMessage(getActivity().getText(R.string.hybrid_force_stop_dlg_text))
                     .setPositiveButton(R.string.dlg_ok,
                         new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
+                        public void onClick(DialogInterface dialog, int which) {                            
                             // Force stop
                             getOwner().forceStopPackage(getOwner().mAppEntry.info.packageName);
+                            // delete cache
+                            mPm.deleteApplicationCacheFiles(getOwner().mAppEntry.info.packageName, new ClearCacheObserver());
                             Toast.makeText(getActivity(), R.string.actions_applied, Toast.LENGTH_LONG).show();
                         }
                     })

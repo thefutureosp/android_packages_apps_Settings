@@ -201,8 +201,8 @@ public class ManageApplications extends Fragment implements
         
         void updateDpiText(Context context) {           
 		// ParanoidAndroid
-		String mDpi = RomUtils.getProperty(entry.info.packageName + ".dpi", "0");
-		int mIntegerLayout = Integer.parseInt(RomUtils.getProperty(entry.info.packageName + ".mode", "0"));
+		String mDpi = RomUtils.getProperty(entry.info.packageName + ".dpi", "0", true);
+		int mIntegerLayout = Integer.parseInt(RomUtils.getProperty(entry.info.packageName + ".mode", "0", true));
 		String mLayout = context.getString(R.string.style_default);
 		switch(mIntegerLayout){
 			case 1:
