@@ -980,12 +980,13 @@
     </string-array>
 
     <string-array name="entries_status_bar_max_notifications">
-        <item>0</item>
+    <item>0</item>
 	<item>1</item>
 	<item>2</item>
         <item>3</item>
 	<item>4</item>
         <item>5</item>
+        <item>6</item>
     </string-array>
 
     <string-array name="values_status_bar_max_notifications" translatable="false">
@@ -995,6 +996,7 @@
 	<item>3</item>
         <item>4</item>
         <item>5</item>
+        <item>6</item>
     </string-array>
 
     <string-array name="entries_lcd_densities">
@@ -1006,8 +1008,8 @@
 
     <string-array name="values_lcd_densities" translatable="false">
 	<item>-1</item>
-	<item>$rom_tablet_base</item>
-	<item>$rom_phone_base</item>
+	<item>rom_tablet_base</item>
+	<item>rom_phone_base</item>
 	<item>custom</item>
     </string-array>
 
