@@ -490,8 +490,8 @@ public class Utils {
     }
 
     public static boolean isScreenLarge() {
-        int mDefaultDensity = Integer.parseInt(ExtendedPropertiesUtils.getProperty("$rom_phone_base", "", true));
-        return SystemProperties.getInt("ro.sf.lcd_density", mDefaultDensity) <= Integer.parseInt(ExtendedPropertiesUtils.getProperty("$rom_tablet_base", String.valueOf(mDefaultDensity), true));
+        int mDefaultDensity = Integer.parseInt(ExtendedPropertiesUtils.getProperty("%rom_phone_base", "", true));
+        return SystemProperties.getInt("ro.sf.lcd_density", mDefaultDensity) <= Integer.parseInt(ExtendedPropertiesUtils.getProperty("%rom_tablet_base", String.valueOf(mDefaultDensity), true));
     }
 
 }

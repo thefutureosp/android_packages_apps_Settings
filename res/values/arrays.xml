@@ -1008,8 +1008,8 @@
 
     <string-array name="values_lcd_densities" translatable="false">
 	<item>-1</item>
-	<item>$rom_tablet_base</item>
-	<item>$rom_phone_base</item>
+	<item>%rom_tablet_base</item>
+	<item>%rom_phone_base</item>
 	<item>custom</item>
     </string-array>
 
