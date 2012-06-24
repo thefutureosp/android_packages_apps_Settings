@@ -1001,15 +1001,15 @@
 
     <string-array name="entries_lcd_densities">
 	<item>@string/global_default_dpi</item>
-	<item>@string/tablet_base</item>
 	<item>@string/phone_base</item>   
+	<item>@string/tablet_base</item>
 	<item>@string/dpi_custom_value</item>
     </string-array>
 
     <string-array name="values_lcd_densities" translatable="false">
 	<item>-1</item>
-	<item>%rom_tablet_base</item>
 	<item>%rom_phone_base</item>
+	<item>%rom_tablet_base</item>
 	<item>custom</item>
     </string-array>
 
