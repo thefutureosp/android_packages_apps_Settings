@@ -1029,7 +1029,7 @@
     
     <string name="mode_title">Configuration</string>
     <string name="mode_summary">Choose your UI mode from a set of pre-defined configurations. (requires reboot)</string>
-    <string name="mode_reboot">Please reboot as far as possible!</string>
+    <string name="mode_reboot">Please reboot as soon as possible!</string>
     <string name="mode_0">Tablet mode (Optimized)</string>
     <string name="mode_1">Tablet mode (Small)</string>
     <string name="mode_2">Phone mode (Optimized)</string>
