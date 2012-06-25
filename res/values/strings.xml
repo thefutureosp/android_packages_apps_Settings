@@ -1025,7 +1025,7 @@
     <string name="hybrid_settings_summary">Hybrid mode options</string>
 
     <string name="user_mode_title">User default UI</string>
-    <string name="user_mode_summary">Forces all undefined non-system (user) apps into a display mode, either tablet or phone. (requires reboot)</string>
+    <string name="user_mode_summary">Forces all user apps into a display mode, either tablet or phone. (requires reboot)</string>
     
     <string name="mode_title">Configuration</string>
     <string name="mode_summary">Choose your UI mode from a set of pre-defined configurations. (requires reboot)</string>
@@ -1038,9 +1038,9 @@
     <string name="loading_dialog">Loading selected configuration</string>
 
     <string name="lcd_global_title">System default DPI</string>
-    <string name="lcd_global_summary">Sets a default scaling for all undefined system apps. (requires reboot)</string> 
+    <string name="lcd_global_summary">Sets a default scaling for all system apps. (requires reboot)</string> 
     <string name="lcd_density_title">User default DPI</string>
-    <string name="lcd_density_summary">Sets a default scaling for all undefined non-system (user-) apps. (requires reboot)</string> 
+    <string name="lcd_density_summary">Sets a default scaling for all user apps. (requires reboot)</string> 
     <string name="dpi_custom_value">Custom DPI</string>
     <string name="lcd_density_no_value">Incorrect value. No changes have been made</string>
     <string name="framework_density_title">Framework-res DPI</string>

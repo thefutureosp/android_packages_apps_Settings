@@ -1027,6 +1027,27 @@
 	<item>custom</item>
     </string-array>
 
+    <string-array name="values_user_densities" translatable="false">
+	<item>%rom_mid_base</item>
+	<item>%rom_phone_base</item>
+	<item>%rom_tablet_base</item>
+	<item>custom</item>
+    </string-array>
+
+    <string-array name="values_framework_densities" translatable="false">
+	<item>%rom_framework_dpi</item>
+	<item>%rom_phone_base</item>
+	<item>%rom_tablet_base</item>
+	<item>custom</item>
+    </string-array>
+
+    <string-array name="values_systemui_densities" translatable="false">
+	<item>%rom_systemui_dpi</item>
+	<item>%rom_phone_base</item>
+	<item>%rom_tablet_base</item>
+	<item>custom</item>
+    </string-array>
+
     <string-array name="entries_layout_modes">
 	<item>@string/global_default_layout</item>
 	<item>@string/style_phone</item>
