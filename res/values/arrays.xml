@@ -999,6 +999,20 @@
         <item>6</item>
     </string-array>
 
+    <string-array name="entries_modes">
+	<item>@string/mode_0</item>
+	<item>@string/mode_1</item>   
+	<item>@string/mode_2</item>
+	<item>@string/mode_3</item>
+    </string-array>
+
+    <string-array name="values_modes" translatable="false">
+	<item>0</item>
+	<item>1</item>
+	<item>2</item>
+	<item>3</item>
+    </string-array>
+
     <string-array name="entries_lcd_densities">
 	<item>@string/global_default_dpi</item>
 	<item>@string/phone_base</item>   

@@ -5,56 +5,40 @@
 <PreferenceCategory android:key="category_hybrid_general"
         android:title="@string/hybrid_settings_title">
 
-    <CheckBoxPreference
-        android:key="pref_tablet_mode"
-        android:title="@string/tablet_mode_title"
-        android:summary="@string/tablet_mode_summary"/>
-
-    <CheckBoxPreference
-        android:key="pref_enable_hybrid"
-        android:title="@string/enable_hybrid_title"
-        android:summary="@string/enable_hybrid_summary"
-        android:defaultValue="false"/>
-
     <ListPreference
-        android:key="pref_system_density"
-        android:title="@string/lcd_global_title"
-        android:summary="@string/lcd_global_summary"
-        android:entries="@array/entries_lcd_densities"
-        android:entryValues="@array/values_lcd_densities"
-        android:defaultValue="rom_current_base"/>
+        android:key="pref_mode"
+        android:title="@string/mode_title"
+        android:summary="@string/mode_summary"
+        android:entries="@array/entries_modes"
+        android:entryValues="@array/values_modes"/>
 
     <ListPreference
         android:key="pref_user_density"
         android:title="@string/lcd_density_title"
         android:summary="@string/lcd_density_summary"
         android:entries="@array/entries_lcd_densities"
-        android:entryValues="@array/values_lcd_densities"
-        android:defaultValue="rom_current_base"/>
+        android:entryValues="@array/values_lcd_densities"/>
 
     <ListPreference
         android:key="pref_user_mode"
         android:title="@string/user_mode_title"
         android:summary="@string/user_mode_summary"
         android:entries="@array/entries_user_mode"
-        android:entryValues="@array/values_user_mode"
-        android:defaultValue="0"/>
+        android:entryValues="@array/values_user_mode"/>
 
     <ListPreference
         android:key="pref_framework_density"
         android:title="@string/framework_density_title"
         android:summary="@string/framework_density_summary"
         android:entries="@array/entries_lcd_densities"
-        android:entryValues="@array/values_lcd_densities"
-        android:defaultValue="rom_current_base"/>
+        android:entryValues="@array/values_lcd_densities"/>
 
     <ListPreference
         android:key="pref_systemui_density"
         android:title="@string/systemui_density_title"
         android:summary="@string/systemui_density_summary"
         android:entries="@array/entries_lcd_densities"
-        android:entryValues="@array/values_lcd_densities"
-        android:defaultValue="rom_current_base"/>
+        android:entryValues="@array/values_lcd_densities"/>
 
     <PreferenceScreen
         android:key="pref_manage_applications"
