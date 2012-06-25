@@ -28,4 +28,7 @@
     <!-- Ad-hoc network support. Some devices (unpatched bcmdhd) have broken
          ad-hoc support and so we should hide ad-hoc network on those devices -->
     <bool name="config_show_adhoc_network">true</bool>
+
+    <!-- Defines default DPI to be used as user dpi -->
+    <string name="default_dpi_setting" translatable="false">"%rom_mid_base"</string>
 </resources>
