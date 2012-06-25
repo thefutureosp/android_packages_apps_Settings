@@ -1032,7 +1032,7 @@
     <string name="mode_reboot">Please reboot now!</string>
     <string name="mode_0">Tablet mode (Optimized)</string>
     <string name="mode_1">Tablet mode (Small)</string>
-    <string name="mode_2">Phone mode (Stock)</string>
+    <string name="mode_2">Phone mode (Optimized)</string>
     <string name="mode_3">Phone mode (Hybrid:OFF)</string>
 
     <string name="lcd_global_title">System default DPI</string>
