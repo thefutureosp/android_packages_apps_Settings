@@ -1029,11 +1029,13 @@
     
     <string name="mode_title">Configuration</string>
     <string name="mode_summary">Choose your UI mode from a set of pre-defined configurations. (requires reboot)</string>
-    <string name="mode_reboot">Please reboot now!</string>
+    <string name="mode_reboot">Please reboot as far as possible!</string>
     <string name="mode_0">Tablet mode (Optimized)</string>
     <string name="mode_1">Tablet mode (Small)</string>
     <string name="mode_2">Phone mode (Optimized)</string>
-    <string name="mode_3">Phone mode (Hybrid:OFF)</string>
+    <string name="mode_3">Phone mode (Stock)</string>
+
+    <string name="loading_dialog">Loading selected configuration</string>
 
     <string name="lcd_global_title">System default DPI</string>
     <string name="lcd_global_summary">Sets a default scaling for all undefined system apps. (requires reboot)</string> 
