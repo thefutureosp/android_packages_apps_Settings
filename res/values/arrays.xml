@@ -1005,6 +1005,7 @@
 	<item>@string/mode_2</item>
 	<item>@string/mode_3</item>
 	<item>@string/mode_4</item>
+	<item>@string/mode_5</item>
     </string-array>
 
     <string-array name="values_modes" translatable="false">
@@ -1013,6 +1014,7 @@
 	<item>2</item>
 	<item>3</item>
 	<item>4</item>
+	<item>5</item>
     </string-array>
 
     <string-array name="entries_lcd_densities">

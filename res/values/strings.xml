@@ -1032,9 +1032,10 @@
     <string name="mode_reboot">Please reboot as soon as possible!</string>
     <string name="mode_0">Tablet mode (Optimized)</string>
     <string name="mode_1">Tablet mode (Big)</string>
-    <string name="mode_2">Tablet mode (Small)</string>
+    <string name="mode_2">Tablet mode (Stock)</string>
     <string name="mode_3">Phone mode (Optimized)</string>
-    <string name="mode_4">Phone mode (Stock)</string>
+    <string name="mode_4">Phone mode (Big)</string>
+    <string name="mode_5">Phone mode (Stock)</string>
 
     <string name="loading_dialog">Loading selected configuration</string>
 
