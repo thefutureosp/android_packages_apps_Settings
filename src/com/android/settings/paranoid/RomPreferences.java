@@ -120,6 +120,8 @@ public class RomPreferences extends SettingsPreferenceFragment
                             RomUtils.setHybridProperty("%user_default_mode", "1");
                             RomUtils.setHybridProperty("android.dpi", "%rom_framework_dpi");
                             RomUtils.setHybridProperty("com.android.systemui.dpi", "%rom_systemui_dpi");
+                            RomUtils.setHybridProperty("com.android.camera.mode", "2");
+                            RomUtils.setHybridProperty("com.android.camera.dpi", "%rom_tablet_base");
                             break;
                         case 1:
                             Settings.System.putInt(cr, Settings.System.SENSE_RECENT, 0);
@@ -130,6 +132,8 @@ public class RomPreferences extends SettingsPreferenceFragment
                             RomUtils.setHybridProperty("%user_default_mode", "1");
                             RomUtils.setHybridProperty("android.dpi", "%rom_framework_dpi");
                             RomUtils.setHybridProperty("com.android.systemui.dpi", "%rom_systemui_dpi");
+                            RomUtils.setHybridProperty("com.android.camera.mode", "2");
+                            RomUtils.setHybridProperty("com.android.camera.dpi", "%rom_tablet_base");
                             break;
                         case 2:
                             Settings.System.putInt(cr, Settings.System.SENSE_RECENT, 0);

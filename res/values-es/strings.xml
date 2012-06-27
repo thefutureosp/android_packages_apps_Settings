@@ -694,7 +694,7 @@
     <string name="mode_summary">Seleccionar su configuración de una serie de valores predeterminados. (requiere reiniciar)</string>
     <string name="mode_reboot">¡Por favor reinicie lo mas pronto posible!</string>
     <string name="mode_0">Modo táblet (Optimizado)</string>
-    <string name="mode_0">Modo táblet (Grande)</string>
+    <string name="mode_1">Modo táblet (Grande)</string>
     <string name="mode_2">Modo táblet (Pequeño)</string>
     <string name="mode_3">Modo teléfono (Optimizado)</string>
     <string name="mode_4">Modo teléfono (Por defecto)</string>
