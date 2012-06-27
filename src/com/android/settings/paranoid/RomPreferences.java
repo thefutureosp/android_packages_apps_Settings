@@ -122,6 +122,7 @@ public class RomPreferences extends SettingsPreferenceFragment
                             RomUtils.setHybridProperty("com.android.systemui.dpi", "%rom_systemui_dpi");
                             RomUtils.setHybridProperty("com.android.camera.mode", "2");
                             RomUtils.setHybridProperty("com.android.camera.dpi", "%rom_tablet_base");
+                            RomUtils.setHybridProperty("com.android.phone.dpi", "%rom_tablet_base");
                             break;
                         case 1:
                             Settings.System.putInt(cr, Settings.System.SENSE_RECENT, 0);
@@ -134,6 +135,7 @@ public class RomPreferences extends SettingsPreferenceFragment
                             RomUtils.setHybridProperty("com.android.systemui.dpi", "%rom_systemui_dpi");
                             RomUtils.setHybridProperty("com.android.camera.mode", "2");
                             RomUtils.setHybridProperty("com.android.camera.dpi", "%rom_tablet_base");
+                            RomUtils.setHybridProperty("com.android.phone.dpi", "%rom_tablet_base");
                             break;
                         case 2:
                             Settings.System.putInt(cr, Settings.System.SENSE_RECENT, 0);
@@ -149,7 +151,8 @@ public class RomPreferences extends SettingsPreferenceFragment
                             RomUtils.setHybridProperty("android.dpi", "0");
                             RomUtils.setHybridProperty("com.android.systemui.dpi", "0");
                             RomUtils.setHybridProperty("com.android.camera.mode", "1");
-                            RomUtils.setHybridProperty("com.android.camera.dpi", "%rom_phone_base");
+                            RomUtils.setHybridProperty("com.android.camera.dpi", "%rom_mid_base");
+                            RomUtils.setHybridProperty("com.android.phone.dpi", "%rom_mid_base");
                             break;
                         case 4:
                             RomUtils.setPropierty("ro.sf.lcd_density", Integer.parseInt(RomUtils.getProperty("%rom_phone_base", "", true)));
@@ -161,6 +164,7 @@ public class RomPreferences extends SettingsPreferenceFragment
                             RomUtils.setHybridProperty("com.android.systemui.dpi", "0");
                             RomUtils.setHybridProperty("com.android.camera.mode", "1");
                             RomUtils.setHybridProperty("com.android.camera.dpi", "%rom_phone_base");
+                            RomUtils.setHybridProperty("com.android.phone.dpi", "%rom_phone_base");
                             break;
                         case 5:
                             RomUtils.setPropierty("ro.sf.lcd_density", Integer.parseInt(RomUtils.getProperty("%rom_phone_base", "", true)));
