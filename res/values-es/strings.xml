@@ -1779,8 +1779,6 @@
     <string name="pref_flash_mode_title">"Flash LED"</string>
     <string name="pref_flash_mode_summary">"Escoja los modos de flash LED disponibles en la barra de controles de energía"</string>
 
-    <string name="toggles_not_enough_space">Solo seis controles pueden ser activados</string>
-
     <!-- Status bar #CM -->
     <string name="status_bar_title">"Barra de estado"</string>
     <string name="status_bar_clock_title">"Reloj"</string>
