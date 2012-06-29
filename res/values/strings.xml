@@ -1027,28 +1027,16 @@
     <string name="user_mode_title">User default UI</string>
     <string name="user_mode_summary">Forces all user apps into a display mode, either tablet or phone. (requires reboot)</string>
     
-    <string name="mode_title">Configuration</string>
-    <string name="mode_summary">Choose your UI mode from a set of pre-defined configurations. (requires reboot)</string>
-    <string name="mode_reboot">Please reboot as soon as possible!</string>
-    <string name="mode_0">Tablet mode (Optimized)</string>
-    <string name="mode_1">Tablet mode (Big)</string>
-    <string name="mode_2">Tablet mode (Stock)</string>
-    <string name="mode_3">Phone mode (Optimized)</string>
-    <string name="mode_4">Phone mode (Big)</string>
-    <string name="mode_5">Phone mode (Stock)</string>
-
-    <string name="loading_dialog">Loading selected configuration</string>
-
-    <string name="lcd_global_title">System default DPI</string>
-    <string name="lcd_global_summary">Sets a default scaling for all system apps. (requires reboot)</string> 
-    <string name="lcd_density_title">User default DPI</string>
-    <string name="lcd_density_summary">Sets a default scaling for all user apps. (requires reboot)</string> 
+    <string name="system_dpi_title">System default DPI</string>
+    <string name="system_dpi_summary">Sets a default scaling for all system apps. (requires reboot)</string> 
+    <string name="user_dpi_title">User default DPI</string>
+    <string name="user_dpi_summary">Sets a default scaling for all user apps. (requires reboot)</string> 
     <string name="dpi_custom_value">Custom DPI</string>
-    <string name="lcd_density_no_value">Incorrect value. No changes have been made</string>
-    <string name="framework_density_title">Framework-res DPI</string>
-    <string name="framework_density_summary">Applies to lockscreen, system dialogs and toasts (requires reboot)</string>
-    <string name="systemui_density_title">SystemUI DPI</string>
-    <string name="systemui_density_summary">Applies to statusbar and navigationbar. Warning, reload may take a while, if it doesn\'t, please reboot!</string>
+    <string name="dpi_no_value">Incorrect value. No changes have been made</string>
+    <string name="framework_dpi_title">Framework-res DPI</string>
+    <string name="framework_dpi_summary">Applies to lockscreen, system dialogs and toasts (requires reboot)</string>
+    <string name="systemui_dpi_title">SystemUI DPI</string>
+    <string name="systemui_dpi_summary">Applies to statusbar and navigationbar. Warning, reload may take a while, if it doesn\'t, please reboot!</string>
     <string name="enable_hybrid_title">Hybrid mode</string>
     <string name="enable_hybrid_summary">Enable hybrid mode (requires reboot)</string>
     <string name="hybrid_list_title">List of apps</string>

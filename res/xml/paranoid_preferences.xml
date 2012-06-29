@@ -6,20 +6,6 @@
         android:title="@string/hybrid_settings_title">
 
     <ListPreference
-        android:key="pref_mode"
-        android:title="@string/mode_title"
-        android:summary="@string/mode_summary"
-        android:entries="@array/entries_modes"
-        android:entryValues="@array/values_modes"/>
-
-    <ListPreference
-        android:key="pref_user_density"
-        android:title="@string/lcd_density_title"
-        android:summary="@string/lcd_density_summary"
-        android:entries="@array/entries_lcd_densities"
-        android:entryValues="@array/values_user_densities"/>
-
-    <ListPreference
         android:key="pref_user_mode"
         android:title="@string/user_mode_title"
         android:summary="@string/user_mode_summary"
@@ -27,16 +13,30 @@
         android:entryValues="@array/values_user_mode"/>
 
     <ListPreference
-        android:key="pref_framework_density"
-        android:title="@string/framework_density_title"
-        android:summary="@string/framework_density_summary"
+        android:key="pref_system_dpi"
+        android:title="@string/system_dpi_title"
+        android:summary="@string/system_dpi_summary"
+        android:entries="@array/entries_lcd_densities"
+        android:entryValues="@array/values_user_densities"/>
+
+    <ListPreference
+        android:key="pref_user_dpi"
+        android:title="@string/user_dpi_title"
+        android:summary="@string/user_dpi_summary"
+        android:entries="@array/entries_lcd_densities"
+        android:entryValues="@array/values_user_densities"/>
+
+    <ListPreference
+        android:key="pref_framework_dpi"
+        android:title="@string/framework_dpi_title"
+        android:summary="@string/framework_dpi_summary"
         android:entries="@array/entries_lcd_densities"
         android:entryValues="@array/values_framework_densities"/>
 
     <ListPreference
-        android:key="pref_systemui_density"
-        android:title="@string/systemui_density_title"
-        android:summary="@string/systemui_density_summary"
+        android:key="pref_systemui_dpi"
+        android:title="@string/systemui_dpi_title"
+        android:summary="@string/systemui_dpi_summary"
         android:entries="@array/entries_lcd_densities"
         android:entryValues="@array/values_systemui_densities"/>
 

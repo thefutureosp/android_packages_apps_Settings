@@ -51,20 +51,20 @@ public class RomPreferences extends SettingsPreferenceFragment
 
     private static final String CATEGORY_HYBRID_GENERAL = "category_hybrid_general";
     private static final String KEY_APP_LIST_SCREEN = "pref_manage_applications";
-    private static final String KEY_MODE = "pref_mode";
-    private static final String KEY_USER_DENSITY = "pref_user_density";
     private static final String KEY_USER_MODE = "pref_user_mode";
-    private static final String KEY_FRAME_DENSITY = "pref_framework_density";
-    private static final String KEY_SYSUI_DENSITY = "pref_systemui_density";
+    private static final String KEY_SYSTEM_DPI = "pref_system_dpi";
+    private static final String KEY_USER_DPI = "pref_user_dpi";
+    private static final String KEY_FRAME_DPI = "pref_framework_dpi";
+    private static final String KEY_SYSUI_DPI = "pref_systemui_dpi";
     private static final String CUSTOM_LCD_DENSITY = "custom";
 
     private PreferenceCategory mPrefCategoryHybrid;
     private PreferenceScreen mAppList;
-    private ListPreference mMode;
-    private ListPreference mUserDensity;
     private ListPreference mUserMode;
-    private ListPreference mFrameDensity;
-    private ListPreference mSysUiDensity;
+    private ListPreference mSystemDpi;
+    private ListPreference mUserDpi;
+    private ListPreference mFrameDpi;
+    private ListPreference mSysUiDpi;
 
     private static boolean mValue;
     private Context mContext;
@@ -78,104 +78,38 @@ public class RomPreferences extends SettingsPreferenceFragment
             addPreferencesFromResource(R.xml.paranoid_preferences);
             PreferenceScreen prefSet = getPreferenceScreen();
 
-            mMode = (ListPreference) prefSet.findPreference(KEY_MODE);
-            mMode.setOnPreferenceChangeListener(this);
-            
-            mUserDensity = (ListPreference) prefSet.findPreference(KEY_USER_DENSITY);
-            mUserDensity.setOnPreferenceChangeListener(this);
-
             mUserMode = (ListPreference) prefSet.findPreference(KEY_USER_MODE);
             mUserMode.setOnPreferenceChangeListener(this);
 
-            mFrameDensity = (ListPreference) prefSet.findPreference(KEY_FRAME_DENSITY);
-            mFrameDensity.setOnPreferenceChangeListener(this);
+            mSystemDpi = (ListPreference) prefSet.findPreference(KEY_SYSTEM_DPI);
+            mSystemDpi.setOnPreferenceChangeListener(this);
+            
+            mUserDpi = (ListPreference) prefSet.findPreference(KEY_USER_DPI);
+            mUserDpi.setOnPreferenceChangeListener(this);
 
-            mSysUiDensity = (ListPreference) prefSet.findPreference(KEY_SYSUI_DENSITY);
-            mSysUiDensity.setOnPreferenceChangeListener(this);
+            mFrameDpi = (ListPreference) prefSet.findPreference(KEY_FRAME_DPI);
+            mFrameDpi.setOnPreferenceChangeListener(this);
+
+            mSysUiDpi = (ListPreference) prefSet.findPreference(KEY_SYSUI_DPI);
+            mSysUiDpi.setOnPreferenceChangeListener(this);
                     
             mAppList = (PreferenceScreen) prefSet.findPreference(KEY_APP_LIST_SCREEN);
             mPrefCategoryHybrid = (PreferenceCategory) findPreference(CATEGORY_HYBRID_GENERAL);
                     
             RomUtils.setContext(mContext);
-	    }
+         }
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         String key = preference.getKey();
-        if(KEY_MODE.equals(key)) {
-            final int value = Integer.parseInt((String) newValue);
-            final ContentResolver cr = getActivity().getContentResolver();
-            final ProgressDialog dialog = ProgressDialog.show(mContext, null, getString(R.string.loading_dialog), true);
-            new Thread(new Runnable(){
-                @Override
-                public void run(){
-                    switch (value) {
-                        case 0:
-                            Settings.System.putInt(cr, Settings.System.SENSE_RECENT, 0);
-                            RomUtils.setPropierty("ro.sf.lcd_density", Integer.parseInt(RomUtils.getProperty("%rom_tablet_base", "", true)));
-                            RomUtils.setHybridProperty("%hybrid_mode", "1");
-                            RomUtils.setHybridProperty("%system_default_dpi", "%rom_mid_base");
-                            RomUtils.setHybridProperty("%user_default_dpi", "%rom_mid_base");
-                            RomUtils.setHybridProperty("%user_default_mode", "1");
-                            RomUtils.setHybridProperty("android.dpi", "%rom_framework_dpi");
-                            RomUtils.setHybridProperty("com.android.systemui.dpi", "%rom_systemui_dpi");
-                            RomUtils.setHybridProperty("com.android.camera.mode", "2");
-                            RomUtils.setHybridProperty("com.android.camera.dpi", "%rom_tablet_base");
-                            RomUtils.setHybridProperty("com.android.phone.dpi", "%rom_tablet_base");
-                            break;
-                        case 1:
-                            Settings.System.putInt(cr, Settings.System.SENSE_RECENT, 0);
-                            RomUtils.setPropierty("ro.sf.lcd_density", Integer.parseInt(RomUtils.getProperty("%rom_tablet_base", "", true)));
-                            RomUtils.setHybridProperty("%hybrid_mode", "1");
-                            RomUtils.setHybridProperty("%system_default_dpi", "%rom_phone_base");
-                            RomUtils.setHybridProperty("%user_default_dpi", "%rom_phone_base");
-                            RomUtils.setHybridProperty("%user_default_mode", "1");
-                            RomUtils.setHybridProperty("android.dpi", "%rom_framework_dpi");
-                            RomUtils.setHybridProperty("com.android.systemui.dpi", "%rom_systemui_dpi");
-                            RomUtils.setHybridProperty("com.android.camera.mode", "2");
-                            RomUtils.setHybridProperty("com.android.camera.dpi", "%rom_tablet_base");
-                            RomUtils.setHybridProperty("com.android.phone.dpi", "%rom_tablet_base");
-                            break;
-                        case 2:
-                            Settings.System.putInt(cr, Settings.System.SENSE_RECENT, 0);
-                            RomUtils.setPropierty("ro.sf.lcd_density", Integer.parseInt(RomUtils.getProperty("%rom_tablet_base", "", true)));
-                            RomUtils.setHybridProperty("%hybrid_mode", "0");
-                            break;
-                        case 3:
-                            RomUtils.setPropierty("ro.sf.lcd_density", Integer.parseInt(RomUtils.getProperty("%rom_phone_base", "", true)));
-                            RomUtils.setHybridProperty("%hybrid_mode", "1");
-                            RomUtils.setHybridProperty("%system_default_dpi", "%rom_mid_base");
-                            RomUtils.setHybridProperty("%user_default_dpi", "%rom_mid_base");
-                            RomUtils.setHybridProperty("%user_default_mode", "1");
-                            RomUtils.setHybridProperty("android.dpi", "0");
-                            RomUtils.setHybridProperty("com.android.systemui.dpi", "0");
-                            RomUtils.setHybridProperty("com.android.camera.mode", "1");
-                            RomUtils.setHybridProperty("com.android.camera.dpi", "%rom_mid_base");
-                            RomUtils.setHybridProperty("com.android.phone.dpi", "%rom_mid_base");
-                            break;
-                        case 4:
-                            RomUtils.setPropierty("ro.sf.lcd_density", Integer.parseInt(RomUtils.getProperty("%rom_phone_base", "", true)));
-                            RomUtils.setHybridProperty("%hybrid_mode", "1");
-                            RomUtils.setHybridProperty("%system_default_dpi", "%rom_phone_base");
-                            RomUtils.setHybridProperty("%user_default_dpi", "%rom_phone_base");
-                            RomUtils.setHybridProperty("%user_default_mode", "1");
-                            RomUtils.setHybridProperty("android.dpi", "0");
-                            RomUtils.setHybridProperty("com.android.systemui.dpi", "0");
-                            RomUtils.setHybridProperty("com.android.camera.mode", "1");
-                            RomUtils.setHybridProperty("com.android.camera.dpi", "%rom_phone_base");
-                            RomUtils.setHybridProperty("com.android.phone.dpi", "%rom_phone_base");
-                            break;
-                        case 5:
-                            RomUtils.setPropierty("ro.sf.lcd_density", Integer.parseInt(RomUtils.getProperty("%rom_phone_base", "", true)));
-                            RomUtils.setHybridProperty("%hybrid_mode", "0");
-                            break;
-                    }
-                    dialog.dismiss();
-                    mToastHandler.sendEmptyMessage(0);
-                }
-            }).start();
-        } else if(KEY_USER_DENSITY.equals(key)) {
+        if(KEY_SYSTEM_DPI.equals(key)) {
+            String value = (String) newValue;
+            if(value.equals(CUSTOM_LCD_DENSITY))
+                getDensityDialog("%system_default_dpi");
+            else
+                RomUtils.setHybridProperty("%system_default_dpi", value);
+        } else if(KEY_USER_DPI.equals(key)) {
             String value = (String) newValue;
             if(value.equals(CUSTOM_LCD_DENSITY))
                 getDensityDialog("%user_default_dpi");
@@ -184,13 +118,13 @@ public class RomPreferences extends SettingsPreferenceFragment
         } else if(KEY_USER_MODE.equals(key)) {
             String value = (String) newValue;
             RomUtils.setHybridProperty("%user_default_mode", value);
-        } else if(KEY_FRAME_DENSITY.equals(key)) {
+        } else if(KEY_FRAME_DPI.equals(key)) {
             String value = (String) newValue;
             if(value.equals(CUSTOM_LCD_DENSITY))
                 getDensityDialog("android.dpi");
             else
                 RomUtils.setHybridProperty("android.dpi", value);
-        } else if(KEY_SYSUI_DENSITY.equals(key)) {
+        } else if(KEY_SYSUI_DPI.equals(key)) {
             String value = (String) newValue;
             if(value.equals(CUSTOM_LCD_DENSITY))
                 getDensityDialog("com.android.systemui.dpi", 1);
@@ -201,20 +135,13 @@ public class RomPreferences extends SettingsPreferenceFragment
         } 
         return true;
     }
-
-   private Handler mToastHandler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            Toast.makeText(mContext, getString(R.string.mode_reboot), Toast.LENGTH_LONG).show();
-        }
-    };
     
     public void getDensityDialog(String property) {
         getDensityDialog(property, -1);
     }
 
     public void getDensityDialog(final String property, final int trigger){
-	AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
+     AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
         final EditText input = new EditText(mContext);
         DigitsKeyListener onlyDecimalAllowed = new DigitsKeyListener(true, true);
         input.setKeyListener(onlyDecimalAllowed);
@@ -228,9 +155,9 @@ public class RomPreferences extends SettingsPreferenceFragment
                         mDensity = Integer.parseInt(value);
                         RomUtils.setHybridProperty(property, String.valueOf(mDensity));
                         if(trigger != -1)
-	                    RomUtils.triggerAction(trigger);
+                         RomUtils.triggerAction(trigger);
                     } catch (NumberFormatException e){
-                        Toast.makeText(mContext, getString(R.string.lcd_density_no_value), Toast.LENGTH_LONG).show();
+                        Toast.makeText(mContext, getString(R.string.dpi_no_value), Toast.LENGTH_LONG).show();
                     }
                    }
               });

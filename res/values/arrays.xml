@@ -938,39 +938,39 @@
     </string-array>
 
     <string-array name="statusbar_transparency_entries">
-	<item>0%</item>
-	<item>25%</item>
-	<item>50%</item>
-	<item>75%</item>
-	<item>100%</item>
+        <item>0%</item>
+        <item>25%</item>
+        <item>50%</item>
+        <item>75%</item>
+        <item>100%</item>
     </string-array>
 
     <string-array name="statusbar_transparency_values" translatable="false">
-	<item>100</item>
-	<item>75</item>
-	<item>50</item>
-	<item>25</item>
-	<item>0</item>
+        <item>100</item>
+        <item>75</item>
+        <item>50</item>
+        <item>25</item>
+        <item>0</item>
      </string-array>
 
     <string-array name="recents_font_entries">
-	<item>14 (default)</item>
-	<item>16</item>
-	<item>18</item>
-	<item>20</item>
+        <item>14 (default)</item>
+        <item>16</item>
+        <item>18</item>
+        <item>20</item>
     </string-array>
 
     <string-array name="recents_font_values" translatable="false">
-	<item>14</item>
-	<item>16</item>
-	<item>18</item>
-	<item>20</item>
+        <item>14</item>
+        <item>16</item>
+        <item>18</item>
+        <item>20</item>
      </string-array>
 
     <string-array name="entries_user_mode">
         <item>@string/global_default_layout</item>
-	<item>@string/style_phone</item>
-	<item>@string/style_tablet</item>
+        <item>@string/style_phone</item>
+        <item>@string/style_tablet</item>
     </string-array>
 
     <string-array name="values_user_mode" translatable="false">
@@ -981,10 +981,10 @@
 
     <string-array name="entries_status_bar_max_notifications">
         <item>0</item>
-	<item>1</item>
-	<item>2</item>
+        <item>1</item>
+        <item>2</item>
         <item>3</item>
-	<item>4</item>
+        <item>4</item>
         <item>5</item>
         <item>6</item>
     </string-array>
@@ -993,75 +993,57 @@
         <item>0</item>
         <item>1</item>
         <item>2</item> 
-	<item>3</item>
+        <item>3</item>
         <item>4</item>
         <item>5</item>
         <item>6</item>
     </string-array>
 
-    <string-array name="entries_modes">
-	<item>@string/mode_0</item>
-	<item>@string/mode_1</item>   
-	<item>@string/mode_2</item>
-	<item>@string/mode_3</item>
-	<item>@string/mode_4</item>
-	<item>@string/mode_5</item>
-    </string-array>
-
-    <string-array name="values_modes" translatable="false">
-	<item>0</item>
-	<item>1</item>
-	<item>2</item>
-	<item>3</item>
-	<item>4</item>
-	<item>5</item>
-    </string-array>
-
     <string-array name="entries_lcd_densities">
-	<item>@string/global_default_dpi</item>
-	<item>@string/phone_base</item>   
-	<item>@string/tablet_base</item>
-	<item>@string/dpi_custom_value</item>
+        <item>@string/global_default_dpi</item>
+        <item>@string/phone_base</item>   
+        <item>@string/tablet_base</item>
+        <item>@string/dpi_custom_value</item>
     </string-array>
 
     <string-array name="values_lcd_densities" translatable="false">
-	<item>-1</item>
-	<item>%rom_phone_base</item>
-	<item>%rom_tablet_base</item>
-	<item>custom</item>
+        <item>-1</item>
+        <item>%rom_phone_base</item>
+        <item>%rom_tablet_base</item>
+        <item>custom</item>
     </string-array>
 
     <string-array name="values_user_densities" translatable="false">
-	<item>%rom_mid_base</item>
-	<item>%rom_phone_base</item>
-	<item>%rom_tablet_base</item>
-	<item>custom</item>
+        <item>%rom_mid_base</item>
+        <item>%rom_phone_base</item>
+        <item>%rom_tablet_base</item>
+        <item>custom</item>
     </string-array>
 
     <string-array name="values_framework_densities" translatable="false">
-	<item>%rom_framework_dpi</item>
-	<item>%rom_phone_base</item>
-	<item>%rom_tablet_base</item>
-	<item>custom</item>
+        <item>%rom_framework_dpi</item>
+        <item>%rom_phone_base</item>
+        <item>%rom_tablet_base</item>
+        <item>custom</item>
     </string-array>
 
     <string-array name="values_systemui_densities" translatable="false">
-	<item>%rom_systemui_dpi</item>
-	<item>%rom_phone_base</item>
-	<item>%rom_tablet_base</item>
-	<item>custom</item>
+        <item>%rom_systemui_dpi</item>
+        <item>%rom_phone_base</item>
+        <item>%rom_tablet_base</item>
+        <item>custom</item>
     </string-array>
 
     <string-array name="entries_layout_modes">
-	<item>@string/global_default_layout</item>
-	<item>@string/style_phone</item>
-	<item>@string/style_tablet</item>
+        <item>@string/global_default_layout</item>
+        <item>@string/style_phone</item>
+        <item>@string/style_tablet</item>
     </string-array>
 
     <string-array name="values_layout_modes">
-	<item>-1</item>
-	<item>1</item>
-	<item>2</item>
+        <item>-1</item>
+        <item>1</item>
+        <item>2</item>
     </string-array>
 
     <string-array name="entries_status_bar_am_pm">
