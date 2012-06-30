@@ -2234,9 +2234,6 @@
     <string name="soft_keys_title">Teclas táctiles</string> 
     <string name="soft_keys_summary">Botones en la pantalla</string>
 
-    <string name="overflow_button_title">Botón de menú</string> 
-    <string name="overflow_button_summary">Activar botón de menú táctil en las aplicaciones</string>
-
     <string name="tablet_mode_title">Modo táblet</string> 
     <string name="tablet_mode_summary">Activa la interfaz gráfica al estilo táblet (requiere reiniciar)</string>
 

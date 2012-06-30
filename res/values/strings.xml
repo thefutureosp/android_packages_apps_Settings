@@ -4543,9 +4543,6 @@ found in the list of installed apps.</string>
     <string name="soft_keys_title">Softkeys</string> 
     <string name="soft_keys_summary">Onscreen buttons</string>
 
-    <string name="overflow_button_title">Overflow button</string> 
-    <string name="overflow_button_summary">Enable menu button shown in apps</string>
-
     <string name="tablet_mode_title">Tablet mode</string> 
     <string name="tablet_mode_summary">Boots into tablet mode (requires reboot)</string>
 
