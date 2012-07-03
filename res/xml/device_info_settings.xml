@@ -22,8 +22,8 @@
 	    android:title="@string/rom_updates_title"
 	    android:summary="@string/rom_updates_summary">
 	    <intent android:action="android.intent.action.VIEW"
-                android:targetPackage="com.paranoid.preferences"              
-                android:targetClass="com.paranoid.preferences.MainActivity"/>
+                android:targetPackage="com.paranoid.ota"              
+                android:targetClass="com.paranoid.ota.MainActivity"/>
         </Preference>
 
         <!-- System update settings - Profile and PRL -->
