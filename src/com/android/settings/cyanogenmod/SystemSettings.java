@@ -42,8 +42,10 @@ public class SystemSettings extends SettingsPreferenceFragment implements
     private static final String KEY_NOTIFICATION_DRAWER = "notification_drawer";
     private static final String KEY_NOTIFICATION_DRAWER_TABLET = "notification_drawer_tablet";
     private static final String KEY_NAVIGATION_BAR = "navigation_bar";
+    private static final String KEY_OVERFLOW_BUTTON = "pref_overflow_button";
 
     private ListPreference mFontSizePref;
+    private CheckBoxPreference mOverflowButton;
 
     private final Configuration mCurConfig = new Configuration();
     
@@ -59,6 +61,13 @@ public class SystemSettings extends SettingsPreferenceFragment implements
             getPreferenceScreen().removePreference(findPreference(KEY_NOTIFICATION_DRAWER));
         } else {
             getPreferenceScreen().removePreference(findPreference(KEY_NOTIFICATION_DRAWER_TABLET));
+        }
+
+        mOverflowButton = (CheckBoxPreference) findPreference(KEY_OVERFLOW_BUTTON);
+        if(mOverflowButton != null) {
+            mOverflowButton.setOnPreferenceChangeListener(this);
+            mOverflowButton.setChecked(Settings.System.getInt(getActivity().getContentResolver(), 
+                Settings.System.UI_MENU_BUTTON_BEHAVIOUR, 1) == 1);
         }
     }
 
@@ -120,6 +129,10 @@ public class SystemSettings extends SettingsPreferenceFragment implements
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+        if (preference == mOverflowButton){
+            boolean mValue = mOverflowButton.isChecked();
+            Settings.System.putInt(getActivity().getContentResolver(), Settings.System.UI_FORCE_OVERFLOW_BUTTON, mValue ? 1 : 0);
+        }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
