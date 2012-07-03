@@ -131,7 +131,7 @@ public class SystemSettings extends SettingsPreferenceFragment implements
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference == mOverflowButton){
             boolean mValue = mOverflowButton.isChecked();
-            Settings.System.putInt(getActivity().getContentResolver(), Settings.System.UI_FORCE_OVERFLOW_BUTTON, mValue ? 1 : 0);
+            Settings.System.putInt(getActivity().getContentResolver(), Settings.System.UI_MENU_BUTTON_BEHAVIOUR, mValue ? 1 : 0);
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
