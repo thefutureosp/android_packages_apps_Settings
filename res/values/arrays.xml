@@ -1013,8 +1013,18 @@
         <item>custom</item>
     </string-array>
 
+    <string-array name="entries_statusbar_mode">
+        <item>@string/style_tablet</item>
+        <item>@string/style_phone</item>
+    </string-array>
+
+    <string-array name="values_statusbar_mode">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
     <string-array name="values_user_densities" translatable="false">
-        <item>%rom_mid_base</item>
+        <item>%rom_phone_base</item>
         <item>%rom_phone_base</item>
         <item>%rom_tablet_base</item>
         <item>custom</item>

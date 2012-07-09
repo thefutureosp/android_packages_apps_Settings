@@ -6,6 +6,13 @@
         android:title="@string/hybrid_settings_title">
 
     <ListPreference
+        android:key="pref_statusbar_mode"
+        android:title="@string/statusbar_mode_title"
+        android:summary="@string/statusbar_mode_summary"
+        android:entries="@array/entries_statusbar_mode"
+        android:entryValues="@array/values_statusbar_mode"/>
+
+    <ListPreference
         android:key="pref_user_mode"
         android:title="@string/user_mode_title"
         android:summary="@string/user_mode_summary"

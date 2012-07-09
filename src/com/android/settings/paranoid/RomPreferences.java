@@ -51,6 +51,7 @@ public class RomPreferences extends SettingsPreferenceFragment
 
     private static final String CATEGORY_HYBRID_GENERAL = "category_hybrid_general";
     private static final String KEY_APP_LIST_SCREEN = "pref_manage_applications";
+    private static final String KEY_STATUS_BAR_MODE = "pref_statusbar_mode";
     private static final String KEY_USER_MODE = "pref_user_mode";
     private static final String KEY_SYSTEM_DPI = "pref_system_dpi";
     private static final String KEY_USER_DPI = "pref_user_dpi";
@@ -60,6 +61,7 @@ public class RomPreferences extends SettingsPreferenceFragment
 
     private PreferenceCategory mPrefCategoryHybrid;
     private PreferenceScreen mAppList;
+    private ListPreference mStatusBarMode;
     private ListPreference mUserMode;
     private ListPreference mSystemDpi;
     private ListPreference mUserDpi;
@@ -77,6 +79,9 @@ public class RomPreferences extends SettingsPreferenceFragment
         if (getPreferenceManager() != null) {
             addPreferencesFromResource(R.xml.paranoid_preferences);
             PreferenceScreen prefSet = getPreferenceScreen();
+
+            mStatusBarMode = (ListPreference) prefSet.findPreference(KEY_STATUS_BAR_MODE);
+            mStatusBarMode.setOnPreferenceChangeListener(this);
 
             mUserMode = (ListPreference) prefSet.findPreference(KEY_USER_MODE);
             mUserMode.setOnPreferenceChangeListener(this);
@@ -115,6 +120,15 @@ public class RomPreferences extends SettingsPreferenceFragment
                 getDensityDialog("%user_default_dpi");
             else
                 RomUtils.setHybridProperty("%user_default_dpi", value);
+        } else if(KEY_STATUS_BAR_MODE.equals(key)) {
+            int value = Integer.parseInt((String) newValue);
+            if(value == 1){
+                RomUtils.setHybridProperty("com.android.systemui.dpi", "%rom_systemui_dpi");
+                RomUtils.setHybridProperty("com.android.systemui.mode", "2");
+            } else if(value == 2){
+                RomUtils.setHybridProperty("com.android.systemui.dpi", "0");
+                RomUtils.setHybridProperty("com.android.systemui.mode", "1");
+            }
         } else if(KEY_USER_MODE.equals(key)) {
             String value = (String) newValue;
             RomUtils.setHybridProperty("%user_default_mode", value);

@@ -1028,9 +1028,10 @@
     <string name="hybrid_settings_title">Hybrid Settings</string>
     <string name="hybrid_settings_summary">Hybrid mode options</string>
 
+    <string name="statusbar_mode_title">Statusbar style</string>
+    <string name="statusbar_mode_summary">Switch between preset styles. (requires reboot)</string>
     <string name="user_mode_title">User default UI</string>
     <string name="user_mode_summary">Forces all user apps into a display mode, either tablet or phone. (requires reboot)</string>
-    
     <string name="system_dpi_title">System default DPI</string>
     <string name="system_dpi_summary">Sets a default scaling for all system apps. (requires reboot)</string> 
     <string name="user_dpi_title">User default DPI</string>
