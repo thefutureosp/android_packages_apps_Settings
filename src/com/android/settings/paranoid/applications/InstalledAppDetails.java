@@ -182,7 +182,7 @@ public class InstalledAppDetails extends Fragment
 
     private void refreshParanoidParameters() {
 	// GET FRESH BATCH OF PROPS
-	String TempDpi = RomUtils.getProperty(mAppEntry.info.packageName + ".dpi", REMOVE_ENTRY);
+	String TempDpi = RomUtils.getProperty(mAppEntry.info.packageName + ".dpi", REMOVE_ENTRY, false);
 	String TempLay = RomUtils.getProperty(mAppEntry.info.packageName + ".mode", REMOVE_ENTRY);
 	String TempFor = RomUtils.getProperty(mAppEntry.info.packageName + ".force", REMOVE_ENTRY);
 	int TempDpiState = getSelectionPAD(TempDpi);
