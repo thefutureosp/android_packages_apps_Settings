@@ -123,6 +123,7 @@ public class RomPreferences extends SettingsPreferenceFragment
         } else if(KEY_STATUS_BAR_MODE.equals(key)) {
             int value = Integer.parseInt((String) newValue);
             if(value == 1){
+                Settings.System.putInt(getActivity().getContentResolver(), Settings.System.SENSE_RECENT, 0);
                 RomUtils.setHybridProperty("com.android.systemui.dpi", "%rom_systemui_dpi");
                 RomUtils.setHybridProperty("com.android.systemui.mode", "2");
             } else if(value == 2){
