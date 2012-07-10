@@ -490,7 +490,7 @@ public class Utils {
     }
 
     public static boolean isScreenLarge() {
-        return Integer.parseInt(ExtendedPropertiesUtils.getProperty("com.android.systemui.mode", "2")) == 2;
+        return ExtendedPropertiesUtils.mIsTablet;
     }
 
 }
