@@ -55,51 +55,51 @@ public class RecentPreferences extends SettingsPreferenceFragment
         super.onCreate(savedInstanceState);
 
         if (getPreferenceManager() != null) {
-		addPreferencesFromResource(R.xml.recent_apps_settings);
-		PreferenceScreen prefSet = getPreferenceScreen();
+            addPreferencesFromResource(R.xml.recent_apps_settings);
+            PreferenceScreen prefSet = getPreferenceScreen();
 
-		mSenseRecent = (CheckBoxPreference) prefSet.findPreference(KEY_SENSE_RECENT);
-		mSenseRecent.setOnPreferenceChangeListener(this);
-		mSenseRecent.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.SENSE_RECENT, 0) == 1);
+            mSenseRecent = (CheckBoxPreference) prefSet.findPreference(KEY_SENSE_RECENT);
+            mSenseRecent.setOnPreferenceChangeListener(this);
+            mSenseRecent.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.SENSE_RECENT, 0) == 1);
 
-		mRecentTextSize = (ListPreference) prefSet.findPreference(KEY_TEXT_SIZE);
-		mRecentTextSize.setOnPreferenceChangeListener(this);
-		mRecentTextSize.setValue(Integer.toString(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.RECENTS_TEXT_SIZE, 14)));
+            mRecentTextSize = (ListPreference) prefSet.findPreference(KEY_TEXT_SIZE);
+            mRecentTextSize.setOnPreferenceChangeListener(this);
+            mRecentTextSize.setValue(Integer.toString(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.RECENTS_TEXT_SIZE, 14)));
 
-		mRecentIcon = (CheckBoxPreference) prefSet.findPreference(KEY_ICON);
-		mRecentIcon.setOnPreferenceChangeListener(this);
-		mRecentIcon.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.RECENTS_ICON, 1) == 1);
+            mRecentIcon = (CheckBoxPreference) prefSet.findPreference(KEY_ICON);
+            mRecentIcon.setOnPreferenceChangeListener(this);
+            mRecentIcon.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.RECENTS_ICON, 1) == 1);
 
-		RomUtils.setContext(getActivity());
+            RomUtils.setContext(getActivity());
 
                 mPrefCategoryRecent = (PreferenceCategory) findPreference(CATEGORY_RECENTS_GENERAL);
-		
-		if(Utils.isScreenLarge()){
-                    mPrefCategoryRecent.removePreference(mSenseRecent);
-                }
+            
+            if(Utils.isScreenLarge()){
+                mPrefCategoryRecent.removePreference(mSenseRecent);
+            }
 
-	}
+        }
     }
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-	if (preference == mSenseRecent){
+        if (preference == mSenseRecent){
             mValue = mSenseRecent.isChecked();
             Settings.System.putInt(getActivity().getContentResolver(), Settings.System.SENSE_RECENT, mValue ? 1 : 0);
-	} else if (preference == mRecentIcon){
+        } else if (preference == mRecentIcon){
             mValue = mRecentIcon.isChecked();
             Settings.System.putInt(getActivity().getContentResolver(), Settings.System.RECENTS_ICON, mValue ? 1 : 0);
-	}
+        }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
     
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-	String key = preference.getKey();
-	if (KEY_TEXT_SIZE.equals(key)) {
+        String key = preference.getKey();
+        if (KEY_TEXT_SIZE.equals(key)) {
             int value = Integer.parseInt((String) newValue);
             Settings.System.putInt(getActivity().getContentResolver(), Settings.System.RECENTS_TEXT_SIZE, value);
-	}
+        }
         return true;
     }
 
