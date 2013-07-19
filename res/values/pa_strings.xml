@@ -282,6 +282,7 @@
     <string name="hardware_keys_action_search">Search assistant</string>
     <string name="hardware_keys_action_voice_search">Voice search</string>
     <string name="hardware_keys_action_in_app_search">In-app search</string>
+    <string name="hardware_keys_action_torch">Toggle torch</string>
     <string name="additional_options_title">Additional options</string>
 
     <string name="pref_ring_mode_title">Sound modes</string>
