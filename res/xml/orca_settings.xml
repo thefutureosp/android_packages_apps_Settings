@@ -67,6 +67,15 @@
             android:summary="@string/status_bar_donotdisturb_summary"
             android:defaultValue="false" />
 
+     <PreferenceScreen
+        android:key="lock_clock"
+        android:title="@string/lock_clock_title"
+        android:summary="@string/lock_clock_summary">
+        <intent android:action="android.intent.action.MAIN"
+                android:targetPackage="com.cyanogenmod.lockclock"
+                android:targetClass="com.cyanogenmod.lockclock.preference.Preferences" />
+     </PreferenceScreen>           
+                
     </PreferenceCategory>
     
     <PreferenceCategory
@@ -107,6 +116,18 @@
             android:summary="@string/halo_pause_summary" />
 
     </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="toolbar_lockscreen"
+        android:title="@string/tool_bar_lockscreen_header">
+
+    <PreferenceScreen
+        android:id="@+id/lock_screen_settings"
+        android:fragment="com.android.settings.orca.Lockscreen" 
+        android:title="@string/lock_screen_settings" 
+        android:summary="@string/lock_screen_summary" />
+        
+    </PreferenceCategory>      
 
     <PreferenceCategory
         android:key="toolbar_navigation"

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.paranoid;
+package com.android.settings.orca;
 
 import java.io.File;
 import java.io.IOException;

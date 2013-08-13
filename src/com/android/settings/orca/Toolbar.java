@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.paranoid;
+package com.android.settings.orca;
 
 import android.app.ActivityManager;
 import android.app.AlertDialog;
@@ -104,7 +104,7 @@ public class Toolbar extends SettingsPreferenceFragment
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        addPreferencesFromResource(R.xml.tool_bar_settings);
+        addPreferencesFromResource(R.xml.orca_settings);
         PreferenceScreen prefSet = getPreferenceScreen();
         mContext = getActivity();
 
