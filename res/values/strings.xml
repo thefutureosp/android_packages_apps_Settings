@@ -1729,7 +1729,7 @@
     <!-- Sound settings screen, setting option name -->
     <string name="notification_sound_title">Default notification sound</string>
     <!-- Sound settings screen, notification light repeat pulsing title -->
-    <string name="notification_pulse_title">Pulse notification light</string>
+    <string name="notification_pulse_title">LED Settings</string>
     <!-- Sound settings screen, the title of the volume bar to adjust the incoming call volume -->
     <string name="incoming_call_volume_title">Ringtone</string>
     <!-- Sound settings screen, the title of the volume bar to adjust the notification volume -->
@@ -1924,9 +1924,9 @@
     <string name="device_info_settings" product="default">Phone status</string>
 
     <!-- About phone screen, list item title.  Takes the user to the screen for seeing and installing system updates. -->
-    <string name="system_update_settings_list_item_title">System updates</string>
+    <string name="system_update_settings_list_item_title">Orca updates</string>
     <!-- About phone screen, list item summary.  Takes the user to the screen for seeing and installing system updates. -->
-    <string name="system_update_settings_list_item_summary">""</string>
+    <string name="system_update_settings_list_item_summary">"Check for, view or install available updates"</string>
 
     <!-- About phone screen, status item label -->
     <string name="firmware_version">Android version</string>

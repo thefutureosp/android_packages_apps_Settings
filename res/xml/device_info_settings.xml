@@ -17,12 +17,13 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
         android:title="@string/about_settings">
 
-        <PreferenceScreen android:key="paranoidota_settings"
+        <!-- Orca Updates -->
+        <PreferenceScreen android:key="updates"
                 android:title="@string/system_update_settings_list_item_title" 
                 android:summary="@string/system_update_settings_list_item_summary">
             <intent android:action="android.intent.action.MAIN"
-                    android:targetPackage="com.paranoid.paranoidota"
-                    android:targetClass="com.paranoid.paranoidota.activities.SystemActivity" />
+                    android:targetPackage="com.s0up.goomanager"
+                    android:targetClass="com.s0up.goomanager.GooManagerActivity" />
         </PreferenceScreen>
 
 
