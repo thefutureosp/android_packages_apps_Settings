@@ -147,6 +147,9 @@
     <string name="tool_bar_lockscreen_header">Lock screen</string>
 
     <!-- HALO -->
+    <string name="halo_header_title">HALO</string>
+    <string name="halo_config_title">Halo Settings</string>
+    <string name="halo_config_summary">Configure halo options</string>
     <string name="halo_settings_title">HALO</string>
     <string name="halo_hide_title">Hide HALO after activity</string>
     <string name="halo_hide_summary">HALO will appear for incoming tasks and scroll out of sight after a while</string>
@@ -167,6 +170,10 @@
     <string name="halo_size_large">Large</string>
     <string name="halo_size_gigantic">Gigantic</string>
     <string name="halo_size_monster">Monster</string>
+
+    <!-- We want HALO popups -->
+    <string name="popups_title">Allow floating windows</string>
+    <string name="popups_summary">Controls whether you want floating windows from notification panel</string> 
 
     <!-- Quick pulldown -->
     <string name="quick_pulldown_title">Quick pulldown</string>
