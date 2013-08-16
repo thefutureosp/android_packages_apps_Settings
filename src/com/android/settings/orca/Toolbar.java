@@ -103,23 +103,6 @@ public class Toolbar extends SettingsPreferenceFragment
         mNotificationManager = INotificationManager.Stub.asInterface(
                 ServiceManager.getService(Context.NOTIFICATION_SERVICE));
 
-        mHaloState = (ListPreference) prefSet.findPreference(KEY_HALO_STATE);
-        mHaloState.setValue(String.valueOf((isHaloPolicyBlack() ? "1" : "0")));
-        mHaloState.setOnPreferenceChangeListener(this);
-
-        mHaloHide = (CheckBoxPreference) prefSet.findPreference(KEY_HALO_HIDE);
-        mHaloHide.setChecked(Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.HALO_HIDE, 0) == 1);
-
-        mHaloReversed = (CheckBoxPreference) prefSet.findPreference(KEY_HALO_REVERSED);
-        mHaloReversed.setChecked(Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.HALO_REVERSED, 1) == 1);
-
-        int isLowRAM = (ActivityManager.isLargeRAM()) ? 0 : 1;
-        mHaloPause = (CheckBoxPreference) prefSet.findPreference(KEY_HALO_PAUSE);
-        mHaloPause.setChecked(Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.HALO_PAUSE, isLowRAM) == 1);
-
         mQuickPullDown = (CheckBoxPreference) prefSet.findPreference(KEY_QUICK_PULL_DOWN);
         mQuickPullDown.setChecked(Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.QS_QUICK_PULLDOWN, 0) == 1);
