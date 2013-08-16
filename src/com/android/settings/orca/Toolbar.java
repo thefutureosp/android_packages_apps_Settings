@@ -57,6 +57,7 @@ public class Toolbar extends SettingsPreferenceFragment
     private static final String NAV_BAR_TABUI_MENU = "nav_bar_tabui_menu";
     private static final String STATUS_BAR_DONOTDISTURB = "status_bar_donotdisturb";
     private static final String NAV_BAR_CATEGORY = "toolbar_navigation";
+    private static final String KEY_NAVIGATION_RING = "navigation_ring";
     private static final String NAV_BAR_CONTROLS = "navigation_bar_controls";
     private static final String PIE_GRAVITY = "pie_gravity";
     private static final String PIE_MODE = "pie_mode";
@@ -94,6 +95,7 @@ public class Toolbar extends SettingsPreferenceFragment
     private CheckBoxPreference mPieCenter;
     private CheckBoxPreference mPieStick;
     private PreferenceScreen mNavigationBarControls;
+    private PreferenceScreen mNavigationRingControls;
     private PreferenceCategory mNavigationCategory;
 
     private Context mContext;
@@ -176,6 +178,8 @@ public class Toolbar extends SettingsPreferenceFragment
                 Settings.System.NAV_BAR_TABUI_MENU, 0) == 1));
 
         mNavigationBarControls = (PreferenceScreen) prefSet.findPreference(NAV_BAR_CONTROLS);
+        
+        mNavigationRingControls = (PreferenceScreen) prefSet.findPreference(KEY_NAVIGATION_RING);
 
         mPieGravity = (ListPreference) prefSet.findPreference(PIE_GRAVITY);
         int pieGravity = Settings.System.getInt(mContext.getContentResolver(),
