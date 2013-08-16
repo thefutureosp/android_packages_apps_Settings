@@ -16,10 +16,10 @@ limitations under the License.
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
         android:key="toolbar_halo"
-        android:title="@string/halo_settings">
+        android:title="@string/halo_header_title">
 
     <PreferenceCategory
-        android:title="@string/halo_settings_title">
+        android:title="@string/halo_config_title">
 
 	<CheckBoxPreference
             android:key="halo_enabled"
