@@ -43,11 +43,6 @@ import com.android.settings.Utils;
 public class Toolbar extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
-    private static final String KEY_HALO_STATE = "halo_state";
-    private static final String KEY_HALO_HIDE = "halo_hide";
-    private static final String KEY_HALO_REVERSED = "halo_reversed";
-    private static final String KEY_HALO_SIZE = "halo_size";
-    private static final String KEY_HALO_PAUSE = "halo_pause";
     private static final String KEY_QUICK_PULL_DOWN = "quick_pulldown";
     private static final String KEY_AM_PM_STYLE = "am_pm_style";
     private static final String KEY_SHOW_CLOCK = "show_clock";
@@ -78,11 +73,6 @@ public class Toolbar extends SettingsPreferenceFragment
     private ListPreference mPieTrigger;
     private ListPreference mPieAngle;
     private ListPreference mPieGap;
-    private ListPreference mHaloState;
-    private ListPreference mHaloSize;
-    private CheckBoxPreference mHaloHide;
-    private CheckBoxPreference mHaloReversed;
-    private CheckBoxPreference mHaloPause;
     private CheckBoxPreference mQuickPullDown;
     private CheckBoxPreference mShowClock;
     private CheckBoxPreference mCircleBattery;
@@ -110,23 +100,6 @@ public class Toolbar extends SettingsPreferenceFragment
 
         mNotificationManager = INotificationManager.Stub.asInterface(
                 ServiceManager.getService(Context.NOTIFICATION_SERVICE));
-
-        mHaloState = (ListPreference) prefSet.findPreference(KEY_HALO_STATE);
-        mHaloState.setValue(String.valueOf((isHaloPolicyBlack() ? "1" : "0")));
-        mHaloState.setOnPreferenceChangeListener(this);
-
-        mHaloHide = (CheckBoxPreference) prefSet.findPreference(KEY_HALO_HIDE);
-        mHaloHide.setChecked(Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.HALO_HIDE, 0) == 1);
-
-        mHaloReversed = (CheckBoxPreference) prefSet.findPreference(KEY_HALO_REVERSED);
-        mHaloReversed.setChecked(Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.HALO_REVERSED, 1) == 1);
-
-        int isLowRAM = (ActivityManager.isLargeRAM()) ? 0 : 1;
-        mHaloPause = (CheckBoxPreference) prefSet.findPreference(KEY_HALO_PAUSE);
-        mHaloPause.setChecked(Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.HALO_PAUSE, isLowRAM) == 1);
 
         mQuickPullDown = (CheckBoxPreference) prefSet.findPreference(KEY_QUICK_PULL_DOWN);
         mQuickPullDown.setChecked(Settings.System.getInt(mContext.getContentResolver(),
@@ -206,16 +179,6 @@ public class Toolbar extends SettingsPreferenceFragment
         mPieSize.setOnPreferenceChangeListener(this);
         mPieTrigger.setOnPreferenceChangeListener(this);
 
-        mHaloSize = (ListPreference) prefSet.findPreference(KEY_HALO_SIZE);
-        try {
-            float haloSize = Settings.System.getFloat(mContext.getContentResolver(),
-                    Settings.System.HALO_SIZE, 1.0f);
-            mHaloSize.setValue(String.valueOf(haloSize));  
-        } catch(Exception ex) {
-            // So what
-        }
-        mHaloSize.setOnPreferenceChangeListener(this);
-
         mPieGap = (ListPreference) prefSet.findPreference(PIE_GAP);
         int pieGap = Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.PIE_GAP, 2);
@@ -268,15 +231,6 @@ public class Toolbar extends SettingsPreferenceFragment
         }
     }
 
-    private boolean isHaloPolicyBlack() {
-        try {
-            return mNotificationManager.isHaloPolicyBlack();
-        } catch (android.os.RemoteException ex) {
-                // System dead
-        }
-        return true;
-    }
-
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference == mShowClock) {
@@ -290,18 +244,6 @@ public class Toolbar extends SettingsPreferenceFragment
         } else if (preference == mQuickPullDown) {
             Settings.System.putInt(mContext.getContentResolver(),
                     Settings.System.QS_QUICK_PULLDOWN, mQuickPullDown.isChecked()
-                    ? 1 : 0);
-        } else if (preference == mHaloHide) {
-            Settings.System.putInt(mContext.getContentResolver(),
-                    Settings.System.HALO_HIDE, mHaloHide.isChecked()
-                    ? 1 : 0);
-        } else if (preference == mHaloReversed) {
-            Settings.System.putInt(mContext.getContentResolver(),
-                    Settings.System.HALO_REVERSED, mHaloReversed.isChecked()
-                    ? 1 : 0);
-        } else if (preference == mHaloPause) {
-            Settings.System.putInt(mContext.getContentResolver(),
-                    Settings.System.HALO_PAUSE, mHaloPause.isChecked()
                     ? 1 : 0);
         } else if (preference == mStatusBarNotifCount) {
             Settings.System.putInt(mContext.getContentResolver(),
@@ -355,11 +297,6 @@ public class Toolbar extends SettingsPreferenceFragment
             Settings.System.putFloat(getActivity().getContentResolver(),
                     Settings.System.PIE_SIZE, pieSize);
             return true;
-        } else if (preference == mHaloSize) {
-            float haloSize = Float.valueOf((String) newValue);
-            Settings.System.putFloat(getActivity().getContentResolver(),
-                    Settings.System.HALO_SIZE, haloSize);
-            return true;
         } else if (preference == mPieGravity) {
             int pieGravity = Integer.valueOf((String) newValue);
             Settings.System.putInt(getActivity().getContentResolver(),
@@ -379,14 +316,6 @@ public class Toolbar extends SettingsPreferenceFragment
             float pieTrigger = Float.valueOf((String) newValue);
             Settings.System.putFloat(getActivity().getContentResolver(),
                     Settings.System.PIE_TRIGGER, pieTrigger);
-            return true;
-        } else if (preference == mHaloState) {
-            boolean state = Integer.valueOf((String) newValue) == 1;
-            try {
-                mNotificationManager.setHaloPolicyBlack(state);
-            } catch (android.os.RemoteException ex) {
-                // System dead
-            }
             return true;
         }
         return false;
