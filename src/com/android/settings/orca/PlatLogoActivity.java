@@ -115,9 +115,9 @@ public class PlatLogoActivity extends Activity {
                             | Intent.FLAG_ACTIVITY_CLEAR_TASK
                             | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
                         .addCategory("com.android.internal.category.PLATLOGO"));
-                        //.setClassName("com.android.systemui","com.android.systemui.BeanBag"));
+                        //.setClassName("com.android.settings","com.android.settings.orca.Shamu"));
                 } catch (ActivityNotFoundException ex) {
-                    android.util.Log.e("PlatLogoActivity", "Couldn't find a bag of beans.");
+                    android.util.Log.e("PlatLogoActivity", "Couldn't find a a of Shamu.");
                 }
                 finish();
                 return true;
