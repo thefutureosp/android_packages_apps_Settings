@@ -143,7 +143,7 @@
     <!-- Bars sub menu [CHAR LIMIT=30] -->
     <string name="tool_bar_settings">Orca Settings</string>
     <string name="tool_bar_status_header">Status bar</string>
-    <string name="tool_bar_navigation_header">Navigation bar</string>
+    <string name="tool_bar_navigation_header">Navigation bar &amp; Hardware Keys</string>
     <string name="tool_bar_lockscreen_header">Lock screen</string>
 
     <!-- HALO -->
