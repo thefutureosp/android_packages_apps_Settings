@@ -533,4 +533,9 @@
     <!-- Performance Settings : 16bpp Alpha -->
     <string name="pref_use_16bpp_alpha_title">16bit transparency</string>
     <string name="pref_use_16bpp_alpha_summary">Better graphics performance, but lower quality and may cause visual artifacts (requires reboot)</string>
+
+    <!-- Brightness Control on Status Bar -->
+    <string name="status_bar_brightness">Brightness control</string>
+    <string name="status_bar_brightness_summary">Adjust brightness by sliding across status bar</string>
+    <string name="status_bar_brightness_auto_info">Automatic brightness is enabled</string>
 </resources>
