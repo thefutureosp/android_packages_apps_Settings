@@ -1581,6 +1581,8 @@
 
        <activity android:name=".orca.HaloSettings" />
 
+       <activity android:name=".orca.PieControls" />
+
        <activity android:name=".cyanogenmod.PerformanceSettings" />
 
         <!-- Pseudo-activity used to provide an intent-filter entry point to encryption settings -->

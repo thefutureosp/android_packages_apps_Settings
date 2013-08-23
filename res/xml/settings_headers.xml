@@ -68,17 +68,6 @@
         android:fragment="com.android.settings.orca.Toolbar"
         android:icon="@drawable/ic_settings_rom_control" 
         android:title="@string/tool_bar_settings" />
-        
-    <!-- Hybrid options -->
-    <header
-        android:id="@+id/hybrid_settings"
-        android:icon="@drawable/ic_settings_hybrid"
-        android:title="@string/hybrid_settings">
-        <intent
-            android:action="android.intent.action.MAIN"
-            android:targetPackage="com.paranoid.preferences"
-            android:targetClass="com.paranoid.preferences.MainActivity" />
-    </header>
     
     <!-- Performance -->
     <header

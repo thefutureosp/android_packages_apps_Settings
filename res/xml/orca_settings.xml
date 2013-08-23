@@ -99,6 +99,21 @@
         android:fragment="com.android.settings.orca.HaloSettings" 
         android:title="@string/halo_config_title" 
         android:summary="@string/halo_config_summary" />
+
+    <PreferenceScreen
+        android:id="@+id/pie_settings"
+        android:fragment="com.android.settings.orca.PieControls"
+        android:title="@string/pie_controls_title"
+        android:summary="@string/pie_summary_title" />
+
+    <PreferenceScreen
+        android:id="@+id/hybrid_settings"
+        android:title="@string/hybrid_settings"
+        android:summary="@string/hybrid_summary_title">
+        <intent android:action="android.intent.action.MAIN"
+                android:targetPackage="com.paranoid.preferences"
+                android:targetClass="com.paranoid.preferences.MainActivity" />
+    </PreferenceScreen>
         
     </PreferenceCategory>         
 
@@ -120,81 +135,5 @@
             android:key="hardware_keys"
             android:fragment="com.android.settings.cyanogenmod.HardwareKeys"
             android:title="@string/hardware_keys_title" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:key="toolbar_pie_controls"
-        android:title="@string/pie_controls_title">
-
-        <ListPreference
-            android:key="pie_trigger"
-            android:dialogTitle="@string/pie_trigger_title"
-            android:title="@string/pie_trigger_title"
-            android:summary="@string/pie_trigger_summary"
-            android:entries="@array/entries_pie_trigger"
-            android:entryValues="@array/values_pie_trigger" />
-
-        <CheckBoxPreference
-            android:key="pie_stick"
-            android:title="@string/pie_stick_title"
-            android:summary="@string/pie_stick_summary" />
-
-        <ListPreference
-            android:key="pie_gravity"
-            android:dialogTitle="@string/pie_gravity_title"
-            android:title="@string/pie_gravity_title"
-            android:summary="@string/pie_gravity_summary"
-            android:entries="@array/entries_pie_gravity"
-            android:entryValues="@array/values_pie_gravity" />
-
-        <CheckBoxPreference
-            android:key="pie_center"
-            android:title="@string/pie_center_title"
-            android:summary="@string/pie_center_summary" />
-
-        <ListPreference
-            android:key="pie_mode"
-            android:dialogTitle="@string/pie_mode_title"
-            android:title="@string/pie_mode_title"
-            android:summary="@string/pie_mode_summary"
-            android:entries="@array/entries_pie_mode"
-            android:entryValues="@array/values_pie_mode" />
-
-        <ListPreference
-            android:key="pie_size"
-            android:dialogTitle="@string/pie_size_title"
-            android:title="@string/pie_size_title"
-            android:summary="@string/pie_size_summary"
-            android:entries="@array/entries_pie_size"
-            android:entryValues="@array/values_pie_size" />
-
-        <ListPreference
-            android:key="pie_angle"
-            android:dialogTitle="@string/pie_angle_title"
-            android:title="@string/pie_angle_title"
-            android:summary="@string/pie_angle_summary"
-            android:entries="@array/entries_pie_angle"
-            android:entryValues="@array/values_pie_angle" />
-
-        <ListPreference
-            android:key="pie_gap"
-            android:dialogTitle="@string/pie_gap_title"
-            android:title="@string/pie_gap_title"
-            android:summary="@string/pie_gap_summary"
-            android:entries="@array/entries_pie_gap"
-            android:entryValues="@array/values_pie_gap" />
-
-        <CheckBoxPreference
-            android:key="pie_menu"
-            android:title="@string/pie_menu_title"
-            android:summary="@string/pie_menu_summary" />
-
-        <CheckBoxPreference
-            android:key="pie_search"
-            android:title="@string/pie_search_title"
-            android:summary="@string/pie_search_summary" />
-            
-    </PreferenceCategory>
 
 </PreferenceScreen>
