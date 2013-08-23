@@ -16,6 +16,33 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
         android:title="@string/tool_bar_settings">
+        
+    <PreferenceCategory
+        android:key="toolbar_halo"
+        android:title="@string/halo_header_title">
+
+    <PreferenceScreen
+        android:id="@+id/halo_settings"
+        android:fragment="com.android.settings.orca.HaloSettings" 
+        android:title="@string/halo_config_title" 
+        android:summary="@string/halo_config_summary" />
+
+    <PreferenceScreen
+        android:id="@+id/pie_settings"
+        android:fragment="com.android.settings.orca.PieControls"
+        android:title="@string/pie_controls_title"
+        android:summary="@string/pie_summary_title" />
+
+    <PreferenceScreen
+        android:id="@+id/hybrid_settings"
+        android:title="@string/hybrid_settings"
+        android:summary="@string/hybrid_summary_title">
+        <intent android:action="android.intent.action.MAIN"
+                android:targetPackage="com.paranoid.preferences"
+                android:targetClass="com.paranoid.preferences.MainActivity" />
+    </PreferenceScreen>
+        
+    </PreferenceCategory>         
 
     <PreferenceCategory
         android:key="toolbar_status"
@@ -87,33 +114,6 @@
         android:fragment="com.android.settings.orca.Lockscreen" 
         android:title="@string/lock_screen_settings" 
         android:summary="@string/lock_screen_summary" />
-        
-    </PreferenceCategory> 
-
-    <PreferenceCategory
-        android:key="toolbar_halo"
-        android:title="@string/halo_header_title">
-
-    <PreferenceScreen
-        android:id="@+id/halo_settings"
-        android:fragment="com.android.settings.orca.HaloSettings" 
-        android:title="@string/halo_config_title" 
-        android:summary="@string/halo_config_summary" />
-
-    <PreferenceScreen
-        android:id="@+id/pie_settings"
-        android:fragment="com.android.settings.orca.PieControls"
-        android:title="@string/pie_controls_title"
-        android:summary="@string/pie_summary_title" />
-
-    <PreferenceScreen
-        android:id="@+id/hybrid_settings"
-        android:title="@string/hybrid_settings"
-        android:summary="@string/hybrid_summary_title">
-        <intent android:action="android.intent.action.MAIN"
-                android:targetPackage="com.paranoid.preferences"
-                android:targetClass="com.paranoid.preferences.MainActivity" />
-    </PreferenceScreen>
         
     </PreferenceCategory>         
 
